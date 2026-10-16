@@ -1,0 +1,40 @@
+---
+import '@fontsource-variable/inter'
+import '@fontsource-variable/space-grotesk'
+import '@/styles.css'
+import { site } from '@/data/site'
+import type { PageMeta } from '@/types'
+import Footer from './Footer.astro'
+import Header from './Header.astro'
+import SEOMetadata from './SEOMetadata.astro'
+
+type Props = {
+  meta: PageMeta
+}
+
+const { meta } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0b0c" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEOMetadata {...meta} />
+  </head>
+  <body class="min-h-screen">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded focus:bg-signal focus:px-4 focus:py-2 focus:text-on-signal"
+    >
+      {site.labels.skipToContent}
+    </a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

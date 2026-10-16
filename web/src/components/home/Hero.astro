@@ -1,0 +1,25 @@
+---
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import { home } from '@/data/home'
+
+const { hero } = home
+---
+
+<section class="relative overflow-hidden py-24 sm:py-36">
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -top-40 right-[-10%] size-[36rem] rounded-full bg-signal/10 blur-3xl"
+  ></div>
+  <Container class="relative">
+    <p class="eyebrow mb-6">{hero.eyebrow}</p>
+    <h1 class="text-display-xl max-w-5xl">{hero.title}</h1>
+    <p class="text-lead mt-8 max-w-2xl text-ash">{hero.lead}</p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <Button href={hero.primary.href}>{hero.primary.label}</Button>
+      <Button href={hero.secondary.href} variant="secondary">
+        {hero.secondary.label}
+      </Button>
+    </div>
+  </Container>
+</section>

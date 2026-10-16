@@ -1,0 +1,22 @@
+---
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { websiteConfig } from '@/config'
+import { contactPage } from '@/data/contact'
+import Layout from '@/layout/Layout.astro'
+---
+
+<Layout meta={contactPage.meta}>
+  <section class="py-24 sm:py-32">
+    <Container>
+      <SectionHeader as="h1" eyebrow={contactPage.eyebrow} title={contactPage.title} />
+      <p class="text-lead max-w-2xl text-ash">{contactPage.lead}</p>
+      <div class="mt-10">
+        <Button href={`mailto:${websiteConfig.email}`}>
+          {contactPage.emailLabel}: {websiteConfig.email}
+        </Button>
+      </div>
+    </Container>
+  </section>
+</Layout>

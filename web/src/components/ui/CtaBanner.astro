@@ -1,0 +1,23 @@
+---
+import type { Link } from '@/types'
+import Button from './Button.astro'
+import PageSection from './PageSection.astro'
+
+type Props = {
+  title: string
+  body: string
+  link: Link
+}
+
+const { title, body, link } = Astro.props
+---
+
+<PageSection>
+  <div class="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+    <div class="max-w-2xl">
+      <h2 class="text-display-md">{title}</h2>
+      <p class="text-lead mt-4 text-ash">{body}</p>
+    </div>
+    <Button href={link.href}>{link.label}</Button>
+  </div>
+</PageSection>

@@ -1,0 +1,20 @@
+---
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { home } from '@/data/home'
+
+const { services } = home
+---
+
+<PageSection id="services">
+  <SectionHeader eyebrow={services.eyebrow} title={services.title} />
+  <ul class="grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-2">
+    {services.items.map((item, index) => (
+      <li class="bg-ink p-8 sm:p-10">
+        <p class="font-display text-sm text-ash">{String(index + 1).padStart(2, '0')}</p>
+        <h3 class="mt-6 text-2xl">{item.title}</h3>
+        <p class="mt-3 text-ash">{item.body}</p>
+      </li>
+    ))}
+  </ul>
+</PageSection>

@@ -1,0 +1,37 @@
+---
+import Container from '@/components/ui/Container.astro'
+import { websiteConfig } from '@/config'
+import { site } from '@/data/site'
+
+const year = new Date().getFullYear()
+---
+
+<footer class="border-t border-hairline py-12 text-sm text-ash">
+  <Container class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <p class="font-display text-lg text-bone">
+        Blackhat<span class="text-signal">.</span>
+      </p>
+      <p class="mt-2">{site.tagline}</p>
+    </div>
+    <div class="flex flex-col gap-2 sm:items-end">
+      <a href={`mailto:${websiteConfig.email}`} class="hover:text-bone">
+        {websiteConfig.email}
+      </a>
+      {websiteConfig.social.length > 0 && (
+        <ul class="flex gap-4">
+          {websiteConfig.social.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-bone">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+      <p>
+        © {year} {websiteConfig.name}. {site.labels.rights}
+      </p>
+    </div>
+  </Container>
+</footer>

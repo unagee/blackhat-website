@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --font-sans: 'Inter Variable', system-ui, sans-serif;
+  --font-display: 'Space Grotesk Variable', system-ui, sans-serif;
+
+  /* Blackhat palette: ink ground, bone text, one signal accent for the main action. */
+  --color-ink: #0b0b0c;
+  --color-ink-raised: #151517;
+  --color-hairline: #2a2a2e;
+  --color-bone: #f2efe8;
+  --color-ash: #9a978f;
+  --color-signal: #d9ff3f;
+  --color-on-signal: #0b0b0c;
+
+  --text-display-xl: clamp(2.75rem, 7vw, 5.75rem);
+  --text-display-xl--line-height: 0.98;
+  --text-display-xl--letter-spacing: -0.04em;
+  --text-display-md: clamp(1.875rem, 3.4vw, 2.75rem);
+  --text-display-md--line-height: 1.05;
+  --text-display-md--letter-spacing: -0.03em;
+  --text-lead: clamp(1.0625rem, 1.4vw, 1.25rem);
+  --text-lead--line-height: 1.55;
+}
+
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+}

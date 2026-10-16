@@ -1,0 +1,15 @@
+---
+import Approach from '@/components/home/Approach.astro'
+import Hero from '@/components/home/Hero.astro'
+import Services from '@/components/home/Services.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import { home } from '@/data/home'
+import Layout from '@/layout/Layout.astro'
+---
+
+<Layout meta={home.meta}>
+  <Hero />
+  <Services />
+  <Approach />
+  <CtaBanner {...home.cta} />
+</Layout>

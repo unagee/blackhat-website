@@ -1,0 +1,25 @@
+---
+import { websiteConfig } from '@/config'
+import type { PageMeta } from '@/types'
+import { WEBSITE_URL } from 'astro:env/client'
+import { SITE_ENV } from 'astro:env/server'
+
+type Props = PageMeta
+
+const { title, description, noIndex } = Astro.props
+
+const canonicalUrl = new URL(Astro.url.pathname, WEBSITE_URL)
+const shouldIndex = SITE_ENV === 'production' && !noIndex
+---
+
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+<meta name="robots" content={shouldIndex ? 'index, follow' : 'noindex, nofollow'} />
+<link rel="canonical" href={canonicalUrl} />
+<link rel="sitemap" href="/sitemap.xml" />
+<meta property="og:site_name" content={websiteConfig.name} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+{description && <meta property="og:description" content={description} />}
+<meta name="twitter:card" content="summary" />

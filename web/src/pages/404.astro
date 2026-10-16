@@ -1,0 +1,17 @@
+---
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import Layout from '@/layout/Layout.astro'
+---
+
+<Layout meta={{ title: 'Page not found | Blackhat Agency', noIndex: true }}>
+  <section class="py-32">
+    <Container>
+      <p class="eyebrow mb-4">404</p>
+      <h1 class="text-display-md">This page doesn’t exist.</h1>
+      <div class="mt-8">
+        <Button href="/">Back to home</Button>
+      </div>
+    </Container>
+  </section>
+</Layout>

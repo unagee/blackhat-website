@@ -1,0 +1,22 @@
+---
+import Container from './Container.astro'
+
+type Props = {
+  id?: string
+  tone?: 'ink' | 'raised'
+}
+
+const { id, tone = 'ink' } = Astro.props
+---
+
+<section
+  id={id}
+  class:list={[
+    'scroll-mt-20 border-t border-hairline py-20 sm:py-28',
+    tone === 'raised' ? 'bg-ink-raised' : 'bg-ink',
+  ]}
+>
+  <Container>
+    <slot />
+  </Container>
+</section>

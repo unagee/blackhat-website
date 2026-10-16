@@ -1,0 +1,29 @@
+---
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import { site } from '@/data/site'
+---
+
+<header class="sticky top-0 z-50 border-b border-hairline bg-ink/85 backdrop-blur">
+  <Container class="flex h-16 items-center justify-between gap-6">
+    <a
+      href="/"
+      class="font-display text-lg font-semibold tracking-tight"
+      aria-label={site.labels.home}
+    >
+      Blackhat<span class="text-signal">.</span>
+    </a>
+    <nav aria-label={site.labels.mainNavigation} class="flex items-center gap-6">
+      <ul class="hidden items-center gap-6 text-sm text-ash sm:flex">
+        {site.nav.map((link) => (
+          <li>
+            <a href={link.href} class="transition-colors hover:text-bone">
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <Button href={site.cta.href}>{site.cta.label}</Button>
+    </nav>
+  </Container>
+</header>

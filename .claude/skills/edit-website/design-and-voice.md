@@ -1,0 +1,23 @@
+# Design and voice
+
+The full rules for code are in the "Design system" section of `CLAUDE.md`; this is what matters for editors' changes.
+
+## Voice
+
+- Audience: marketing and growth leads at B2B companies choosing an agency.
+- Plain, confident and specific. Lead with the outcome for the client, then how. Prefer concrete details over adjectives ("powerful", "seamless", "world-class").
+- US English, short sentences, active voice. No exclamation marks, no emoji.
+- Headings use sentence case. Buttons and navigation use sentence case ("Start a project").
+- Keep headings close to their current length; long headings wrap badly on phones.
+
+## Look
+
+- Never change colors, fonts, spacing or sizes as part of a content edit. If the editor asks for a visual change, explain that it changes the design system and check whether they want it in one place or everywhere.
+- Signal lime is only for the main action and small accents (eyebrows, step numbers). One primary button per view where possible.
+- New sections are built from `web/src/components/ui/` with their words in a data file. Use the `astro-components` skill and flag it on the pull request.
+
+## Accessibility
+
+- Every image needs alt text that says what it shows; decorative images get an empty alt.
+- Link text says where it goes ("Start a project", not "click here").
+- Don't put words inside images when they could be text on the page.
