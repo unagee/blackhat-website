@@ -1,0 +1,63 @@
+---
+import type { Link, Picture } from '@/types'
+import { Image } from 'astro:assets'
+import Container from './Container.astro'
+
+type Props = {
+  title: string
+  lead: string
+  eyebrow?: string
+  // Shown above the title as a trail back to parent pages.
+  breadcrumb?: { label: string; items: Link[] }
+  image?: Picture
+}
+
+const { title, lead, eyebrow, breadcrumb, image } = Astro.props
+---
+
+<section
+  class:list={[
+    'relative isolate overflow-hidden',
+    image ? 'flex min-h-[70svh] items-end pt-32 pb-16 sm:pb-20' : 'pt-24 pb-16 sm:pt-32 sm:pb-20',
+  ]}
+>
+  {image && (
+    <div class="absolute inset-0 -z-10">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        widths={[640, 960, 1280, 1920, 2400]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="size-full object-cover"
+      />
+      <div aria-hidden="true" class="absolute inset-0 bg-ink/50" />
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 bg-linear-to-t from-ink via-ink/70 to-ink/20"
+      />
+    </div>
+  )}
+  <Container class="relative">
+    {breadcrumb && (
+      <nav aria-label={breadcrumb.label} class="mb-6">
+        <ol class="eyebrow flex flex-wrap items-center gap-2 text-signal">
+          {breadcrumb.items.map((item) => (
+            <li class="flex items-center gap-2">
+              <a href={item.href} class="hover:text-bone">
+                {item.label}
+              </a>
+              <span aria-hidden="true" class="text-ash">
+                /
+              </span>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+    {eyebrow && <p class="eyebrow mb-6 text-signal">{eyebrow}</p>}
+    <h1 class="text-display-xl max-w-5xl">{title}</h1>
+    <p class="text-lead mt-8 max-w-2xl text-bone/85">{lead}</p>
+  </Container>
+</section>

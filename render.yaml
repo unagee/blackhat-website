@@ -24,6 +24,20 @@ services:
         value: https://blackhat-website.onrender.com
       - key: SITE_ENV
         value: production
+    # Old blackhat.agency (Squarespace) addresses, kept working after the domain moves here.
+    routes:
+      - type: redirect
+        source: /services
+        destination: /what-we-do
+      - type: redirect
+        source: /branding-visual-identity
+        destination: /what-we-do/brand-visual-identity
+      - type: redirect
+        source: /animation
+        destination: /what-we-do/3d-animation-motion-graphics
+      - type: redirect
+        source: /strategy
+        destination: /what-we-do/strategy-consulting
     headers:
       - path: /*
         name: Content-Security-Policy

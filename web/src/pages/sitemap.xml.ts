@@ -1,8 +1,15 @@
 import type { APIRoute } from 'astro'
 import { WEBSITE_URL } from 'astro:env/client'
 
+import { services } from '@/data/services'
+
 // Add every new page here so search engines can find it.
-const paths = ['/', '/contact']
+const paths = [
+  '/',
+  '/what-we-do',
+  ...services.map((service) => `/what-we-do/${service.slug}`),
+  '/contact',
+]
 
 export const GET: APIRoute = () => {
   const urls = paths.map((path) => `<url><loc>${new URL(path, WEBSITE_URL)}</loc></url>`)

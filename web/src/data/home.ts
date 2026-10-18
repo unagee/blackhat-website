@@ -171,14 +171,4 @@ export const home = {
     },
     caption: 'Cooklane: an isometric 3D world built to explain cloud retail at a glance.',
   },
-
-  contact: {
-    eyebrow: 'Contact',
-    title: 'Tell us what you’re working on.',
-    body: 'A rough brief, a half-finished deck, a hunch. Send whatever you have and we’ll come back with how we’d approach it.',
-    emailLabel: 'Email us',
-    emailSubject: 'New project enquiry',
-    emailBody:
-      'Name:\nCompany:\nWhich services are you interested in?\nTell us about your project:\n',
-  },
 }

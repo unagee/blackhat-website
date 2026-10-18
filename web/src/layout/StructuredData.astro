@@ -5,6 +5,12 @@ import { site } from '@/data/site'
 import { getImage } from 'astro:assets'
 import { WEBSITE_URL } from 'astro:env/client'
 
+type Props = {
+  extra?: Record<string, unknown>[]
+}
+
+const { extra = [] } = Astro.props
+
 // Organization + LocalBusiness data so search engines show the right name, address and contact.
 const url = new URL('/', WEBSITE_URL).toString()
 const logo = await getImage({ src: wordmark, format: 'png', width: 600 })
@@ -42,6 +48,7 @@ const data = {
       areaServed: 'Worldwide',
       knowsAbout: site.services.map((service) => service.label),
     },
+    ...extra,
   ],
 }
 ---

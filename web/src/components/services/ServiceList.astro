@@ -1,0 +1,42 @@
+---
+import ArrowIcon from '@/components/ui/ArrowIcon.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { serviceHref, type Service } from '@/data/services'
+
+type Props = {
+  eyebrow: string
+  title: string
+  services: Service[]
+}
+
+// Large rows linking to each service, like a table of contents.
+const { eyebrow, title, services } = Astro.props
+---
+
+<PageSection id="all-services" labelledby="service-list-title">
+  <SectionHeader id="service-list-title" eyebrow={eyebrow} title={title} />
+  <ul class="border-t border-hairline">
+    {services.map((service) => (
+      <li class="group relative border-b border-hairline">
+        <div class="grid gap-4 py-8 md:grid-cols-[1fr_1fr_auto] md:items-center md:gap-10">
+          <h3 class="text-display-md">
+            <a
+              href={serviceHref(service.slug)}
+              class="after:absolute after:inset-0 group-hover:text-signal"
+            >
+              {service.name}
+            </a>
+          </h3>
+          <p class="text-ash">{service.summary}</p>
+          <span
+            aria-hidden="true"
+            class="grid size-10 place-items-center rounded-full border border-bone/40 transition-colors group-hover:border-signal group-hover:bg-signal group-hover:text-on-signal"
+          >
+            <ArrowIcon />
+          </span>
+        </div>
+      </li>
+    ))}
+  </ul>
+</PageSection>

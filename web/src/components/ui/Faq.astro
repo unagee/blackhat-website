@@ -1,0 +1,42 @@
+---
+import PageSection from './PageSection.astro'
+import SectionHeader from './SectionHeader.astro'
+
+type Props = {
+  eyebrow: string
+  title: string
+  items: { question: string; answer: string }[]
+}
+
+const { eyebrow, title, items } = Astro.props
+---
+
+<PageSection id="faq" labelledby="faq-title">
+  <div class="grid gap-12 lg:grid-cols-[1fr_2fr]">
+    <SectionHeader id="faq-title" eyebrow={eyebrow} title={title} />
+    <div class="divide-y divide-hairline border-y border-hairline">
+      {items.map((item) => (
+        <details class="group">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-xl hover:text-signal [&::-webkit-details-marker]:hidden">
+            <h3>{item.question}</h3>
+            <span
+              aria-hidden="true"
+              class="grid size-8 shrink-0 place-items-center rounded-full border border-bone/40 transition-transform group-open:rotate-45 motion-reduce:transition-none"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                class="size-3.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+              >
+                <path d="M8 3v10M3 8h10" />
+              </svg>
+            </span>
+          </summary>
+          <p class="max-w-2xl pb-6 text-ash">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</PageSection>

@@ -1,0 +1,58 @@
+---
+import ServiceIntro from '@/components/services/ServiceIntro.astro'
+import ServiceList from '@/components/services/ServiceList.astro'
+import ServiceOfferings from '@/components/services/ServiceOfferings.astro'
+import ServiceProcess from '@/components/services/ServiceProcess.astro'
+import ServiceWork from '@/components/services/ServiceWork.astro'
+import ContactClose from '@/components/ui/ContactClose.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import Faq from '@/components/ui/Faq.astro'
+import PageHero from '@/components/ui/PageHero.astro'
+import { projectsFor } from '@/data/projects'
+import { serviceHref, servicePage, services, type Service } from '@/data/services'
+import Layout from '@/layout/Layout.astro'
+import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/schema'
+
+export function getStaticPaths() {
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }))
+}
+
+type Props = {
+  service: Service
+}
+
+const { service } = Astro.props
+const href = serviceHref(service.slug)
+const parent = { label: servicePage.eyebrow, href: '/what-we-do' }
+const schema = [
+  breadcrumbSchema([{ label: 'Home', href: '/' }, parent, { label: service.name, href }]),
+  serviceSchema(service.name, service.meta.description ?? service.summary, href),
+  faqSchema(service.faq.items),
+]
+---
+
+<Layout meta={service.meta} schema={schema}>
+  <PageHero
+    title={service.name}
+    lead={service.hero.lead}
+    image={service.hero.image}
+    breadcrumb={{ label: servicePage.breadcrumbLabel, items: [parent] }}
+  />
+  <ServiceIntro intro={service.intro} />
+  <ServiceOfferings eyebrow={servicePage.offeringsEyebrow} offerings={service.offerings} />
+  <ServiceProcess eyebrow={servicePage.processEyebrow} process={service.process} />
+  <CtaBanner {...service.prompt} />
+  <ServiceWork
+    eyebrow={servicePage.workEyebrow}
+    title={service.work.title}
+    projects={projectsFor(service.slug)}
+    allLink={servicePage.allWork}
+  />
+  <Faq eyebrow={servicePage.faqEyebrow} title={service.faq.title} items={service.faq.items} />
+  <ServiceList
+    eyebrow={servicePage.relatedEyebrow}
+    title={servicePage.relatedTitle}
+    services={services.filter((other) => other.slug !== service.slug)}
+  />
+  <ContactClose />
+</Layout>
