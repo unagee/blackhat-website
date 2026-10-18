@@ -1,0 +1,43 @@
+---
+import Button from '@/components/ui/Button.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import WorkCard from '@/components/ui/WorkCard.astro'
+import type { Project } from '@/data/projects'
+import { services } from '@/data/services'
+import type { Link } from '@/types'
+
+type Props = {
+  eyebrow: string
+  title: string
+  projects: Project[]
+  allLink: Link
+}
+
+const { eyebrow, title, projects, allLink } = Astro.props
+const serviceName = (slug: string) => services.find((service) => service.slug === slug)?.name ?? ''
+---
+
+<PageSection id="work" labelledby="work-title">
+  <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+    <SectionHeader id="work-title" eyebrow={eyebrow} title={title} />
+    <div class="-mt-4 mb-12 sm:mt-0">
+      <Button href={allLink.href} variant="secondary" arrow>
+        {allLink.label}
+      </Button>
+    </div>
+  </div>
+  <ul class="grid gap-12 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+    {projects.map((project) => (
+      <li>
+        <WorkCard
+          client={project.client}
+          label={project.services.map(serviceName).join(' · ')}
+          summary={project.summary}
+          href={`/work/${project.slug}`}
+          image={project.image}
+        />
+      </li>
+    ))}
+  </ul>
+</PageSection>

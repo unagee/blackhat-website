@@ -10,9 +10,11 @@ import StructuredData from './StructuredData.astro'
 
 type Props = {
   meta: PageMeta
+  // Extra schema.org objects for this page (breadcrumbs, services, FAQs).
+  schema?: Record<string, unknown>[]
 }
 
-const { meta } = Astro.props
+const { meta, schema = [] } = Astro.props
 ---
 
 <!doctype html>
@@ -23,7 +25,7 @@ const { meta } = Astro.props
     <meta name="theme-color" content="#000000" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <SEOMetadata {...meta} />
-    <StructuredData />
+    <StructuredData extra={schema} />
   </head>
   <body class="min-h-screen">
     <a

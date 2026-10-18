@@ -1,10 +1,10 @@
 ---
-import Button from '@/components/ui/Button.astro'
-import PageSection from '@/components/ui/PageSection.astro'
 import { websiteConfig } from '@/config'
-import { home } from '@/data/home'
+import { site } from '@/data/site'
+import Button from './Button.astro'
+import PageSection from './PageSection.astro'
 
-const { contact } = home
+const { contact } = site
 const { address } = websiteConfig
 const mailto = `mailto:${websiteConfig.email}?subject=${encodeURIComponent(contact.emailSubject)}&body=${encodeURIComponent(contact.emailBody)}`
 ---
