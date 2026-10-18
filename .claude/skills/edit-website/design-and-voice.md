@@ -4,13 +4,13 @@ The full rules for code are in the "Design system" section of `CLAUDE.md`; this 
 
 ## Voice
 
-Professional, human and a little witty, in the spirit of how Monks presents itself: short plain headings, one confident line per section, polish in the details rather than the adjectives.
+Professional and straightforward first, bold where it counts. Each line should say plainly what we do or what the client gets ("Designing the hyperloop journey before the first passenger boards"). Save the bolder, more personal lines for calls to action ("Tell us what you’re working on."). Short plain headings, one line per section, in the spirit of how Monks presents itself.
 
 - Audience: decision makers at financial institutions, healthcare innovators and luxury brands choosing a creative partner.
 - Sound like a sharp person talking, not a brochure. Lead with what the client gets, then how.
-- Wit comes from real specifics ("Products that don’t exist yet, buildings still on paper"), never from puns or exclamation marks.
-- Headings: short and plain, sentence case ("Got something hard to explain?", "A few we’re proud of"). Buttons and navigation too ("Start a project").
-- Never use: clarity, "make it clear", seamless, elevate, unlock, empower, transform, journey (except the service "customer journeys"), touchpoint, crafted, cutting-edge, world-class, "in today’s world", "not just X but Y", or em dashes.
+- No forced wit or jokes. Confidence comes from specifics, not puns or exclamation marks.
+- Headings: short and plain, sentence case ("Work that does the explaining", "Brands we’ve worked with"). Buttons and navigation too ("Start a project").
+- Never use: clarity, "make it clear", seamless, elevate, unlock, empower, transform, crafted, cutting-edge, world-class, "in today’s world", "not just X but Y", or em dashes.
 - British English (Singapore audience: "colour", "visualise"), short sentences, active voice. No emoji.
 - Never invent clients, numbers, results or testimonials. Describe only what the work shows.
 - Keep headings close to their current length; long headings wrap badly on phones.
