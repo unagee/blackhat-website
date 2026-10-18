@@ -34,27 +34,26 @@ export const home = {
   meta: {
     title: 'Branding, 3D & Strategy Agency in Singapore | Blackhat',
     description:
-      'Blackhat is a Singapore creative agency for finance, healthcare and luxury brands. We turn complex ideas into brand identities, 3D animation and strategy.',
+      'Singapore creative agency for finance, healthcare and luxury brands. Brand identity, 3D animation and strategy for ideas that are hard to explain.',
   },
 
   hero: {
-    eyebrow: 'Strategy-driven creative agency, Singapore',
-    title: 'We turn complex ideas into brands people trust.',
-    lead: 'Brand identity, 3D animation and strategy for financial institutions, healthcare innovators and luxury brands. Based in Singapore, working worldwide.',
+    eyebrow: 'Creative agency, Singapore',
+    title: 'We make complicated things look good.',
+    lead: 'Brand identity, 3D animation and strategy for finance, healthcare and luxury brands. We do the hard thinking up front, so your customers don’t have to do any.',
     primary: { label: 'Start a project', href: '/contact' } satisfies Link,
-    secondary: { label: 'See our work', href: '/work' } satisfies Link,
+    secondary: { label: 'See the work', href: '/work' } satisfies Link,
     // Widened so the hero handles both the still and the reel.
     media: heroMedia as HeroMedia,
   },
 
   services: {
     eyebrow: 'What we do',
-    title: 'Three disciplines. One team that connects them.',
-    linkLabel: 'Explore',
+    title: 'Three things we do very well',
     items: [
       {
         ...branding,
-        body: 'We turn your values and goals into a logo, colour, tone of voice and graphics that carry your story to every touchpoint.',
+        body: 'Tell us what you stand for and where you’re headed. We’ll turn it into a logo, colours, a voice and a look people recognise from across the room.',
         image: {
           src: niriSupergraphic,
           alt: 'NIRI restaurant supergraphic pattern and logo designed by Blackhat',
@@ -62,7 +61,7 @@ export const home = {
       },
       {
         ...animation,
-        body: 'Product visualisation, story-driven animation and cinematic walk-throughs that stop the scroll and explain what words can’t.',
+        body: 'Products that don’t exist yet, buildings still on paper, ideas too big for a photo shoot. We model them, light them and make them move.',
         image: {
           src: warJets,
           alt: 'Photoreal 3D render of a futuristic gunship aircraft on a landing pad, modelled by Blackhat',
@@ -70,7 +69,7 @@ export const home = {
       },
       {
         ...strategy,
-        body: 'Customer journeys, business strategy and interactive training decks that turn ambiguity into a plan your teams can follow.',
+        body: 'When your business takes ten minutes to explain, we find the two-minute version. Customer journeys, strategy and training decks people actually finish.',
         image: {
           src: ckPermitting,
           alt: 'Jurisdictional approval playbook diagram Blackhat designed for Cloudkitchens',
@@ -80,7 +79,7 @@ export const home = {
   },
 
   clients: {
-    title: 'Brands we’ve worked with',
+    title: 'In good company',
     logos: [
       { src: ikea, alt: 'IKEA' },
       { src: ea, alt: 'Electronic Arts' },
@@ -93,16 +92,16 @@ export const home = {
   },
 
   prompt: {
-    title: 'What do you need people to understand?',
-    body: 'A new brand, a product nobody has seen yet, a process that loses people halfway. Tell us the problem and we’ll show you how we’d make it clear.',
+    title: 'Got something hard to explain?',
+    body: 'A new brand, a product nobody has seen yet, a process that loses people halfway through. Tell us about it. We like the tricky ones.',
     link: { label: 'Reach out', href: '/contact' } satisfies Link,
   },
 
   featured: {
     eyebrow: 'Featured work',
     client: 'Hyperloop TT, Dubai',
-    title: 'Designing the hyperloop journey before the first passenger boards',
-    body: 'We mapped the rider journey from departure to arrival for daily commuters and tourists, then visualised the tube, pods and urban context in 3D so stakeholders could see how the system would work.',
+    title: 'Mapping a commute that hasn’t happened yet',
+    body: 'We followed daily commuters and tourists from departure to arrival, step by step, then built the tube, the pods and the city around them in 3D so everyone in the room could picture the ride.',
     tags: ['Strategy & Consulting', '3D Animation'],
     link: { label: 'See the project', href: '/work/hyperloop-tt' } satisfies Link,
     image: {
@@ -113,13 +112,14 @@ export const home = {
 
   work: {
     eyebrow: 'Selected work',
-    title: 'Work that does the explaining',
+    title: 'A few we’re proud of',
     allLink: { label: 'See all work', href: '/work' } satisfies Link,
     items: [
       {
         client: 'NIRI',
         service: 'Brand & Visual Identity',
-        summary: 'A fine-dining identity, from logo and supergraphics to menus and social.',
+        summary:
+          'A restaurant identity that runs from the logo to the menus, the walls and the Instagram grid.',
         href: '/work/niri',
         image: { src: niriLogo, alt: 'NIRI logo over a 3D render of the restaurant’s dining room' },
       },
@@ -127,7 +127,7 @@ export const home = {
         client: 'MYJ',
         service: '3D Animation & Motion Graphics',
         summary:
-          'Photoreal renders of an investment firm’s new offices, from entrance to CEO suite.',
+          'An investment firm’s new offices in photoreal 3D, from the front door to the CEO’s desk.',
         href: '/work/myj',
         image: { src: myjEntrance, alt: '3D render of the MYJ office entrance facade at dusk' },
       },
@@ -135,7 +135,7 @@ export const home = {
         client: 'Cloudkitchens',
         service: 'Strategy & Consulting',
         summary:
-          'A global safety awareness campaign, with characters and training kitchen teams remember.',
+          'Safety posters and training that kitchen teams actually read, before anything catches fire.',
         href: '/work/cloudkitchens-safety',
         image: {
           src: ckSafety,
@@ -147,20 +147,19 @@ export const home = {
 
   industries: {
     eyebrow: 'Who we work with',
-    statement:
-      'We work where clarity is the product: in sectors where every visual has to earn trust before it earns attention.',
+    statement: 'We do our best work where mistakes are expensive and attention is hard to win.',
     items: [
       {
         title: 'Financial institutions',
-        body: 'Products, processes and spaces explained simply, without losing credibility.',
+        body: 'Products and processes explained plainly, without sounding like the small print.',
       },
       {
         title: 'Healthcare innovators',
-        body: 'Approvals, safety and science turned into material people understand and act on.',
+        body: 'Approvals, safety and science turned into something people read, remember and follow.',
       },
       {
         title: 'Luxury brands',
-        body: 'Identities and packaging with the craft your customers expect at every touchpoint.',
+        body: 'Identities and packaging with the finish your customers notice, even if they couldn’t say why.',
       },
     ],
   },
@@ -170,13 +169,13 @@ export const home = {
       src: cooklaneWorld,
       alt: 'Isometric 3D city with a restaurant, streets and moving vehicles, built by Blackhat for Cooklane',
     },
-    caption: 'Cooklane: an isometric 3D world built to explain cloud retail at a glance.',
+    caption: 'Cooklane: we built a small 3D town to show how cloud retail works.',
   },
 
   contact: {
     eyebrow: 'Contact',
-    title: 'Let’s make it clear, together.',
-    body: 'Tell us about your project, your timeline and what success looks like. We’ll come back with a clear next step.',
+    title: 'Tell us what you’re working on.',
+    body: 'A rough brief, a half-finished deck, a hunch. Send whatever you have and we’ll come back with how we’d approach it.',
     emailLabel: 'Email us',
     emailSubject: 'New project enquiry',
     emailBody:

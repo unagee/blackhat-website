@@ -65,6 +65,13 @@
     font-weight: 500;
   }
 
+  /* Even line lengths, so headings never end on a single orphaned word. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-signal);
     outline-offset: 3px;

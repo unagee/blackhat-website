@@ -4,10 +4,15 @@ The full rules for code are in the "Design system" section of `CLAUDE.md`; this 
 
 ## Voice
 
+Professional, human and a little witty, in the spirit of how Monks presents itself: short plain headings, one confident line per section, polish in the details rather than the adjectives.
+
 - Audience: decision makers at financial institutions, healthcare innovators and luxury brands choosing a creative partner.
-- Plain, confident and specific. Lead with the outcome for the client, then how. Prefer concrete details over adjectives ("powerful", "seamless", "world-class").
-- British English (Singapore audience: "colour", "visualise"), short sentences, active voice. No exclamation marks, no emoji.
-- Headings use sentence case. Buttons and navigation use sentence case ("Start a project").
+- Sound like a sharp person talking, not a brochure. Lead with what the client gets, then how.
+- Wit comes from real specifics ("Products that don’t exist yet, buildings still on paper"), never from puns or exclamation marks.
+- Headings: short and plain, sentence case ("Got something hard to explain?", "A few we’re proud of"). Buttons and navigation too ("Start a project").
+- Never use: clarity, "make it clear", seamless, elevate, unlock, empower, transform, journey (except the service "customer journeys"), touchpoint, crafted, cutting-edge, world-class, "in today’s world", "not just X but Y", or em dashes.
+- British English (Singapore audience: "colour", "visualise"), short sentences, active voice. No emoji.
+- Never invent clients, numbers, results or testimonials. Describe only what the work shows.
 - Keep headings close to their current length; long headings wrap badly on phones.
 
 ## Look
@@ -16,7 +21,6 @@ The full rules for code are in the "Design system" section of `CLAUDE.md`; this 
 - Palette from blackhat.agency: black ground, white text, yellow (`signal`) for the main action and small accents. One yellow button per view where possible.
 - Mostly dark sections. On white or yellow sections all text is dark; never put yellow text on white.
 - One typeface, Zalando Sans, never heavier than medium.
-- Never invent clients, numbers, results or testimonials. Describe only what the work shows.
 - New sections are built from `web/src/components/ui/` with their words in a data file. Use the `astro-components` skill and flag it on the pull request.
 
 ## Accessibility
