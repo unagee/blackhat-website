@@ -1,0 +1,67 @@
+---
+import Container from '@/components/ui/Container.astro'
+import { home } from '@/data/home'
+import { site } from '@/data/site'
+import { Image } from 'astro:assets'
+
+const { clients } = home
+---
+
+<section aria-labelledby="clients-title" class="border-t border-hairline bg-ink py-16 sm:py-20">
+  <Container class="flex items-center justify-between gap-6">
+    <h2 id="clients-title" class="eyebrow text-ash">
+      {clients.title}
+    </h2>
+    <button
+      type="button"
+      data-marquee-toggle
+      data-label-pause={site.labels.pauseMotion}
+      data-label-play={site.labels.playMotion}
+      class="shrink-0 rounded-full border border-hairline px-4 py-1.5 whitespace-nowrap text-sm text-ash hover:border-bone hover:text-bone motion-reduce:hidden"
+    >
+      {site.labels.pauseMotion}
+    </button>
+  </Container>
+
+  <div class="mt-10 overflow-hidden motion-reduce:overflow-visible">
+    <div
+      data-marquee
+      class="flex w-max animate-marquee motion-reduce:w-auto motion-reduce:animate-none"
+    >
+      {[false, true].map((duplicate) => (
+        <ul
+          class:list={[
+            'flex shrink-0 items-center gap-16 pr-16 sm:gap-24 sm:pr-24',
+            'motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:px-4',
+            duplicate && 'motion-reduce:hidden',
+          ]}
+          aria-hidden={duplicate ? 'true' : undefined}
+        >
+          {clients.logos.map((logo) => (
+            <li>
+              <Image
+                src={logo.src}
+                alt={duplicate ? '' : logo.alt}
+                width={160}
+                height={160}
+                class="h-20 w-20 object-contain opacity-80 invert sm:h-28 sm:w-28"
+              />
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-marquee-toggle]')
+  const track = document.querySelector<HTMLElement>('[data-marquee]')
+
+  toggle?.addEventListener('click', () => {
+    const paused = toggle.dataset.paused !== 'true'
+    toggle.dataset.paused = String(paused)
+    toggle.textContent = (paused ? toggle.dataset.labelPlay : toggle.dataset.labelPause) ?? ''
+    if (track) track.style.animationPlayState = paused ? 'paused' : 'running'
+  })
+</script>

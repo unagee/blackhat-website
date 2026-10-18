@@ -2,24 +2,115 @@
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
 import { home } from '@/data/home'
+import { site } from '@/data/site'
+import { getImage, Image } from 'astro:assets'
 
 const { hero } = home
+const { media } = hero
+const still = media.type === 'image' ? media.image : media.poster
+const poster =
+  media.type === 'video' ? await getImage({ src: media.poster.src, width: 1920 }) : null
 ---
 
-<section class="relative overflow-hidden py-24 sm:py-36">
-  <div
-    aria-hidden="true"
-    class="pointer-events-none absolute -top-40 right-[-10%] size-[36rem] rounded-full bg-signal/10 blur-3xl"
-  ></div>
+<section class="relative isolate flex min-h-[calc(100svh-4rem)] items-end overflow-hidden pt-32 pb-16 sm:pb-24">
+  <div class="absolute inset-0 -z-10">
+    <Image
+      src={still.src}
+      alt={still.alt}
+      widths={[640, 960, 1280, 1920, 2400]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="size-full object-cover"
+    />
+    {media.type === 'video' && poster && (
+      <video
+        data-hero-video
+        class="absolute inset-0 size-full object-cover motion-reduce:hidden"
+        src={media.src}
+        poster={poster.src}
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+      />
+    )}
+    <!-- Overlays keep the headline at WCAG AA contrast on any frame. -->
+    <div aria-hidden="true" class="absolute inset-0 bg-ink/40"></div>
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 bg-linear-to-t from-ink via-ink/60 to-ink/10"
+    ></div>
+  </div>
+
   <Container class="relative">
-    <p class="eyebrow mb-6">{hero.eyebrow}</p>
+    <p class="eyebrow mb-6 text-signal">{hero.eyebrow}</p>
     <h1 class="text-display-xl max-w-5xl">{hero.title}</h1>
-    <p class="text-lead mt-8 max-w-2xl text-ash">{hero.lead}</p>
+    <p class="text-lead mt-8 max-w-2xl text-bone/85">{hero.lead}</p>
     <div class="mt-10 flex flex-wrap gap-4">
-      <Button href={hero.primary.href}>{hero.primary.label}</Button>
+      <Button href={hero.primary.href} arrow>
+        {hero.primary.label}
+      </Button>
       <Button href={hero.secondary.href} variant="secondary">
         {hero.secondary.label}
       </Button>
     </div>
   </Container>
+
+  {media.type === 'video' && (
+    <button
+      type="button"
+      data-hero-toggle
+      data-label-pause={site.labels.pauseVideo}
+      data-label-play={site.labels.playVideo}
+      aria-label={site.labels.pauseVideo}
+      class="absolute right-4 bottom-4 grid size-10 place-items-center rounded-full border border-bone/40 text-bone hover:border-bone motion-reduce:hidden sm:right-8 sm:bottom-8"
+    >
+      <svg
+        data-icon-pause
+        viewBox="0 0 16 16"
+        class="size-4"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M4 3h3v10H4zM9 3h3v10H9z" />
+      </svg>
+      <svg
+        data-icon-play
+        viewBox="0 0 16 16"
+        class="hidden size-4"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M4 2.5v11L13 8z" />
+      </svg>
+    </button>
+  )}
 </section>
+
+<script>
+  const video = document.querySelector<HTMLVideoElement>('[data-hero-video]')
+  const toggle = document.querySelector<HTMLButtonElement>('[data-hero-toggle]')
+
+  if (video) {
+    // Reduced-motion visitors only ever see the poster still.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.pause()
+      video.removeAttribute('autoplay')
+      video.preload = 'none'
+    }
+
+    toggle?.addEventListener('click', () => {
+      const paused = !video.paused
+      if (paused) video.pause()
+      else void video.play()
+      toggle.setAttribute(
+        'aria-label',
+        (paused ? toggle.dataset.labelPlay : toggle.dataset.labelPause) ?? '',
+      )
+      toggle.querySelector('[data-icon-pause]')?.classList.toggle('hidden', paused)
+      toggle.querySelector('[data-icon-play]')?.classList.toggle('hidden', !paused)
+    })
+  }
+</script>

@@ -1,12 +1,12 @@
 ---
-import '@fontsource-variable/inter'
-import '@fontsource-variable/space-grotesk'
+import '@fontsource-variable/zalando-sans'
 import '@/styles.css'
 import { site } from '@/data/site'
 import type { PageMeta } from '@/types'
 import Footer from './Footer.astro'
 import Header from './Header.astro'
 import SEOMetadata from './SEOMetadata.astro'
+import StructuredData from './StructuredData.astro'
 
 type Props = {
   meta: PageMeta
@@ -16,13 +16,14 @@ const { meta } = Astro.props
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-SG">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b0b0c" />
+    <meta name="theme-color" content="#000000" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <SEOMetadata {...meta} />
+    <StructuredData />
   </head>
   <body class="min-h-screen">
     <a

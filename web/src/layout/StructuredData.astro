@@ -1,0 +1,49 @@
+---
+import wordmark from '@/assets/logos/blackhat-wordmark.png'
+import { websiteConfig } from '@/config'
+import { site } from '@/data/site'
+import { getImage } from 'astro:assets'
+import { WEBSITE_URL } from 'astro:env/client'
+
+// Organization + LocalBusiness data so search engines show the right name, address and contact.
+const url = new URL('/', WEBSITE_URL).toString()
+const logo = await getImage({ src: wordmark, format: 'png', width: 600 })
+const { address } = websiteConfig
+
+const data = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${url}#organization`,
+      name: websiteConfig.name,
+      legalName: websiteConfig.legalName,
+      url,
+      email: websiteConfig.email,
+      logo: new URL(logo.src, WEBSITE_URL).toString(),
+      sameAs: websiteConfig.social.map((link) => link.href),
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${url}#localbusiness`,
+      name: websiteConfig.name,
+      description: site.tagline,
+      url,
+      email: websiteConfig.email,
+      image: new URL(logo.src, WEBSITE_URL).toString(),
+      parentOrganization: { '@id': `${url}#organization` },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: `${address.street}, ${address.building}`,
+        addressLocality: address.locality,
+        postalCode: address.postalCode,
+        addressCountry: address.countryCode,
+      },
+      areaServed: 'Worldwide',
+      knowsAbout: site.services.map((service) => service.label),
+    },
+  ],
+}
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(data)} />

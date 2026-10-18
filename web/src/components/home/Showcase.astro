@@ -1,0 +1,19 @@
+---
+import { home } from '@/data/home'
+import { Image } from 'astro:assets'
+
+const { showcase } = home
+---
+
+<figure class="relative bg-ink">
+  <Image
+    src={showcase.image.src}
+    alt={showcase.image.alt}
+    widths={[640, 960, 1280, 1920, 2400]}
+    sizes="100vw"
+    class="h-[60svh] min-h-80 w-full object-cover sm:h-[80svh]"
+  />
+  <figcaption class="mx-auto w-full max-w-6xl px-4 py-5 text-sm text-ash sm:px-6 lg:px-8">
+    {showcase.caption}
+  </figcaption>
+</figure>

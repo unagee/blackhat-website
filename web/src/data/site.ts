@@ -1,18 +1,65 @@
-import type { Link } from '@/types'
+import type { Link, NavItem } from '@/types'
+
+const services: Link[] = [
+  { label: 'Brand & Visual Identity', href: '/what-we-do/brand-visual-identity' },
+  { label: '3D Animation & Motion Graphics', href: '/what-we-do/3d-animation-motion-graphics' },
+  { label: 'Strategy & Consulting', href: '/what-we-do/strategy-consulting' },
+]
+
+const nav: NavItem[] = [
+  {
+    label: 'What we do',
+    columns: [
+      { title: 'Services', links: services },
+      {
+        title: 'Industries',
+        links: [
+          { label: 'Financial institutions', href: '/work' },
+          { label: 'Healthcare', href: '/work' },
+          { label: 'Luxury', href: '/work' },
+        ],
+      },
+    ],
+    footerLink: { label: 'All services', href: '/what-we-do' },
+  },
+  { label: 'Work', href: '/work' },
+]
 
 // Navigation, footer and shared labels used on every page.
 export const site = {
-  tagline: 'Growth, content and performance marketing.',
-  nav: [
-    { label: 'Services', href: '/#services' },
-    { label: 'Approach', href: '/#approach' },
-    { label: 'Contact', href: '/contact' },
-  ] satisfies Link[],
-  cta: { label: 'Start a project', href: '/contact' } satisfies Link,
+  tagline: 'Strategy-driven creative agency in Singapore.',
+  services,
+  nav,
+  cta: { label: 'Contact', href: '/contact' } satisfies Link,
+  footer: {
+    title: 'Keep exploring',
+    links: [
+      { label: 'What we do', href: '/what-we-do' },
+      { label: 'Work', href: '/work' },
+      { label: 'Contact', href: '/contact' },
+    ] satisfies Link[],
+    legal: [
+      { label: 'Terms of service', href: '/terms' },
+      { label: 'Privacy policy', href: '/privacy' },
+      { label: 'Cookie policy', href: '/cookies' },
+    ] satisfies Link[],
+    legalTitle: 'Legal',
+    visitTitle: 'Visit',
+    contactTitle: 'Talk to us',
+  },
   labels: {
     skipToContent: 'Skip to main content',
     mainNavigation: 'Main navigation',
+    footerNavigation: 'Footer navigation',
+    legalNavigation: 'Legal',
     home: 'Blackhat Agency home',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    menu: 'Menu',
     rights: 'All rights reserved.',
+    pauseMotion: 'Pause animation',
+    playMotion: 'Play animation',
+    pauseVideo: 'Pause video',
+    playVideo: 'Play video',
   },
 }

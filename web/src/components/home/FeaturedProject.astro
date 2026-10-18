@@ -1,0 +1,44 @@
+---
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import { home } from '@/data/home'
+import { Image } from 'astro:assets'
+
+const { featured } = home
+---
+
+<section aria-labelledby="featured-title" class="border-t border-hairline bg-ink py-20 sm:py-28">
+  <Container>
+    <div class="relative isolate overflow-hidden rounded-lg bg-ink-raised">
+      <Image
+        src={featured.image.src}
+        alt={featured.image.alt}
+        widths={[640, 960, 1280, 1920]}
+        sizes="(min-width: 1152px) 1152px, 100vw"
+        class="aspect-video w-full object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+      />
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 hidden bg-linear-to-r from-ink/95 via-ink/70 to-transparent lg:block"
+      ></div>
+      <div class="relative p-6 sm:p-10 lg:flex lg:min-h-[38rem] lg:max-w-xl lg:flex-col lg:justify-end lg:p-14">
+        <p class="eyebrow text-signal">{featured.eyebrow}</p>
+        <p class="mt-6 text-ash">{featured.client}</p>
+        <h2 id="featured-title" class="text-display-md mt-2">
+          {featured.title}
+        </h2>
+        <p class="mt-5 text-bone/80">{featured.body}</p>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {featured.tags.map((tag) => (
+            <li class="rounded-full border border-bone/30 px-3 py-1 text-sm text-bone/80">{tag}</li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <Button href={featured.link.href} variant="secondary" arrow>
+            {featured.link.label}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

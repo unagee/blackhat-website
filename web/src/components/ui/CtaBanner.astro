@@ -1,5 +1,5 @@
 ---
-import type { Link } from '@/types'
+import type { Link, Tone } from '@/types'
 import Button from './Button.astro'
 import PageSection from './PageSection.astro'
 
@@ -7,17 +7,28 @@ type Props = {
   title: string
   body: string
   link: Link
+  tone?: Tone
 }
 
-const { title, body, link } = Astro.props
+const { title, body, link, tone = 'ink' } = Astro.props
+const onLight = tone === 'light' || tone === 'signal'
 ---
 
-<PageSection>
-  <div class="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
-    <div class="max-w-2xl">
-      <h2 class="text-display-md">{title}</h2>
-      <p class="text-lead mt-4 text-ash">{body}</p>
+<PageSection tone={tone}>
+  <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+    <div class="max-w-3xl">
+      <h2 class="text-display-lg">{title}</h2>
+      <p class:list={['text-lead mt-6 max-w-2xl', onLight ? 'text-graphite' : 'text-ash']}>
+        {body}
+      </p>
     </div>
-    <Button href={link.href}>{link.label}</Button>
+    <Button
+      href={link.href}
+      variant={onLight ? 'dark' : 'primary'}
+      arrow
+      class="self-start lg:self-auto"
+    >
+      {link.label}
+    </Button>
   </div>
 </PageSection>

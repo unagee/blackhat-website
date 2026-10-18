@@ -1,19 +1,25 @@
 ---
+import type { Tone } from '@/types'
 import Container from './Container.astro'
 
 type Props = {
   id?: string
-  tone?: 'ink' | 'raised'
+  tone?: Tone
+  labelledby?: string
 }
 
-const { id, tone = 'ink' } = Astro.props
+const { id, tone = 'ink', labelledby } = Astro.props
 ---
 
 <section
   id={id}
+  aria-labelledby={labelledby}
   class:list={[
-    'scroll-mt-20 border-t border-hairline py-20 sm:py-28',
-    tone === 'raised' ? 'bg-ink-raised' : 'bg-ink',
+    'scroll-mt-20 py-20 sm:py-28',
+    tone === 'ink' && 'border-t border-hairline bg-ink text-bone',
+    tone === 'raised' && 'border-t border-hairline bg-ink-raised text-bone',
+    tone === 'light' && 'on-light bg-bone text-ink',
+    tone === 'signal' && 'on-light bg-signal text-on-signal',
   ]}
 >
   <Container>

@@ -1,14 +1,23 @@
 ---
+import type { Tone } from '@/types'
+
 type Props = {
   eyebrow?: string
   title: string
   as?: 'h1' | 'h2'
+  id?: string
+  tone?: Tone
 }
 
-const { eyebrow, title, as: Heading = 'h2' } = Astro.props
+const { eyebrow, title, as: Heading = 'h2', id, tone = 'ink' } = Astro.props
+const onLight = tone === 'light' || tone === 'signal'
 ---
 
 <header class="mb-12 max-w-3xl">
-  {eyebrow && <p class="eyebrow mb-4">{eyebrow}</p>}
-  <Heading class:list={[Heading === 'h1' ? 'text-display-xl' : 'text-display-md']}>{title}</Heading>
+  {eyebrow && (
+    <p class:list={['eyebrow mb-4', onLight ? 'text-graphite' : 'text-signal']}>{eyebrow}</p>
+  )}
+  <Heading id={id} class:list={[Heading === 'h1' ? 'text-display-xl' : 'text-display-md']}>
+    {title}
+  </Heading>
 </header>
