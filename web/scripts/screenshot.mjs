@@ -33,6 +33,15 @@ try {
       const page = await browser.newPage({ viewport })
       const url = new URL(path, values.base).toString()
       const response = await page.goto(url, { waitUntil: 'networkidle' })
+      // Scroll through the page so lazy-loaded images load before the full-page capture.
+      await page.evaluate(async () => {
+        for (let y = 0; y < document.body.scrollHeight; y += window.innerHeight / 2) {
+          window.scrollTo(0, y)
+          await new Promise((resolve) => setTimeout(resolve, 100))
+        }
+        window.scrollTo(0, 0)
+      })
+      await page.waitForLoadState('networkidle')
       const file = join(values.out, `${slug}-${viewport.name}-${values.label}.png`)
       await page.screenshot({ path: file, fullPage: true })
       console.log(`${response?.status() ?? '???'} ${url} -> ${file}`)

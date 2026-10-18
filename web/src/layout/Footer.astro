@@ -1,36 +1,91 @@
 ---
+import wordmark from '@/assets/logos/blackhat-wordmark.png'
 import Container from '@/components/ui/Container.astro'
 import { websiteConfig } from '@/config'
 import { site } from '@/data/site'
+import { Image } from 'astro:assets'
 
+const { footer, labels } = site
+const { address } = websiteConfig
 const year = new Date().getFullYear()
 ---
 
-<footer class="border-t border-hairline py-12 text-sm text-ash">
-  <Container class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-    <div>
-      <p class="font-display text-lg text-bone">
-        Blackhat<span class="text-signal">.</span>
-      </p>
-      <p class="mt-2">{site.tagline}</p>
-    </div>
-    <div class="flex flex-col gap-2 sm:items-end">
-      <a href={`mailto:${websiteConfig.email}`} class="hover:text-bone">
-        {websiteConfig.email}
-      </a>
-      {websiteConfig.social.length > 0 && (
-        <ul class="flex gap-4">
-          {websiteConfig.social.map((link) => (
+<footer class="bg-ink-raised pt-20 pb-10 text-ash">
+  <Container>
+    <div class="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr]">
+      <nav aria-label={labels.footerNavigation}>
+        <p class="eyebrow">{footer.title}</p>
+        <ul class="mt-6 space-y-2">
+          {footer.links.map((link) => (
             <li>
-              <a href={link.href} class="hover:text-bone">
+              <a href={link.href} class="text-display-md text-bone hover:text-signal">
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
-      )}
+      </nav>
+
+      <div class="space-y-10">
+        <div>
+          <p class="eyebrow">{footer.contactTitle}</p>
+          <a
+            href={`mailto:${websiteConfig.email}`}
+            class="mt-4 inline-block text-lg text-bone hover:text-signal"
+          >
+            {websiteConfig.email}
+          </a>
+        </div>
+        <div>
+          <p class="eyebrow">{footer.visitTitle}</p>
+          <address class="mt-4 leading-relaxed not-italic">
+            {websiteConfig.legalName}
+            <br />
+            {address.street}
+            <br />
+            {address.building}
+            <br />
+            {`${address.locality} ${address.postalCode}`}
+          </address>
+        </div>
+      </div>
+
+      <div class="space-y-10">
+        <nav aria-label={labels.legalNavigation}>
+          <p class="eyebrow">{footer.legalTitle}</p>
+          <ul class="mt-4 space-y-2">
+            {footer.legal.map((link) => (
+              <li>
+                <a href={link.href} class="hover:text-bone">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        {websiteConfig.social.length > 0 && (
+          <ul class="flex flex-wrap gap-4">
+            {websiteConfig.social.map((link) => (
+              <li>
+                <a href={link.href} class="hover:text-bone">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+
+    <div class="mt-20 flex flex-col gap-6 border-t border-hairline pt-8 text-sm sm:flex-row sm:items-center sm:justify-between">
+      <Image
+        src={wordmark}
+        alt={websiteConfig.name}
+        width={200}
+        class="h-6 w-auto self-start invert"
+      />
       <p>
-        © {year} {websiteConfig.name}. {site.labels.rights}
+        © {year} {websiteConfig.legalName} {labels.rights}
       </p>
     </div>
   </Container>

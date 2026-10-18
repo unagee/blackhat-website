@@ -1,0 +1,36 @@
+---
+import Button from '@/components/ui/Button.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import { websiteConfig } from '@/config'
+import { home } from '@/data/home'
+
+const { contact } = home
+const { address } = websiteConfig
+const mailto = `mailto:${websiteConfig.email}?subject=${encodeURIComponent(contact.emailSubject)}&body=${encodeURIComponent(contact.emailBody)}`
+---
+
+<PageSection id="contact" tone="signal" labelledby="contact-title">
+  <div class="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
+    <div>
+      <p class="eyebrow text-graphite">{contact.eyebrow}</p>
+      <h2 id="contact-title" class="text-display-xl mt-6 max-w-4xl">
+        {contact.title}
+      </h2>
+      <p class="text-lead mt-8 max-w-2xl text-graphite">{contact.body}</p>
+      <div class="mt-10">
+        <Button href={mailto} variant="dark" arrow>
+          {contact.emailLabel}: {websiteConfig.email}
+        </Button>
+      </div>
+    </div>
+    <address class="text-graphite not-italic">
+      {websiteConfig.legalName}
+      <br />
+      {address.street}
+      <br />
+      {address.building}
+      <br />
+      {`${address.locality} ${address.postalCode}`}
+    </address>
+  </div>
+</PageSection>

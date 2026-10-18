@@ -1,0 +1,49 @@
+---
+import ArrowIcon from '@/components/ui/ArrowIcon.astro'
+import Button from '@/components/ui/Button.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { home } from '@/data/home'
+import { Image } from 'astro:assets'
+
+const { work } = home
+---
+
+<PageSection id="work" tone="raised" labelledby="work-title">
+  <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+    <SectionHeader id="work-title" eyebrow={work.eyebrow} title={work.title} />
+    <div class="-mt-4 mb-12 sm:mt-0">
+      <Button href={work.allLink.href} variant="secondary" arrow>
+        {work.allLink.label}
+      </Button>
+    </div>
+  </div>
+  <ul class="grid gap-12 md:grid-cols-3 md:gap-6 lg:gap-8">
+    {work.items.map((item) => (
+      <li class="group relative">
+        <article>
+          <div class="overflow-hidden rounded-lg bg-ink">
+            <Image
+              src={item.image.src}
+              alt={item.image.alt}
+              widths={[480, 720, 960]}
+              sizes="(min-width: 768px) 33vw, 100vw"
+              class="aspect-4/5 w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
+            />
+          </div>
+          <p class="mt-5 text-sm text-ash">{item.service}</p>
+          <h3 class="mt-2 text-2xl">
+            <a
+              href={item.href}
+              class="inline-flex items-center gap-3 after:absolute after:inset-0 group-hover:text-signal"
+            >
+              {item.client}
+              <ArrowIcon class="transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />
+            </a>
+          </h3>
+          <p class="mt-2 text-ash">{item.summary}</p>
+        </article>
+      </li>
+    ))}
+  </ul>
+</PageSection>
