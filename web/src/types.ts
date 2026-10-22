@@ -30,4 +30,7 @@ export type NavMenu = {
 export type NavItem = Link | NavMenu
 
 // Section grounds: dark (default), slightly raised dark, white, or brand yellow.
+// Supergraphic shapes: see ui/Supergraphic.astro.
+export type Pattern = 'cells' | 'slash' | 'split' | 'star'
+
 export type Tone = 'ink' | 'raised' | 'light' | 'signal'

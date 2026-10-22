@@ -28,7 +28,7 @@ const projects = work.projects.map(projectBySlug)
           label={serviceNames(project.services)}
           summary={project.summary}
           href={projectHref(project.slug)}
-          image={project.image}
+          image={project.cardImage ?? project.image}
         />
       </li>
     ))}

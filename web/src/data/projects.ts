@@ -19,6 +19,10 @@ export type Project = {
   overview: string[]
   services: ServiceSlug[]
   image: Picture
+  // Portrait crop for cards, when the hero image doesn't crop well to one.
+  cardImage?: Picture
+  // 'light' for flat graphics such as a logo on colour, which the usual dark overlay would mute.
+  heroShade?: 'full' | 'light'
   // Optional YouTube film, shown above the gallery.
   video?: { youtubeId: string; title: string; poster: Picture }
   gallery: GalleryImage[]
@@ -112,18 +116,19 @@ export const projects: Project[] = [
     slug: 'myj',
     client: 'MYJ',
     sector: 'Investment',
-    title: 'An investment firm’s offices in photoreal 3D, room by room',
+    title: 'One brand for an investment group, from the logo to its offices in 3D',
     meta: {
-      title: 'MYJ: Photoreal 3D Office Renders | Blackhat',
+      title: 'MYJ: Investment Brand, Social Media and 3D | Blackhat',
       description:
-        'Photoreal 3D renders of an investment firm’s offices, from the entrance and lobby to the staff area, data centre and CEO office.',
+        'Brand identity, brand guide, social media and photoreal 3D office renders for MYJ, an investment group, plus strategy and consulting for its operations.',
     },
-    summary: 'Photoreal renders of an investment firm’s new offices, from entrance to CEO suite.',
+    summary: 'Brand, social media, photoreal 3D and operations strategy for an investment group.',
     overview: [
-      'MYJ is an investment firm. We rendered its offices in photoreal 3D, room by room: the entrance facade, a lobby with a stone reception desk, the staff area with branded panelling, a secure data centre and the CEO’s office.',
-      'Each render shows the materials, light and layout of the space in detail. We also produced MYJ’s animated film, below, and a book.',
+      'MYJ is an investment group with businesses in management, currency, real estate and community. We refreshed its logo, from MYJ Group to MYJ Capital, and built one identity to bring every entity under one roof, around the tagline “Where Profit Meets Purpose”.',
+      'The brand guide sets the logo and its sub-brands, Albert Sans, a palette of Growth Green, Business Beige, Safety Sage, Big Burgundy and Security Silver, and two geometric patterns. We carry it into stationery, event screens, newsletters and the social media we manage for MYJ.',
+      'We also rendered MYJ’s offices in photoreal 3D, room by room, produced its animated film, below, and advise on strategy for its operations.',
     ],
-    services: ['3d-animation-motion-graphics'],
+    services: ['brand-visual-identity', '3d-animation-motion-graphics', 'strategy-consulting'],
     video: {
       youtubeId: 'w4cxV6Wn83E',
       title: 'MYJ animated film',
@@ -137,6 +142,38 @@ export const projects: Project[] = [
       alt: '3D render of the MYJ office entrance facade at dusk',
     },
     gallery: [
+      {
+        src: img('myj/myj-brand-collage.jpg'),
+        alt: 'MYJ brand applications: business card, app icon, event screen, ID card and website',
+      },
+      {
+        src: img('myj/myj-brand-logo.jpg'),
+        alt: 'The refreshed MYJ Capital logo in green and silver',
+      },
+      {
+        src: img('myj/myj-brand-logo-colours.jpg'),
+        alt: 'MYJ Capital logo on green, sage, beige and burgundy',
+      },
+      {
+        src: img('myj/myj-brand-palette.jpg'),
+        alt: 'MYJ colour palette: Growth Green, Business Beige, Safety Sage, Big Burgundy and Security Silver',
+      },
+      {
+        src: img('myj/myj-brand-typography.jpg'),
+        alt: 'MYJ typography in Albert Sans on burgundy',
+      },
+      {
+        src: img('myj/myj-brand-pattern.jpg'),
+        alt: 'MYJ geometric pattern in two greens',
+      },
+      {
+        src: img('myj/myj-brand-event-screen.jpg'),
+        alt: 'MYJ “Invest with Purpose” slide on a conference stage screen',
+      },
+      {
+        src: img('myj/myj-brand-social-media.jpg'),
+        alt: 'Three MYJ social media stories in beige, burgundy and green',
+      },
       {
         src: img('myj/myj-office-design-3d-lobby.jpg'),
         alt: 'MYJ office lobby with a green stone reception desk, rendered in 3D',
@@ -173,13 +210,18 @@ export const projects: Project[] = [
     ],
     services: ['brand-visual-identity'],
     image: {
-      src: img('suricate/suricate-app.jpg'),
-      alt: 'Hand holding a phone showing the Suricate Capital app',
+      src: img('suricate/suricate-logo-hero.jpg'),
+      alt: 'Suricate Capital logo in ivory on chestnut: a standing suricate beside the name',
+    },
+    heroShade: 'light',
+    cardImage: {
+      src: img('suricate/suricate-logo-card.jpg'),
+      alt: 'Suricate Capital logo in ivory on chestnut',
     },
     gallery: [
       {
-        src: img('suricate/suricate-cover.jpg'),
-        alt: 'Suricate Capital brand guidelines cover in chestnut',
+        src: img('suricate/suricate-app.jpg'),
+        alt: 'Hand holding a phone showing the Suricate Capital app',
       },
       {
         src: img('suricate/suricate-logo.jpg'),
@@ -224,6 +266,10 @@ export const projects: Project[] = [
       src: img('waves/waves-cans.jpg'),
       alt: 'Six Waves cocktail cans in pink, orange, yellow and green',
     },
+    cardImage: {
+      src: img('waves/waves-photo-card.jpg'),
+      alt: 'Waves brand photography: a woman smiling over a cocktail glass',
+    },
     gallery: [
       {
         src: img('waves/waves-cocktails.jpg'),
@@ -253,23 +299,53 @@ export const projects: Project[] = [
     slug: 'fleet',
     client: 'Fleet',
     sector: 'Operations software',
-    title: 'Teaching every Fleet user their role, from Super Admin to Technician',
+    title: 'A calm, data-first brand for an operations platform, and a guide for every user',
     meta: {
-      title: 'Fleet: Onboarding Training Guide and Brand | Blackhat',
+      title: 'Fleet: Brand Identity and Onboarding Guide | Blackhat',
       description:
-        'A role-based onboarding training guide for Fleet, an operations platform, designed in Fleet’s brand across the web platform and mobile app.',
+        'Brand direction for Fleet, an operations platform: palette, ratio, type and interface rules, plus a role-based onboarding guide for every user.',
     },
-    summary: 'A role-based onboarding guide for an operations platform, designed in Fleet’s brand.',
+    summary: 'Brand direction for an operations platform, plus a role-based onboarding guide.',
     overview: [
       'Fleet is an operations platform that helps teams manage tasks, forms, documents and workflows across many locations, on the web and in the Fleet Tasks mobile app.',
-      'We designed its onboarding training guide around the people who use it: Super Admins, Admins, Managers and Technicians. Each section shows exactly what that role can do, with annotated screens, role diagrams and troubleshooting, all in Fleet’s brand.',
+      'We gave Fleet a brand built on depth first, with warmth where it counts. Black and navy share the ground, steel picks out the data, cream is the light, and espresso marks the one thing to do next. Hanken Grotesk, never heavier than medium, keeps the type calm, and a separate set of status colours is kept for the product alone.',
+      'We also designed its onboarding training guide around the people who use it: Super Admins, Admins, Managers and Technicians. Each section shows exactly what that role can do, with annotated screens, role diagrams and troubleshooting.',
     ],
     services: ['brand-visual-identity', 'strategy-consulting'],
     image: {
-      src: img('fleet/fleet-dashboard-crop.jpg'),
-      alt: 'Fleet dashboard map showing sites across Europe',
+      src: img('fleet/fleet-brand-guide-stack.jpg'),
+      alt: 'Fleet brand guidelines pages stacked in perspective: the cover, typography and colour roles',
+    },
+    heroShade: 'light',
+    cardImage: {
+      src: img('fleet/fleet-brand-guide-card.jpg'),
+      alt: 'A collage of Fleet brand guidelines pages',
     },
     gallery: [
+      {
+        src: img('fleet/fleet-brand-guide-spread.jpg'),
+        alt: 'Six pages of the Fleet brand guidelines laid out on cream',
+      },
+      {
+        src: img('fleet/fleet-brand-palette-ratio.jpg'),
+        alt: 'Fleet core palette and ratio: black and navy at 35% each, cream 17%, steel and espresso 6.5%',
+      },
+      {
+        src: img('fleet/fleet-brand-colour-roles.jpg'),
+        alt: 'How each Fleet colour works: black and navy grounds, steel detail, cream light, espresso action',
+      },
+      {
+        src: img('fleet/fleet-brand-typography.jpg'),
+        alt: 'Fleet typography in Hanken Grotesk: light, regular and medium, with the type scale',
+      },
+      {
+        src: img('fleet/fleet-brand-status-colours.jpg'),
+        alt: 'Fleet status colours for the product: urgent, overdue, in progress, completed and scheduled',
+      },
+      {
+        src: img('fleet/fleet-brand-interface.jpg'),
+        alt: 'Fleet interface rules: one espresso action per view, on light and on dark',
+      },
       {
         src: img('fleet/fleet-training-cover.jpg'),
         alt: 'Fleet onboarding guide section cover: “Basic Training Guide” on blue',
@@ -532,7 +608,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'game-renders',
-    client: 'Game renders',
+    client: 'Game Renders',
     sector: 'Gaming',
     title: 'Photoreal vehicles and characters for games',
     meta: {

@@ -1,5 +1,5 @@
 ---
-import type { Tone } from '@/types'
+import type { Pattern, Tone } from '@/types'
 import Container from './Container.astro'
 import Supergraphic from './Supergraphic.astro'
 
@@ -7,12 +7,12 @@ type Props = {
   id?: string
   tone?: Tone
   labelledby?: string
-  // Adds the star line-pattern supergraphic behind the content.
+  // Adds a star line-pattern supergraphic behind the content.
   graphic?: 'left' | 'right'
+  pattern?: Pattern
 }
 
-const { id, tone = 'ink', labelledby, graphic } = Astro.props
-const onLight = tone === 'light' || tone === 'signal'
+const { id, tone = 'ink', labelledby, graphic, pattern } = Astro.props
 ---
 
 <section
@@ -27,7 +27,7 @@ const onLight = tone === 'light' || tone === 'signal'
     tone === 'signal' && 'on-light bg-signal text-on-signal',
   ]}
 >
-  {graphic && <Supergraphic side={graphic} onLight={onLight} />}
+  {graphic && <Supergraphic side={graphic} pattern={pattern} tone={tone} />}
   <Container>
     <slot />
   </Container>

@@ -5,7 +5,7 @@ import niri from '@/assets/logos/partners/niri-logo.png'
 import tcdc from '@/assets/logos/partners/tcdc-logo.png'
 import twh from '@/assets/logos/partners/twh-logo.png'
 import vespa from '@/assets/logos/partners/vespa-logo.png'
-import cooklaneWorld from '@/assets/work/cooklane/cooklane-3d-world-building.jpg'
+import cooklaneWorld from '@/assets/work/cooklane/cooklane-3d-world-mono.jpg'
 import energendShowroom from '@/assets/work/energend/energend-showroom-interior-dome.jpg'
 import warJets from '@/assets/work/game-3d/3d-realistic-render-war-jets.jpg'
 import hyperloopRender from '@/assets/work/hyperloop/hyperloop-tt-realistic-render-of-highway.jpg'
@@ -138,7 +138,7 @@ export const home = {
   showcase: {
     image: {
       src: cooklaneWorld,
-      alt: 'Isometric 3D city with a restaurant, streets and moving vehicles, built by Blackhat for Cooklane',
+      alt: 'Isometric 3D city in white and grey, with the Cooklane store and a delivery truck on the streets',
     },
     caption: 'Cooklane: an isometric 3D world built to explain cloud retail at a glance.',
   },

@@ -20,7 +20,7 @@ Professional and straightforward first, bold where it counts. Each line should s
 - Never change colors, fonts, spacing or sizes as part of a content edit. If the editor asks for a visual change, explain that it changes the design system and check whether they want it in one place or everywhere.
 - Palette from blackhat.agency: black ground, white text, yellow (`signal`) for the main action and small accents. One yellow button per view where possible.
 - Mostly dark sections. On white or yellow sections all text is dark; never put yellow text on white.
-- Work Sans for everything, never heavier than medium. A serif italic highlight (Source Serif) on one or two words of the most important headings only: write them as `*word*` in the data file. Today: “brands” (home hero), “trust” (Who we work with), “working on” (closing contact).
+- Work Sans for everything: semibold for main titles, medium at most elsewhere. A serif italic highlight (Source Serif) on one or two words of the most important headings only: write them as `*word*` in the data file. Today: “brands” (home hero), “trust” (Who we work with), “working on” (closing contact).
 - New sections are built from `web/src/components/ui/` with their words in a data file. Use the `astro-components` skill and flag it on the pull request.
 
 ## Accessibility

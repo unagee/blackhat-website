@@ -13,9 +13,11 @@ type Props = {
   // Shown above the title as a trail back to parent pages.
   breadcrumb?: { label: string; items: Link[] }
   image?: Picture
+  // Flat graphics (a logo on colour) need less darkening than photos to stay visible.
+  shade?: 'full' | 'light'
 }
 
-const { title, lead, eyebrow, breadcrumb, image } = Astro.props
+const { title, lead, eyebrow, breadcrumb, image, shade = 'full' } = Astro.props
 ---
 
 <section
@@ -35,15 +37,18 @@ const { title, lead, eyebrow, breadcrumb, image } = Astro.props
         fetchpriority="high"
         class="size-full object-cover"
       />
-      <div aria-hidden="true" class="absolute inset-0 bg-ink/50" />
+      {shade === 'full' && <div aria-hidden="true" class="absolute inset-0 bg-ink/50" />}
       <div
         aria-hidden="true"
-        class="absolute inset-0 bg-linear-to-t from-ink via-ink/70 to-ink/20"
+        class:list={[
+          'absolute inset-0 bg-linear-to-t from-ink',
+          shade === 'full' ? 'via-ink/70 to-ink/20' : 'via-ink/60 via-45% to-transparent',
+        ]}
       />
       <Grain />
     </div>
   )}
-  {!image && <Supergraphic side="right" />}
+  {!image && <Supergraphic side="right" pattern="cells" />}
   <Container class="relative">
     {breadcrumb && (
       <nav aria-label={breadcrumb.label} class="mb-6">

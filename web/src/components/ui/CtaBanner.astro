@@ -1,5 +1,5 @@
 ---
-import type { Link, Tone } from '@/types'
+import type { Link, Pattern, Tone } from '@/types'
 import Button from './Button.astro'
 import Highlighted from './Highlighted.astro'
 import PageSection from './PageSection.astro'
@@ -11,13 +11,14 @@ type Props = {
   tone?: Tone
   // Star supergraphic: only where the page has no other one nearby.
   graphic?: 'left' | 'right'
+  pattern?: Pattern
 }
 
-const { title, body, link, tone = 'ink', graphic } = Astro.props
+const { title, body, link, tone = 'ink', graphic, pattern } = Astro.props
 const onLight = tone === 'light' || tone === 'signal'
 ---
 
-<PageSection tone={tone} graphic={graphic}>
+<PageSection tone={tone} graphic={graphic} pattern={pattern}>
   <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
     <div class="max-w-3xl">
       <h2 class="text-display-lg">

@@ -3,7 +3,7 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  /* Work Sans everywhere, never heavier than medium (500).
+  /* Work Sans everywhere: semibold (600) for main titles, medium (500) at most elsewhere.
      Source Serif italic only for the few words marked *like this* in a heading. */
   --font-sans: 'Work Sans Variable', system-ui, sans-serif;
   --font-display: 'Work Sans Variable', system-ui, sans-serif;
@@ -65,6 +65,12 @@
   strong {
     font-family: var(--font-display);
     font-weight: 500;
+  }
+
+  /* Main titles (page and section headings) go up to semibold. */
+  h1,
+  h2 {
+    font-weight: 600;
   }
 
   /* The serif highlight inside headings. */
