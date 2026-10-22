@@ -138,7 +138,7 @@ export const home = {
   showcase: {
     image: {
       src: cooklaneWorld,
-      alt: 'Isometric 3D city in white and grey, with the Cooklane store and a delivery truck picked out in yellow',
+      alt: 'Isometric 3D city in white and grey, with the Cooklane store and a delivery truck on the streets',
     },
     caption: 'Cooklane: an isometric 3D world built to explain cloud retail at a glance.',
   },

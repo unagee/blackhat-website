@@ -608,7 +608,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'game-renders',
-    client: 'Game renders',
+    client: 'Game Renders',
     sector: 'Gaming',
     title: 'Photoreal vehicles and characters for games',
     meta: {

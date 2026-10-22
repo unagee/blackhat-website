@@ -3,19 +3,35 @@ import PageSection from '@/components/ui/PageSection.astro'
 import { websiteConfig } from '@/config'
 import { engagement, enquiry } from '@/data/services'
 
+type Props = {
+  // The contact page has its own page heading, so the form can drop its eyebrow and title.
+  heading?: boolean
+}
+
+const { heading = true } = Astro.props
 const { fields } = enquiry
 const input =
   'mt-2 w-full rounded-lg border border-hairline bg-ink-raised px-4 py-3 text-bone placeholder:text-ash/70 focus:border-bone focus:outline-none'
 ---
 
-<PageSection id="enquiry" tone="raised" labelledby="enquiry-title" graphic="left" pattern="slash">
+<PageSection
+  id="enquiry"
+  tone="raised"
+  labelledby={heading ? 'enquiry-title' : undefined}
+  graphic="left"
+  pattern="slash"
+>
   <div class="mx-auto max-w-2xl">
-    <p class="eyebrow text-center text-signal">{enquiry.eyebrow}</p>
-    <h2 id="enquiry-title" class="text-display-md mt-4 text-center">
-      {enquiry.title}
-    </h2>
+    {heading && (
+      <>
+        <p class="eyebrow text-center text-signal">{enquiry.eyebrow}</p>
+        <h2 id="enquiry-title" class="text-display-md mt-4 text-center">
+          {enquiry.title}
+        </h2>
+      </>
+    )}
     <form
-      class="mt-12 space-y-6"
+      class:list={['space-y-6', heading && 'mt-12']}
       action={`mailto:${websiteConfig.email}`}
       method="post"
       enctype="text/plain"
@@ -31,13 +47,8 @@ const input =
         <input id="enquiry-name" name="name" autocomplete="name" required class={input} />
       </div>
       <div>
-        <label for="enquiry-organisation">{fields.organisation}</label>
-        <input
-          id="enquiry-organisation"
-          name="organisation"
-          autocomplete="organization"
-          class={input}
-        />
+        <label for="enquiry-company">{fields.company}</label>
+        <input id="enquiry-company" name="company" autocomplete="organization" class={input} />
       </div>
       <div>
         <label for="enquiry-email" class="flex justify-between">

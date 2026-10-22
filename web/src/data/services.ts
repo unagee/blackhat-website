@@ -409,7 +409,7 @@ export const enquiry = {
   title: 'Let’s talk about your project',
   fields: {
     name: 'Name',
-    organisation: 'Organisation',
+    company: 'Company',
     email: 'Email',
     engagement: 'What do you need?',
     message: 'How can we help?',
