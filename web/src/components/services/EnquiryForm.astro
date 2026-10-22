@@ -74,7 +74,9 @@ const input =
             class:list={[input, 'cursor-pointer appearance-none pr-12']}
           >
             {engagement.items.map((item) => (
-              <option value={item.name}>{item.name}</option>
+              <option value={item.name} data-engagement-id={item.id}>
+                {item.name}
+              </option>
             ))}
             <option value={enquiry.notSure} selected>
               {enquiry.notSure}
@@ -123,11 +125,11 @@ const input =
   const form = document.querySelector<HTMLFormElement>('[data-enquiry]')
   const select = form?.querySelector<HTMLSelectElement>('select[name="engagement"]')
 
-  // The Plan, Design and Maintenance buttons preselect their option.
+  // The Plan, Design and Maintain buttons preselect their option.
   document.querySelectorAll<HTMLAnchorElement>('[data-engagement]').forEach((link) => {
     link.addEventListener('click', () => {
-      const option = [...(select?.options ?? [])].find((item) =>
-        item.value.toLowerCase().startsWith(link.dataset.engagement ?? '~'),
+      const option = [...(select?.options ?? [])].find(
+        (item) => item.dataset.engagementId === link.dataset.engagement,
       )
       if (select && option) select.value = option.value
     })
