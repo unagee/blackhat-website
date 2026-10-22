@@ -8,8 +8,13 @@ import myjDataCenter from '@/assets/work/myj/myj-office-design-3d-data-center.jp
 import myjCeo from '@/assets/work/myj/myj-office-design-3d-render-ceo-office.jpg'
 import niriAdvertising from '@/assets/work/niri/niri-luxury-restaurant-advertising-mockup.jpg'
 import niriConcept from '@/assets/work/niri/niri-luxury-restaurant-logo-concept.png'
+import studyzoneSocial from '@/assets/work/studyzone/studyzone-pre-university-education-social-media-mockup-2.png'
+import suricateStory from '@/assets/work/suricate/suricate-brand-story.jpg'
+import suricateLogo from '@/assets/work/suricate/suricate-logo.jpg'
 import tcdcLogo from '@/assets/work/tcdc/tcdc-creative-agency-logo-design.jpg'
 import vespaPackaging from '@/assets/work/vespa/vespa-tet-nguyen-dan-packaging-design-rectangular.png'
+import wavesComposition from '@/assets/work/waves/waves-composition.jpg'
+import wavesSocial from '@/assets/work/waves/waves-social.jpg'
 import type { ServiceSlug } from '@/data/projects'
 import type { Link, PageMeta, Picture } from '@/types'
 
@@ -357,12 +362,26 @@ export const engagement = {
   eyebrow: 'How we engage',
   title: 'Three ways to work with us',
   lead: 'Start where you are. Some clients need the thinking, some need the design, and some need a team to keep the brand running. Many start with one and grow into the next.',
+  deliverablesLabel: 'Sample Deliverables',
+  timeframeLabel: 'Timeframe',
+  // DRAFT: deliverables and timeframes awaiting the owner's confirmation.
   items: [
     {
       id: 'plan',
       name: 'Plan',
       kicker: 'Vision to concept',
       body: 'Everything conceptual. We translate your vision into a concept you can build on: positioning, brand story and creative direction.',
+      deliverables: [
+        'Brand Positioning & Strategy',
+        'Brand Story & Messaging',
+        'Creative Direction & Moodboards',
+        'Concept Presentation',
+      ],
+      timeframe: '2–4 Weeks',
+      images: [
+        { src: suricateStory, alt: 'Suricate Capital brand story page' },
+        { src: hyperloopJourney, alt: 'Hyperloop TT customer journey diagram' },
+      ],
       cta: 'Start with a Plan',
     },
     {
@@ -370,6 +389,17 @@ export const engagement = {
       name: 'Design',
       kicker: 'Brand and full deck design',
       body: 'We design the brand deck and every deck around it: identity, guidelines, and pitch and presentation decks, ready to use.',
+      deliverables: [
+        'Logo & Visual Identity System',
+        'Brand Guidelines Deck',
+        'Pitch & Presentation Decks',
+        'Key Collateral & Templates',
+      ],
+      timeframe: '4–8 Weeks',
+      images: [
+        { src: suricateLogo, alt: 'Suricate Capital logo page' },
+        { src: wavesComposition, alt: 'Waves posters from the brand guidelines' },
+      ],
       cta: 'Start with Design',
     },
     {
@@ -377,6 +407,17 @@ export const engagement = {
       name: 'Execute',
       kicker: 'Brand deck execution',
       body: 'The ongoing part. We maintain your brand deck, produce new assets and manage your social media, month after month.',
+      deliverables: [
+        'Brand Deck Updates & Upkeep',
+        'New On-Brand Assets',
+        'Social Media Content & Scheduling',
+        'Monthly Content Calendar',
+      ],
+      timeframe: 'Ongoing, Monthly',
+      images: [
+        { src: wavesSocial, alt: 'Waves social media posts' },
+        { src: studyzoneSocial, alt: 'Studyzone social media post' },
+      ],
       cta: 'Start with Execution',
     },
   ],
