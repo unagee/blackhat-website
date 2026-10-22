@@ -15,9 +15,11 @@ type Props = {
   image?: Picture
   // Flat graphics (a logo on colour) need less darkening than photos to stay visible.
   shade?: 'full' | 'light'
+  // Pages without an image get the cells supergraphic unless this is false.
+  graphic?: boolean
 }
 
-const { title, lead, eyebrow, breadcrumb, image, shade = 'full' } = Astro.props
+const { title, lead, eyebrow, breadcrumb, image, shade = 'full', graphic = true } = Astro.props
 ---
 
 <section
@@ -48,7 +50,7 @@ const { title, lead, eyebrow, breadcrumb, image, shade = 'full' } = Astro.props
       <Grain />
     </div>
   )}
-  {!image && <Supergraphic side="right" pattern="cells" />}
+  {!image && graphic && <Supergraphic side="right" pattern="cells" />}
   <Container class="relative">
     {breadcrumb && (
       <nav aria-label={breadcrumb.label} class="mb-6">
