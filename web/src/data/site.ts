@@ -34,7 +34,7 @@ export const site = {
   // Yellow closing contact section at the bottom of most pages.
   contact: {
     eyebrow: 'Contact',
-    title: 'Tell us what you’re working on.',
+    title: 'Tell us what you’re *working on*.',
     body: 'A rough brief, a half-finished deck, a hunch. Send whatever you have and we’ll come back with how we’d approach it.',
     emailLabel: 'Email us',
     emailSubject: 'New project enquiry',

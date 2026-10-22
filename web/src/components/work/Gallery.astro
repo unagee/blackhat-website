@@ -1,0 +1,31 @@
+---
+import type { GalleryImage } from '@/data/projects'
+import { Image } from 'astro:assets'
+
+type Props = {
+  images: GalleryImage[]
+}
+
+const { images } = Astro.props
+---
+
+<ul class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+  {images.map((image, index) => (
+    <li
+      class:list={[
+        'overflow-hidden rounded-lg',
+        index === 0 && 'sm:col-span-2',
+        image.ground === 'light' && 'bg-bone p-6 sm:p-10',
+        image.ground === 'dark' && 'bg-ink-raised p-6 sm:p-10',
+      ]}
+    >
+      <Image
+        src={image.src}
+        alt={image.alt}
+        widths={index === 0 ? [640, 960, 1280, 1920] : [480, 720, 960, 1280]}
+        sizes={index === 0 ? '(min-width: 1152px) 1152px, 100vw' : '(min-width: 640px) 50vw, 100vw'}
+        class:list={['w-full', image.ground ? 'object-contain' : 'h-auto']}
+      />
+    </li>
+  ))}
+</ul>

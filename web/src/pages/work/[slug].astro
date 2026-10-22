@@ -1,0 +1,125 @@
+---
+import ArrowIcon from '@/components/ui/ArrowIcon.astro'
+import ContactClose from '@/components/ui/ContactClose.astro'
+import PageHero from '@/components/ui/PageHero.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import Gallery from '@/components/work/Gallery.astro'
+import { websiteConfig } from '@/config'
+import { projectHref, projects, type Project } from '@/data/projects'
+import { serviceHref, services } from '@/data/services'
+import { projectPage } from '@/data/work'
+import Layout from '@/layout/Layout.astro'
+import { breadcrumbSchema } from '@/lib/schema'
+import { WEBSITE_URL } from 'astro:env/client'
+
+export function getStaticPaths() {
+  return projects.map((project, index) => ({
+    params: { slug: project.slug },
+    props: { project, next: projects[(index + 1) % projects.length] },
+  }))
+}
+
+type Props = {
+  project: Project
+  next: Project
+}
+
+const { project, next } = Astro.props
+const href = projectHref(project.slug)
+const projectServices = services.filter((service) => project.services.includes(service.slug))
+const schema = [
+  breadcrumbSchema([
+    { label: 'Home', href: '/' },
+    projectPage.parent,
+    { label: project.client, href },
+  ]),
+  {
+    '@type': 'CreativeWork',
+    name: project.title,
+    description: project.meta.description,
+    url: new URL(href, WEBSITE_URL).toString(),
+    creator: { '@type': 'Organization', name: websiteConfig.name },
+    about: project.client,
+    genre: projectServices.map((service) => service.name),
+  },
+]
+---
+
+<Layout meta={project.meta} schema={schema}>
+  <PageHero
+    eyebrow={project.client}
+    title={project.title}
+    lead={project.summary}
+    image={project.image}
+    breadcrumb={{ label: projectPage.breadcrumbLabel, items: [projectPage.parent] }}
+  />
+
+  <PageSection labelledby="overview-title">
+    <div class="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
+      <dl class="grid grid-cols-2 gap-6 self-start lg:grid-cols-1">
+        <div>
+          <dt class="eyebrow text-ash">{projectPage.clientLabel}</dt>
+          <dd class="mt-2 text-lg">{project.client}</dd>
+        </div>
+        <div>
+          <dt class="eyebrow text-ash">{projectPage.sectorLabel}</dt>
+          <dd class="mt-2 text-lg">{project.sector}</dd>
+        </div>
+        <div class="col-span-2 lg:col-span-1">
+          <dt class="eyebrow text-ash">{projectPage.servicesLabel}</dt>
+          <dd class="mt-2">
+            <ul class="space-y-1">
+              {projectServices.map((service) => (
+                <li>
+                  <a
+                    href={serviceHref(service.slug)}
+                    class="text-lg underline-offset-4 hover:text-signal hover:underline"
+                  >
+                    {service.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </div>
+      </dl>
+      <div>
+        <h2 id="overview-title" class="sr-only">
+          {projectPage.overviewTitle}
+        </h2>
+        <div class="text-lead space-y-6 text-bone/85">
+          {project.overview.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+  </PageSection>
+
+  <PageSection tone="raised" labelledby="gallery-title">
+    <h2 id="gallery-title" class="sr-only">
+      {projectPage.galleryTitle}
+    </h2>
+    <Gallery images={project.gallery} />
+  </PageSection>
+
+  <PageSection labelledby="next-title">
+    <a href={projectHref(next.slug)} class="group flex items-end justify-between gap-6">
+      <span>
+        <span class="eyebrow block text-signal">{projectPage.nextLabel}</span>
+        <span id="next-title" class="text-display-lg mt-4 block group-hover:text-signal">
+          {next.client}
+        </span>
+        <span class="mt-3 block max-w-2xl text-ash">{next.summary}</span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="grid size-14 shrink-0 place-items-center rounded-full border border-bone/40 transition-colors group-hover:border-signal group-hover:bg-signal group-hover:text-on-signal"
+      >
+        <ArrowIcon class="size-5" />
+      </span>
+    </a>
+  </PageSection>
+
+  <ContactClose />
+</Layout>

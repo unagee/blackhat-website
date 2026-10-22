@@ -1,0 +1,99 @@
+---
+import ContactClose from '@/components/ui/ContactClose.astro'
+import PageHero from '@/components/ui/PageHero.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import WorkCard from '@/components/ui/WorkCard.astro'
+import { projectHref, projects } from '@/data/projects'
+import { serviceNames, services } from '@/data/services'
+import { workPage } from '@/data/work'
+import Layout from '@/layout/Layout.astro'
+import { breadcrumbSchema } from '@/lib/schema'
+
+const schema = [
+  breadcrumbSchema([
+    { label: 'Home', href: '/' },
+    { label: workPage.eyebrow, href: '/work' },
+  ]),
+]
+const filters = [
+  { value: 'all', label: workPage.allLabel },
+  ...services.map((service) => ({ value: service.slug, label: service.name })),
+]
+---
+
+<Layout meta={workPage.meta} schema={schema}>
+  <PageHero eyebrow={workPage.eyebrow} title={workPage.title} lead={workPage.lead} />
+  <PageSection labelledby="work-filter-label">
+    <div class="mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div
+        role="group"
+        aria-labelledby="work-filter-label"
+        class="flex flex-wrap gap-2"
+        data-work-filters
+        hidden
+      >
+        <span id="work-filter-label" class="sr-only">
+          {workPage.filterLabel}
+        </span>
+        {filters.map((filter, index) => (
+          <button
+            type="button"
+            data-filter={filter.value}
+            aria-pressed={index === 0 ? 'true' : 'false'}
+            class="rounded-full border border-bone/30 px-4 py-2 text-sm text-bone/85 transition-colors hover:border-bone aria-pressed:border-signal aria-pressed:bg-signal aria-pressed:text-on-signal"
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+      <p
+        class="text-sm text-ash"
+        aria-live="polite"
+        data-work-count
+        data-template={workPage.resultsLabel}
+      >
+        {workPage.resultsLabel.replace('{count}', String(projects.length))}
+      </p>
+    </div>
+    <ul class="grid gap-12 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+      {projects.map((project) => (
+        <li data-services={project.services.join(' ')}>
+          <WorkCard
+            client={project.client}
+            label={serviceNames(project.services)}
+            summary={project.summary}
+            href={projectHref(project.slug)}
+            image={project.image}
+          />
+        </li>
+      ))}
+    </ul>
+  </PageSection>
+  <ContactClose />
+</Layout>
+
+<script>
+  // Filters are an enhancement: without JavaScript every project shows and the buttons stay hidden.
+  const group = document.querySelector<HTMLElement>('[data-work-filters]')
+  const count = document.querySelector<HTMLElement>('[data-work-count]')
+  const items = [...document.querySelectorAll<HTMLElement>('[data-services]')]
+
+  if (group) {
+    group.hidden = false
+    const buttons = [...group.querySelectorAll<HTMLButtonElement>('[data-filter]')]
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const value = button.dataset.filter ?? 'all'
+        buttons.forEach((other) => other.setAttribute('aria-pressed', String(other === button)))
+        let shown = 0
+        items.forEach((item) => {
+          const match = value === 'all' || (item.dataset.services ?? '').split(' ').includes(value)
+          item.hidden = !match
+          if (match) shown += 1
+        })
+        if (count)
+          count.textContent = (count.dataset.template ?? '').replace('{count}', String(shown))
+      })
+    })
+  }
+</script>

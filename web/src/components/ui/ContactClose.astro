@@ -2,6 +2,7 @@
 import { websiteConfig } from '@/config'
 import { site } from '@/data/site'
 import Button from './Button.astro'
+import Highlighted from './Highlighted.astro'
 import PageSection from './PageSection.astro'
 
 const { contact } = site
@@ -14,7 +15,7 @@ const mailto = `mailto:${websiteConfig.email}?subject=${encodeURIComponent(conta
     <div>
       <p class="eyebrow text-graphite">{contact.eyebrow}</p>
       <h2 id="contact-title" class="text-display-xl mt-6 max-w-4xl">
-        {contact.title}
+        <Highlighted text={contact.title} />
       </h2>
       <p class="text-lead mt-8 max-w-2xl text-graphite">{contact.body}</p>
       <div class="mt-10">

@@ -1,11 +1,11 @@
 import animationDiagram from '@/assets/services/3damg-diagram.png'
 import brandDiagram from '@/assets/services/branding-and-visual-identity-diagram.png'
 import strategyDiagram from '@/assets/services/strategy-and-consulting-diagram.png'
-import ckProcess from '@/assets/work/cloudkitchens-permitting/jurisdictional-approval-playbook.png'
-import ckMap from '@/assets/work/cloudkitchens-permitting/mapping-of-cloudkitchens-facilities-in-the-us.png'
 import ckOnboarding from '@/assets/work/cloudkitchens-safety/global-safety-awareness-campaign-onboarding-training.png'
 import cooklaneOwner from '@/assets/work/cooklane/cooklane-3d-character-business-owner.png'
 import hyperloopJourney from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-2.png'
+import hyperloopContext from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-3.png'
+import hyperloopRender from '@/assets/work/hyperloop/hyperloop-tt-realistic-render-of-highway.jpg'
 import innovairProduct from '@/assets/work/innovair/innovair-product-visualization.png'
 import myjDataCenter from '@/assets/work/myj/myj-office-design-3d-data-center.jpg'
 import myjCeo from '@/assets/work/myj/myj-office-design-3d-render-ceo-office.jpg'
@@ -208,7 +208,7 @@ export const services: Service[] = [
         {
           question: 'What kinds of 3D work do you do?',
           answer:
-            'Product visualisation, architectural and interior renders, character design, isometric worlds and animation. Recent work includes office interiors for an investment firm, a 3D town for a cloud retail platform, and photoreal vehicles and characters for games.',
+            'Product visualisation, architectural and interior renders, character design, isometric worlds and animation. Recent work includes products and a showroom for an energy technology company, office interiors for an investment firm, a 3D town for a cloud retail platform, and photoreal vehicles and characters for games.',
         },
         {
           question: 'Can you produce motion graphics and video for social media?',
@@ -234,8 +234,8 @@ export const services: Service[] = [
     hero: {
       lead: 'We take complicated businesses, processes and ideas and turn them into something people understand and act on.',
       image: {
-        src: ckMap,
-        alt: 'Map of Cloudkitchens facilities across the United States from the permitting playbook Blackhat designed',
+        src: hyperloopRender,
+        alt: '3D cutaway render of the Hyperloop TT tube and passenger pods on an elevated pylon',
       },
     },
     summary:
@@ -244,7 +244,7 @@ export const services: Service[] = [
       title: 'We make complicated things easy to follow',
       body: [
         'We start by finding where people get lost: in a customer journey, an approval process or a business model. Then we simplify it, design the materials that explain it and help train the teams who use it.',
-        'For Cloudkitchens that meant a permitting playbook for facilities across the US and a global safety campaign for kitchen teams. For Hyperloop TT, it meant mapping a rider’s journey through a system that doesn’t exist yet.',
+        'For Cloudkitchens that meant a global safety campaign for kitchen teams. For Hyperloop TT, it meant mapping a rider’s journey through a system that doesn’t exist yet.',
       ],
     },
     offerings: {
@@ -260,10 +260,10 @@ export const services: Service[] = [
         },
         {
           title: 'Business strategy',
-          body: 'Playbooks and frameworks that break complex processes, like approvals across different jurisdictions, into simple steps.',
+          body: 'Playbooks and frameworks that break complex processes and systems into simple steps people can follow.',
           image: {
-            src: ckProcess,
-            alt: 'Cloudkitchens jurisdictional approval playbook diagram',
+            src: hyperloopContext,
+            alt: 'Hyperloop TT diagram showing the system sections in their urban context',
           },
         },
         {
@@ -314,7 +314,7 @@ export const services: Service[] = [
         {
           question: 'Do you work on projects outside Singapore?',
           answer:
-            'Yes. Our strategy work includes a permitting playbook for Cloudkitchens facilities across the United States and customer journey design for Hyperloop TT in Dubai.',
+            'Yes. Our strategy work includes a global safety awareness campaign for Cloudkitchens and customer journey design for Hyperloop TT in Dubai.',
         },
         {
           question: 'Can you design the training as well as the strategy?',
@@ -354,3 +354,7 @@ export const whatWeDo = {
   listTitle: 'Our services',
   linkLabel: 'Explore',
 }
+
+// "Brand & Visual Identity · 3D Animation & Motion Graphics" for project cards.
+export const serviceNames = (slugs: ServiceSlug[]) =>
+  slugs.map((slug) => services.find((service) => service.slug === slug)?.name ?? '').join(' · ')

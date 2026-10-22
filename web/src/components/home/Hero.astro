@@ -1,6 +1,7 @@
 ---
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
+import Highlighted from '@/components/ui/Highlighted.astro'
 import { home } from '@/data/home'
 import { site } from '@/data/site'
 import { getImage, Image } from 'astro:assets'
@@ -46,7 +47,9 @@ const poster =
 
   <Container class="relative">
     <p class="eyebrow mb-6 text-signal">{hero.eyebrow}</p>
-    <h1 class="text-display-xl max-w-5xl">{hero.title}</h1>
+    <h1 class="text-display-xl max-w-5xl">
+      <Highlighted text={hero.title} />
+    </h1>
     <p class="text-lead mt-8 max-w-2xl text-bone/85">{hero.lead}</p>
     <div class="mt-10 flex flex-wrap gap-4">
       <Button href={hero.primary.href} arrow>

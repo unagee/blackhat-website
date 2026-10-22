@@ -1,6 +1,7 @@
 ---
 import type { Link, Tone } from '@/types'
 import Button from './Button.astro'
+import Highlighted from './Highlighted.astro'
 import PageSection from './PageSection.astro'
 
 type Props = {
@@ -17,7 +18,9 @@ const onLight = tone === 'light' || tone === 'signal'
 <PageSection tone={tone}>
   <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
     <div class="max-w-3xl">
-      <h2 class="text-display-lg">{title}</h2>
+      <h2 class="text-display-lg">
+        <Highlighted text={title} />
+      </h2>
       <p class:list={['text-lead mt-6 max-w-2xl', onLight ? 'text-graphite' : 'text-ash']}>
         {body}
       </p>
