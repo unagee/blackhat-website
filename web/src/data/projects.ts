@@ -19,6 +19,10 @@ export type Project = {
   overview: string[]
   services: ServiceSlug[]
   image: Picture
+  // Portrait crop for cards, when the hero image doesn't crop well to one.
+  cardImage?: Picture
+  // 'light' for flat graphics such as a logo on colour, which the usual dark overlay would mute.
+  heroShade?: 'full' | 'light'
   // Optional YouTube film, shown above the gallery.
   video?: { youtubeId: string; title: string; poster: Picture }
   gallery: GalleryImage[]
@@ -173,13 +177,18 @@ export const projects: Project[] = [
     ],
     services: ['brand-visual-identity'],
     image: {
-      src: img('suricate/suricate-app.jpg'),
-      alt: 'Hand holding a phone showing the Suricate Capital app',
+      src: img('suricate/suricate-logo-hero.jpg'),
+      alt: 'Suricate Capital logo in ivory on chestnut: a standing suricate beside the name',
+    },
+    heroShade: 'light',
+    cardImage: {
+      src: img('suricate/suricate-logo-card.jpg'),
+      alt: 'Suricate Capital logo in ivory on chestnut',
     },
     gallery: [
       {
-        src: img('suricate/suricate-cover.jpg'),
-        alt: 'Suricate Capital brand guidelines cover in chestnut',
+        src: img('suricate/suricate-app.jpg'),
+        alt: 'Hand holding a phone showing the Suricate Capital app',
       },
       {
         src: img('suricate/suricate-logo.jpg'),
@@ -253,23 +262,49 @@ export const projects: Project[] = [
     slug: 'fleet',
     client: 'Fleet',
     sector: 'Operations software',
-    title: 'Teaching every Fleet user their role, from Super Admin to Technician',
+    title: 'A calm, data-first brand for an operations platform, and a guide for every user',
     meta: {
-      title: 'Fleet: Onboarding Training Guide and Brand | Blackhat',
+      title: 'Fleet: Brand Identity and Onboarding Guide | Blackhat',
       description:
-        'A role-based onboarding training guide for Fleet, an operations platform, designed in Fleet’s brand across the web platform and mobile app.',
+        'Brand direction for Fleet, an operations platform: palette, ratio, type and interface rules, plus a role-based onboarding guide for every user.',
     },
-    summary: 'A role-based onboarding guide for an operations platform, designed in Fleet’s brand.',
+    summary: 'Brand direction for an operations platform, plus a role-based onboarding guide.',
     overview: [
       'Fleet is an operations platform that helps teams manage tasks, forms, documents and workflows across many locations, on the web and in the Fleet Tasks mobile app.',
-      'We designed its onboarding training guide around the people who use it: Super Admins, Admins, Managers and Technicians. Each section shows exactly what that role can do, with annotated screens, role diagrams and troubleshooting, all in Fleet’s brand.',
+      'We gave Fleet a brand built on depth first, with warmth where it counts. Black and navy share the ground, steel picks out the data, cream is the light, and espresso marks the one thing to do next. Hanken Grotesk, never heavier than medium, keeps the type calm, and a separate set of status colours is kept for the product alone.',
+      'We also designed its onboarding training guide around the people who use it: Super Admins, Admins, Managers and Technicians. Each section shows exactly what that role can do, with annotated screens, role diagrams and troubleshooting.',
     ],
     services: ['brand-visual-identity', 'strategy-consulting'],
     image: {
-      src: img('fleet/fleet-dashboard-crop.jpg'),
-      alt: 'Fleet dashboard map showing sites across Europe',
+      src: img('fleet/fleet-brand-guide-stack.jpg'),
+      alt: 'Fleet brand guidelines pages stacked in perspective: the cover, typography and colour roles',
     },
+    heroShade: 'light',
     gallery: [
+      {
+        src: img('fleet/fleet-brand-guide-spread.jpg'),
+        alt: 'Six pages of the Fleet brand guidelines laid out on cream',
+      },
+      {
+        src: img('fleet/fleet-brand-palette-ratio.jpg'),
+        alt: 'Fleet core palette and ratio: black and navy at 35% each, cream 17%, steel and espresso 6.5%',
+      },
+      {
+        src: img('fleet/fleet-brand-colour-roles.jpg'),
+        alt: 'How each Fleet colour works: black and navy grounds, steel detail, cream light, espresso action',
+      },
+      {
+        src: img('fleet/fleet-brand-typography.jpg'),
+        alt: 'Fleet typography in Hanken Grotesk: light, regular and medium, with the type scale',
+      },
+      {
+        src: img('fleet/fleet-brand-status-colours.jpg'),
+        alt: 'Fleet status colours for the product: urgent, overdue, in progress, completed and scheduled',
+      },
+      {
+        src: img('fleet/fleet-brand-interface.jpg'),
+        alt: 'Fleet interface rules: one espresso action per view, on light and on dark',
+      },
       {
         src: img('fleet/fleet-training-cover.jpg'),
         alt: 'Fleet onboarding guide section cover: “Basic Training Guide” on blue',
