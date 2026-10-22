@@ -79,4 +79,12 @@ export const site = {
     searchEmpty: 'No results for “{query}”',
     searchHint: 'Try a client, a service or a sector, such as “Energend”, “3D” or “finance”.',
   },
+  // The cookie notice in the bottom-right corner.
+  cookies: {
+    label: 'Cookie preferences',
+    title: 'Cookies',
+    body: 'We use cookies to keep this site working and, if you allow them, to understand how it’s used so we can improve it.',
+    accept: 'Allow Cookies',
+    decline: 'Decline',
+  },
 }

@@ -1,0 +1,59 @@
+---
+import { site } from '@/data/site'
+
+const { cookies } = site
+---
+
+<!-- Shown until the visitor chooses. The choice is kept in this browser as "blackhat-cookies"
+     (granted or denied), for any analytics added later to check before loading. -->
+<section
+  data-cookie-consent
+  hidden
+  aria-label={cookies.label}
+  class="fixed inset-x-4 bottom-4 z-50 rounded-2xl border border-hairline bg-ink-raised p-5 text-bone shadow-2xl sm:inset-x-auto sm:right-6 sm:bottom-6 sm:max-w-sm"
+>
+  <h2 class="font-medium">{cookies.title}</h2>
+  <p class="mt-2 text-sm text-ash">{cookies.body}</p>
+  <div class="mt-4 flex flex-wrap gap-3">
+    <button
+      type="button"
+      data-cookie-choice="granted"
+      class="rounded-full bg-signal px-5 py-2 text-sm font-medium text-on-signal transition-colors hover:bg-bone"
+    >
+      {cookies.accept}
+    </button>
+    <button
+      type="button"
+      data-cookie-choice="denied"
+      class="rounded-full border border-bone/40 px-5 py-2 text-sm font-medium text-bone transition-colors hover:border-bone"
+    >
+      {cookies.decline}
+    </button>
+  </div>
+</section>
+
+<script>
+  const key = 'blackhat-cookies'
+  const notice = document.querySelector<HTMLElement>('[data-cookie-consent]')
+
+  const stored = () => {
+    try {
+      return localStorage.getItem(key)
+    } catch {
+      return null
+    }
+  }
+
+  if (notice && !stored()) notice.hidden = false
+
+  notice?.querySelectorAll<HTMLButtonElement>('[data-cookie-choice]').forEach((button) => {
+    button.addEventListener('click', () => {
+      try {
+        localStorage.setItem(key, button.dataset.cookieChoice ?? 'denied')
+      } catch {
+        // Private browsing can block storage; the notice simply returns next visit.
+      }
+      notice.hidden = true
+    })
+  })
+</script>
