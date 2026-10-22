@@ -71,5 +71,13 @@ export const site = {
     playMotion: 'Play Animation',
     pauseVideo: 'Pause Video',
     playVideo: 'Play Video',
+    search: 'Search',
+    searchLabel: 'Search the site',
+    searchPlaceholder: 'Search projects, services and pages',
+    searchClose: 'Close search',
+    // "{count}" and "{query}" are replaced when results show.
+    searchResults: '{count} results',
+    searchEmpty: 'No results for “{query}”',
+    searchHint: 'Try a client, a service or a sector, such as “Energend”, “3D” or “finance”.',
   },
 }

@@ -8,13 +8,8 @@ import myjDataCenter from '@/assets/work/myj/myj-office-design-3d-data-center.jp
 import myjCeo from '@/assets/work/myj/myj-office-design-3d-render-ceo-office.jpg'
 import niriAdvertising from '@/assets/work/niri/niri-luxury-restaurant-advertising-mockup.jpg'
 import niriConcept from '@/assets/work/niri/niri-luxury-restaurant-logo-concept.png'
-import studyzoneSocial from '@/assets/work/studyzone/studyzone-pre-university-education-social-media-mockup-2.png'
-import suricateStory from '@/assets/work/suricate/suricate-brand-story.jpg'
-import suricateLogo from '@/assets/work/suricate/suricate-logo.jpg'
 import tcdcLogo from '@/assets/work/tcdc/tcdc-creative-agency-logo-design.jpg'
 import vespaPackaging from '@/assets/work/vespa/vespa-tet-nguyen-dan-packaging-design-rectangular.png'
-import wavesComposition from '@/assets/work/waves/waves-composition.jpg'
-import wavesSocial from '@/assets/work/waves/waves-social.jpg'
 import type { ServiceSlug } from '@/data/projects'
 import type { Link, PageMeta, Picture } from '@/types'
 
@@ -378,10 +373,6 @@ export const engagement = {
         'Concept Presentation',
       ],
       timeframe: '2–4 Weeks',
-      images: [
-        { src: suricateStory, alt: 'Suricate Capital brand story page' },
-        { src: hyperloopJourney, alt: 'Hyperloop TT customer journey diagram' },
-      ],
       cta: 'Start with a Plan',
     },
     {
@@ -396,10 +387,6 @@ export const engagement = {
         'Key Collateral & Templates',
       ],
       timeframe: '4–8 Weeks',
-      images: [
-        { src: suricateLogo, alt: 'Suricate Capital logo page' },
-        { src: wavesComposition, alt: 'Waves posters from the brand guidelines' },
-      ],
       cta: 'Start with Design',
     },
     {
@@ -414,10 +401,6 @@ export const engagement = {
         'Monthly Content Calendar',
       ],
       timeframe: 'Ongoing, Monthly',
-      images: [
-        { src: wavesSocial, alt: 'Waves social media posts' },
-        { src: studyzoneSocial, alt: 'Studyzone social media post' },
-      ],
       cta: 'Start with Execution',
     },
   ],

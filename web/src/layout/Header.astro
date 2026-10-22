@@ -5,6 +5,7 @@ import Container from '@/components/ui/Container.astro'
 import Wordmark from '@/components/ui/Wordmark.astro'
 import { site } from '@/data/site'
 import type { NavItem, NavMenu } from '@/types'
+import SiteSearch from './SiteSearch.astro'
 
 const isMenu = (item: NavItem): item is NavMenu => 'columns' in item
 const path = Astro.url.pathname
@@ -93,6 +94,7 @@ const current = (href: string) => (href === path ? 'page' : undefined)
     </nav>
 
     <div class="flex items-center gap-3">
+      <SiteSearch />
       <Button href={site.cta.href} class="py-2">
         {site.cta.label}
       </Button>

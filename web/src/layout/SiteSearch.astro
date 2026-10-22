@@ -1,0 +1,188 @@
+---
+import { site } from '@/data/site'
+
+const { labels } = site
+const icon = 'M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM13 13l4 4'
+---
+
+<!-- Looks like a search bar on wide screens, a magnifier icon on phones. Opens the search panel. -->
+<button
+  type="button"
+  data-search-open
+  aria-haspopup="dialog"
+  class="hidden w-56 items-center gap-2 rounded-full border border-bone/25 px-4 py-2 text-sm text-ash transition-colors hover:border-bone hover:text-bone lg:inline-flex"
+>
+  <svg
+    viewBox="0 0 20 20"
+    class="size-4"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    aria-hidden="true"
+  >
+    <path d={icon}></path>
+  </svg>
+  {labels.search}
+</button>
+<button
+  type="button"
+  data-search-open
+  aria-haspopup="dialog"
+  aria-label={labels.searchLabel}
+  class="grid size-10 place-items-center rounded-full border border-bone/25 text-bone hover:border-bone lg:hidden"
+>
+  <svg
+    viewBox="0 0 20 20"
+    class="size-4"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    aria-hidden="true"
+  >
+    <path d={icon}></path>
+  </svg>
+</button>
+
+<dialog
+  data-search-dialog
+  aria-label={labels.searchLabel}
+  data-results={labels.searchResults}
+  data-empty={labels.searchEmpty}
+  class="m-0 mx-auto mt-[10vh] w-[min(42rem,calc(100%-2rem))] max-w-none rounded-2xl border border-hairline bg-ink-raised p-0 text-bone shadow-2xl backdrop:bg-ink/80 backdrop:backdrop-blur-sm"
+>
+  <div role="search" class="flex items-center gap-3 border-b border-hairline px-5">
+    <svg
+      viewBox="0 0 20 20"
+      class="size-5 shrink-0 text-ash"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      aria-hidden="true"
+    >
+      <path d={icon}></path>
+    </svg>
+    <label for="site-search-input" class="sr-only">
+      {labels.searchLabel}
+    </label>
+    <input
+      id="site-search-input"
+      type="search"
+      autocomplete="off"
+      placeholder={labels.searchPlaceholder}
+      data-search-input
+      class="w-full bg-transparent py-5 text-lg [&::-webkit-search-cancel-button]:appearance-none text-bone placeholder:text-ash/70 focus:outline-none"
+    />
+    <button
+      type="button"
+      data-search-close
+      aria-label={labels.searchClose}
+      class="grid size-9 shrink-0 place-items-center rounded-full text-ash hover:text-bone"
+    >
+      <svg
+        viewBox="0 0 16 16"
+        class="size-4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        aria-hidden="true"
+      >
+        <path d="M3 3l10 10M13 3L3 13"></path>
+      </svg>
+    </button>
+  </div>
+  <p class="px-5 pt-4 text-sm text-ash" aria-live="polite" data-search-status>
+    {labels.searchHint}
+  </p>
+  <ul class="max-h-[55vh] overflow-y-auto p-2" data-search-list></ul>
+</dialog>
+
+<script>
+  type Entry = { title: string; kind: string; description: string; url: string; keywords: string }
+
+  const dialog = document.querySelector<HTMLDialogElement>('[data-search-dialog]')
+  const input = dialog?.querySelector<HTMLInputElement>('[data-search-input]')
+  const list = dialog?.querySelector<HTMLUListElement>('[data-search-list]')
+  const status = dialog?.querySelector<HTMLElement>('[data-search-status]')
+  const hint = status?.textContent ?? ''
+  let index: Entry[] | null = null
+
+  const load = async () => {
+    if (index) return index
+    const response = await fetch('/search.json')
+    index = (await response.json()) as Entry[]
+    return index
+  }
+
+  // Every word typed must appear somewhere in the entry; titles that match rank first.
+  const search = (entries: Entry[], query: string) => {
+    const terms = query.toLowerCase().split(/\s+/).filter(Boolean)
+    return entries
+      .map((entry) => {
+        const title = entry.title.toLowerCase()
+        const text = `${title} ${entry.kind} ${entry.description} ${entry.keywords}`.toLowerCase()
+        if (!terms.every((term) => text.includes(term))) return null
+        const score = terms.reduce((sum, term) => sum + (title.includes(term) ? 2 : 1), 0)
+        return { entry, score }
+      })
+      .filter((item): item is { entry: Entry; score: number } => item !== null)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 8)
+      .map((item) => item.entry)
+  }
+
+  const render = (results: Entry[], query: string) => {
+    if (!list || !status || !dialog) return
+    list.replaceChildren(
+      ...results.map((entry) => {
+        const item = document.createElement('li')
+        const link = document.createElement('a')
+        link.href = entry.url
+        link.className = 'block rounded-xl px-4 py-3 hover:bg-ink focus:bg-ink focus:outline-none'
+        const top = document.createElement('span')
+        top.className = 'flex items-baseline justify-between gap-4'
+        const title = document.createElement('span')
+        title.className = 'text-bone'
+        title.textContent = entry.title
+        const kind = document.createElement('span')
+        kind.className = 'text-xs uppercase tracking-widest text-ash'
+        kind.textContent = entry.kind
+        const description = document.createElement('span')
+        description.className = 'mt-1 block text-sm text-ash'
+        description.textContent = entry.description
+        top.append(title, kind)
+        link.append(top, description)
+        item.append(link)
+        return item
+      }),
+    )
+    if (!query) status.textContent = hint
+    else if (results.length === 0)
+      status.textContent = (dialog.dataset.empty ?? '').replace('{query}', query)
+    else
+      status.textContent = (dialog.dataset.results ?? '').replace('{count}', String(results.length))
+  }
+
+  document.querySelectorAll('[data-search-open]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      dialog?.showModal()
+      input?.focus()
+      await load()
+    })
+  })
+  dialog?.querySelector('[data-search-close]')?.addEventListener('click', () => dialog.close())
+  // Clicking the dimmed backdrop closes the panel.
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close()
+  })
+  // One Escape closes the panel (a search box would otherwise just clear its text first).
+  input?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault()
+      dialog?.close()
+    }
+  })
+  input?.addEventListener('input', async () => {
+    const query = input.value.trim()
+    render(query ? search(await load(), query) : [], query)
+  })
+</script>
