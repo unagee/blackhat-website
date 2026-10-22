@@ -9,7 +9,7 @@ Professional and straightforward first, bold where it counts. Each line should s
 - Audience: decision makers at financial institutions, healthcare innovators and luxury brands choosing a creative partner.
 - Sound like a sharp person talking, not a brochure. Lead with what the client gets, then how.
 - No forced wit or jokes. Confidence comes from specifics, not puns or exclamation marks.
-- Headings: short and plain, sentence case ("Work that does the explaining", "Brands we’ve worked with"). Buttons and navigation too ("Start a project").
+- Headings: short and plain, sentence case ("Work that does the explaining", "Brands we’ve worked with"). Buttons, navigation and subsection titles (the small headings on cards and lists, such as "Financial Institutions" or "Brand Image & Identity") use Title Case. Section and page headings stay in sentence case.
 - Never use: clarity, "make it clear", seamless, elevate, unlock, empower, transform, crafted, cutting-edge, world-class, "in today’s world", "not just X but Y", or em dashes.
 - British English (Singapore audience: "colour", "visualise"), short sentences, active voice. No emoji.
 - Never invent clients, numbers, results or testimonials. Describe only what the work shows.
@@ -20,7 +20,7 @@ Professional and straightforward first, bold where it counts. Each line should s
 - Never change colors, fonts, spacing or sizes as part of a content edit. If the editor asks for a visual change, explain that it changes the design system and check whether they want it in one place or everywhere.
 - Palette from blackhat.agency: black ground, white text, yellow (`signal`) for the main action and small accents. One yellow button per view where possible.
 - Mostly dark sections. On white or yellow sections all text is dark; never put yellow text on white.
-- One typeface, Zalando Sans, never heavier than medium.
+- Work Sans for everything, never heavier than medium. A serif italic highlight (Source Serif) on one or two words of the most important headings only: write them as `*word*` in the data file. Today: “brands” (home hero), “trust” (Who we work with), “working on” (closing contact).
 - New sections are built from `web/src/components/ui/` with their words in a data file. Use the `astro-components` skill and flag it on the pull request.
 
 ## Accessibility

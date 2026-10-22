@@ -1,0 +1,483 @@
+---
+export type SceneId =
+  | 'brand-1'
+  | 'brand-2'
+  | 'brand-3'
+  | 'animation-1'
+  | 'animation-2'
+  | 'animation-3'
+  | 'strategy-1'
+  | 'strategy-2'
+  | 'strategy-3'
+
+type Props = {
+  scene: SceneId
+}
+
+// One animated, decorative process diagram: soft white forms move behind a frosted-glass pane,
+// with a thin linear drawing on top. Black and white only. Motion stops for reduced-motion visitors.
+const { scene } = Astro.props
+const glass: Record<SceneId, string> = {
+  'brand-1': 'left-[30%] top-[30%] h-[40%] w-[40%]',
+  'brand-2': 'left-[12%] top-[52%] h-[30%] w-[76%]',
+  'brand-3': 'left-[46%] top-[14%] h-[44%] w-[40%]',
+  'animation-1': 'left-[38%] top-[20%] h-[26%] w-[26%]',
+  'animation-2': 'left-[14%] top-[44%] h-[36%] w-[46%]',
+  'animation-3': 'left-[34%] top-[24%] h-[52%] w-[30%]',
+  'strategy-1': 'left-[16%] top-[16%] h-[38%] w-[38%] rounded-full',
+  'strategy-2': 'left-[56%] top-[18%] h-[64%] w-[30%]',
+  'strategy-3': 'left-[20%] top-[58%] h-[24%] w-[60%]',
+}
+const dots = Array.from({ length: 64 }, (_, i) => ({
+  x: 50 + (i % 8) * 43,
+  y: 50 + Math.floor(i / 8) * 43,
+}))
+const trail = Array.from({ length: 9 }, (_, i) => i)
+---
+
+<div class="motion-scene relative aspect-square overflow-hidden rounded-xl border border-bone/10 bg-ink">
+  <!-- Back layer: soft forms that drift behind the glass. -->
+  <svg viewBox="0 0 400 400" class="absolute inset-0 size-full text-bone" aria-hidden="true">
+    <defs>
+      <radialGradient id={`orb-${scene}`}>
+        <stop offset="0" stop-color="currentColor" stop-opacity="0.95"></stop>
+        <stop offset="0.55" stop-color="currentColor" stop-opacity="0.35"></stop>
+        <stop offset="1" stop-color="currentColor" stop-opacity="0"></stop>
+      </radialGradient>
+      <linearGradient id={`plane-${scene}`} x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="currentColor" stop-opacity="0.75"></stop>
+        <stop offset="1" stop-color="currentColor" stop-opacity="0.05"></stop>
+      </linearGradient>
+    </defs>
+    {scene === 'brand-1' && (
+      <g>
+        <circle class="m-converge m-c1" cx="80" cy="80" r="46" fill={`url(#orb-${scene})`} />
+        <circle class="m-converge m-c2" cx="320" cy="90" r="38" fill={`url(#orb-${scene})`} />
+        <circle class="m-converge m-c3" cx="90" cy="320" r="34" fill={`url(#orb-${scene})`} />
+        <circle class="m-converge m-c4" cx="315" cy="315" r="44" fill={`url(#orb-${scene})`} />
+      </g>
+    )}
+    {scene === 'brand-2' && (
+      <g>
+        <circle class="m-merge-l" cx="140" cy="200" r="78" fill={`url(#orb-${scene})`} />
+        <circle class="m-merge-r" cx="260" cy="200" r="78" fill={`url(#orb-${scene})`} />
+        <circle class="m-merge-t" cx="200" cy="130" r="64" fill={`url(#orb-${scene})`} />
+      </g>
+    )}
+    {scene === 'brand-3' && (
+      <circle class="m-pulse" cx="200" cy="200" r="70" fill={`url(#orb-${scene})`} />
+    )}
+    {scene === 'animation-1' && (
+      <circle class="m-frames" cx="95" cy="145" r="44" fill={`url(#orb-${scene})`} />
+    )}
+    {scene === 'animation-2' && (
+      <g class="m-faces">
+        <path d="M200 90 L290 140 L200 190 L110 140 Z" fill={`url(#plane-${scene})`} />
+        <path d="M110 140 L200 190 L200 300 L110 250 Z" fill="currentColor" fill-opacity="0.18" />
+        <path d="M290 140 L200 190 L200 300 L290 250 Z" fill="currentColor" fill-opacity="0.08" />
+      </g>
+    )}
+    {scene === 'animation-3' && (
+      <circle class="m-travel" cx="80" cy="300" r="40" fill={`url(#orb-${scene})`} />
+    )}
+    {scene === 'strategy-1' && (
+      <circle class="m-scan-orb" cx="120" cy="120" r="70" fill={`url(#orb-${scene})`} />
+    )}
+    {scene === 'strategy-2' && (
+      <circle class="m-end-orb" cx="330" cy="200" r="56" fill={`url(#orb-${scene})`} />
+    )}
+    {scene === 'strategy-3' && (
+      <g>
+        {[0, 1, 2].map((i) => (
+          <path
+            class={`m-stack m-stack-${i}`}
+            d={`M200 ${110 + i * 60} L310 ${160 + i * 60} L200 ${210 + i * 60} L90 ${160 + i * 60} Z`}
+            fill={`url(#plane-${scene})`}
+          />
+        ))}
+      </g>
+    )}
+  </svg>
+
+  <!-- The frosted-glass pane. -->
+  <div
+    aria-hidden="true"
+    class:list={[
+      'absolute rounded-lg border border-bone/25 bg-bone/[0.06] shadow-[inset_0_1px_0_rgb(255_255_255/0.25)] backdrop-blur-md',
+      glass[scene],
+    ]}
+  ></div>
+
+  <!-- Front layer: the linear diagram. -->
+  <svg
+    viewBox="0 0 400 400"
+    class="absolute inset-0 size-full text-bone"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1"
+    aria-hidden="true"
+  >
+    <g stroke-opacity="0.18">
+      <path d="M20 200 H380 M200 20 V380"></path>
+    </g>
+    {scene === 'brand-1' && (
+      <g>
+        <path stroke-dasharray="3 5" d="M80 80 L200 200 L320 90 M90 320 L200 200 L315 315" />
+        <circle cx="200" cy="200" r="22" />
+        <circle cx="200" cy="200" r="3" fill="currentColor" />
+        <path d="M188 200 h-14 M212 200 h14 M200 188 v-14 M200 212 v14" />
+      </g>
+    )}
+    {scene === 'brand-2' && (
+      <g>
+        <circle cx="140" cy="200" r="78" />
+        <circle cx="260" cy="200" r="78" />
+        <circle cx="200" cy="130" r="64" />
+        {[0, 1, 2].map((i) => (
+          <circle cx={150 + i * 50} cy="330" r="3" fill="currentColor" />
+        ))}
+      </g>
+    )}
+    {scene === 'brand-3' && (
+      <g>
+        <circle cx="200" cy="200" r="40" />
+        {[0, 1, 2, 3].map((i) => (
+          <circle class={`m-ring m-ring-${i}`} cx="200" cy="200" r="60" />
+        ))}
+      </g>
+    )}
+    {scene === 'animation-1' && (
+      <g>
+        {[0, 1, 2].map((col) =>
+          [0, 1].map((row) => (
+            <rect x={40 + col * 112} y={95 + row * 112} width="100" height="100" rx="4" />
+          )),
+        )}
+        <path stroke-dasharray="2 6" d="M40 330 H360" />
+      </g>
+    )}
+    {scene === 'animation-2' && (
+      <g>
+        <path
+          class="m-draw"
+          d="M200 90 L290 140 L200 190 L110 140 Z M110 140 L110 250 L200 300 L290 250 L290 140 M200 190 L200 300"
+        />
+        <path
+          stroke-dasharray="3 5"
+          stroke-opacity="0.5"
+          d="M200 90 L200 40 M290 250 L350 285 M110 250 L50 285"
+        />
+      </g>
+    )}
+    {scene === 'animation-3' && (
+      <g>
+        <path stroke-dasharray="3 5" d="M80 300 Q 200 40 320 300" />
+        {trail.map((i) => (
+          <circle
+            class="m-trail"
+            style={`animation-delay:${i * 0.18}s`}
+            cx={80 + i * 30}
+            cy={300 - Math.sin((i / 8) * Math.PI) * 130}
+            r="26"
+          />
+        ))}
+      </g>
+    )}
+    {scene === 'strategy-1' && (
+      <g>
+        {dots.map((dot) => (
+          <circle cx={dot.x} cy={dot.y} r="1.6" fill="currentColor" stroke="none" opacity="0.55" />
+        ))}
+        <path class="m-scanline" d="M30 60 H370" />
+        <circle class="m-lens" cx="120" cy="120" r="56" />
+      </g>
+    )}
+    {scene === 'strategy-2' && (
+      <g>
+        <path
+          class="m-tangle"
+          d="M60 200 C 90 90, 130 320, 160 170 S 220 60, 230 240 S 290 310, 330 200"
+        />
+        <path class="m-straight" d="M60 200 H330" />
+        {[60, 150, 240, 330].map((x) => (
+          <circle cx={x} cy="200" r="5" fill="currentColor" />
+        ))}
+      </g>
+    )}
+    {scene === 'strategy-3' && (
+      <g>
+        {[0, 1, 2].map((i) => (
+          <path
+            d={`M200 ${110 + i * 60} L310 ${160 + i * 60} L200 ${210 + i * 60} L90 ${160 + i * 60} Z`}
+          />
+        ))}
+        <path stroke-dasharray="3 5" d="M200 60 V360" />
+      </g>
+    )}
+  </svg>
+</div>
+
+<style>
+  .motion-scene :global(*) {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .m-converge {
+      animation: converge 7s ease-in-out infinite;
+    }
+    .m-c1 {
+      --tx: 70px;
+      --ty: 70px;
+    }
+    .m-c2 {
+      --tx: -70px;
+      --ty: 65px;
+      animation-delay: -1s;
+    }
+    .m-c3 {
+      --tx: 65px;
+      --ty: -70px;
+      animation-delay: -2s;
+    }
+    .m-c4 {
+      --tx: -65px;
+      --ty: -65px;
+      animation-delay: -3s;
+    }
+    .m-merge-l {
+      --tx: 40px;
+      --ty: 0px;
+      animation: converge 6s ease-in-out infinite;
+    }
+    .m-merge-r {
+      --tx: -40px;
+      --ty: 0px;
+      animation: converge 6s ease-in-out infinite;
+    }
+    .m-merge-t {
+      --tx: 0px;
+      --ty: 45px;
+      animation: converge 6s ease-in-out infinite;
+    }
+    .m-pulse {
+      animation: pulse 4s ease-in-out infinite;
+    }
+    .m-ring {
+      opacity: 0;
+      animation: ripple 4s ease-out infinite;
+    }
+    .m-ring-1 {
+      animation-delay: 1s;
+    }
+    .m-ring-2 {
+      animation-delay: 2s;
+    }
+    .m-ring-3 {
+      animation-delay: 3s;
+    }
+    .m-frames {
+      animation: frames 6s steps(1, end) infinite;
+    }
+    .m-draw {
+      stroke-dasharray: 900;
+      animation: draw 6s ease-in-out infinite;
+    }
+    .m-faces {
+      animation: breathe 6s ease-in-out infinite;
+    }
+    .m-travel {
+      animation: travel 5s ease-in-out infinite;
+    }
+    .m-trail {
+      animation: trail 2.2s ease-in-out infinite;
+    }
+    .m-scanline {
+      animation: scan 5s ease-in-out infinite;
+    }
+    .m-lens,
+    .m-scan-orb {
+      animation: lens 8s ease-in-out infinite;
+    }
+    .m-tangle {
+      animation: untangle 6s ease-in-out infinite;
+    }
+    .m-straight {
+      stroke-dasharray: 270;
+      animation: straighten 6s ease-in-out infinite;
+    }
+    .m-end-orb {
+      animation: pulse 6s ease-in-out infinite;
+    }
+    .m-stack {
+      animation: stack 6s ease-in-out infinite;
+    }
+    .m-stack-0 {
+      --ty: -40px;
+    }
+    .m-stack-1 {
+      --ty: -20px;
+      animation-delay: 0.3s;
+    }
+    .m-stack-2 {
+      --ty: 0px;
+      animation-delay: 0.6s;
+    }
+  }
+
+  /* The section's pause button stops every scene. */
+  :global([data-motion-paused]) .motion-scene :global(*) {
+    animation-play-state: paused !important;
+  }
+
+  @keyframes converge {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(var(--tx), var(--ty));
+    }
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(0.85);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
+  @keyframes ripple {
+    0% {
+      transform: scale(0.7);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(2.8);
+      opacity: 0;
+    }
+  }
+  @keyframes frames {
+    0% {
+      transform: translate(0, 0);
+    }
+    16.66% {
+      transform: translate(112px, 0);
+    }
+    33.33% {
+      transform: translate(224px, 0);
+    }
+    50% {
+      transform: translate(0, 112px);
+    }
+    66.66% {
+      transform: translate(112px, 112px);
+    }
+    83.33% {
+      transform: translate(224px, 112px);
+    }
+  }
+  @keyframes draw {
+    0% {
+      stroke-dashoffset: 900;
+    }
+    45%,
+    80% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -900;
+    }
+  }
+  @keyframes breathe {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes travel {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(120px, -230px);
+    }
+    100% {
+      transform: translate(240px, 0);
+    }
+  }
+  @keyframes trail {
+    0%,
+    100% {
+      stroke-opacity: 0.15;
+    }
+    50% {
+      stroke-opacity: 1;
+    }
+  }
+  @keyframes scan {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(280px);
+    }
+  }
+  @keyframes lens {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    33% {
+      transform: translate(160px, 40px);
+    }
+    66% {
+      transform: translate(70px, 160px);
+    }
+  }
+  @keyframes untangle {
+    0%,
+    20% {
+      opacity: 1;
+    }
+    50%,
+    80% {
+      opacity: 0.08;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes straighten {
+    0%,
+    20% {
+      stroke-dashoffset: 270;
+    }
+    50%,
+    80% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: 270;
+    }
+  }
+  @keyframes stack {
+    0%,
+    100% {
+      transform: translateY(var(--ty));
+      opacity: 0.4;
+    }
+    50% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+</style>

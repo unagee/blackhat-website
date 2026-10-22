@@ -3,8 +3,8 @@ import Button from '@/components/ui/Button.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import WorkCard from '@/components/ui/WorkCard.astro'
-import type { Project } from '@/data/projects'
-import { services } from '@/data/services'
+import { projectHref, type Project } from '@/data/projects'
+import { serviceNames } from '@/data/services'
 import type { Link } from '@/types'
 
 type Props = {
@@ -15,7 +15,6 @@ type Props = {
 }
 
 const { eyebrow, title, projects, allLink } = Astro.props
-const serviceName = (slug: string) => services.find((service) => service.slug === slug)?.name ?? ''
 ---
 
 <PageSection id="work" labelledby="work-title">
@@ -32,9 +31,9 @@ const serviceName = (slug: string) => services.find((service) => service.slug ==
       <li>
         <WorkCard
           client={project.client}
-          label={project.services.map(serviceName).join(' · ')}
+          label={serviceNames(project.services)}
           summary={project.summary}
-          href={`/work/${project.slug}`}
+          href={projectHref(project.slug)}
           image={project.image}
         />
       </li>

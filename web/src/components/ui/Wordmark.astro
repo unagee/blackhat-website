@@ -1,0 +1,21 @@
+---
+import wordmark from '@/assets/logos/blackhat-wordmark-light.png'
+import { Image } from 'astro:assets'
+
+type Props = {
+  class?: string
+  eager?: boolean
+}
+
+// The Blackhat wordmark (light, on transparent), used exactly as supplied: never crop or recolour it.
+const { class: className, eager = false } = Astro.props
+---
+
+<Image
+  src={wordmark}
+  alt=""
+  widths={[240, 480, 720]}
+  sizes="240px"
+  loading={eager ? 'eager' : 'lazy'}
+  class:list={['block w-auto', className]}
+/>

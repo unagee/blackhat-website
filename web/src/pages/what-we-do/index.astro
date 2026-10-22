@@ -1,7 +1,8 @@
 ---
 import Industries from '@/components/home/Industries.astro'
+import Engagement from '@/components/services/Engagement.astro'
+import EnquiryForm from '@/components/services/EnquiryForm.astro'
 import ServiceList from '@/components/services/ServiceList.astro'
-import ContactClose from '@/components/ui/ContactClose.astro'
 import PageHero from '@/components/ui/PageHero.astro'
 import { servicePage, services, whatWeDo } from '@/data/services'
 import Layout from '@/layout/Layout.astro'
@@ -17,11 +18,12 @@ const schema = [
 
 <Layout meta={whatWeDo.meta} schema={schema}>
   <PageHero eyebrow={whatWeDo.eyebrow} title={whatWeDo.title} lead={whatWeDo.lead} />
+  <Engagement />
   <ServiceList
     eyebrow={servicePage.offeringsEyebrow}
     title={whatWeDo.listTitle}
     services={services}
   />
   <Industries />
-  <ContactClose />
+  <EnquiryForm />
 </Layout>

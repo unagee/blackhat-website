@@ -5,14 +5,11 @@ import niri from '@/assets/logos/partners/niri-logo.png'
 import tcdc from '@/assets/logos/partners/tcdc-logo.png'
 import twh from '@/assets/logos/partners/twh-logo.png'
 import vespa from '@/assets/logos/partners/vespa-logo.png'
-import ckPermitting from '@/assets/work/cloudkitchens-permitting/jurisdictional-approval-playbook.png'
-import ckSafety from '@/assets/work/cloudkitchens-safety/how-to-use-fire-extinguisher.jpg'
 import cooklaneWorld from '@/assets/work/cooklane/cooklane-3d-world-building.jpg'
+import energendShowroom from '@/assets/work/energend/energend-showroom-interior-dome.jpg'
 import warJets from '@/assets/work/game-3d/3d-realistic-render-war-jets.jpg'
 import hyperloopRender from '@/assets/work/hyperloop/hyperloop-tt-realistic-render-of-highway.jpg'
 import myjLobby from '@/assets/work/myj/myj-office-design-3d-lobby.jpg'
-import myjEntrance from '@/assets/work/myj/myj-office-design-render-entrance.jpg'
-import niriLogo from '@/assets/work/niri/niri-luxury-restaurant-logo-design.png'
 import niriSupergraphic from '@/assets/work/niri/niri-luxury-restaurant-supergraphic.png'
 import { site } from '@/data/site'
 import type { HeroMedia, Link } from '@/types'
@@ -39,10 +36,10 @@ export const home = {
 
   hero: {
     eyebrow: 'Strategy-driven creative agency, Singapore',
-    title: 'We turn complex ideas into brands people trust.',
+    title: 'We turn complex ideas into *brands* people trust.',
     lead: 'Brand identity, 3D animation and strategy for financial institutions, healthcare innovators and luxury brands. Based in Singapore, working worldwide.',
-    primary: { label: 'Start a project', href: '/contact' } satisfies Link,
-    secondary: { label: 'See our work', href: '/work' } satisfies Link,
+    primary: { label: 'Start a Project', href: '/contact' } satisfies Link,
+    secondary: { label: 'See Our Work', href: '/work' } satisfies Link,
     // Widened so the hero handles both the still and the reel.
     media: heroMedia as HeroMedia,
   },
@@ -71,8 +68,8 @@ export const home = {
         ...strategy,
         body: 'Customer journeys, business strategy and interactive training decks that turn a complicated business into a plan your teams can follow.',
         image: {
-          src: ckPermitting,
-          alt: 'Jurisdictional approval playbook diagram Blackhat designed for Cloudkitchens',
+          src: hyperloopRender,
+          alt: '3D cutaway render of the Hyperloop TT tube and passenger pods, built by Blackhat',
         },
       },
     ],
@@ -94,71 +91,45 @@ export const home = {
   prompt: {
     title: 'What do you need people to understand?',
     body: 'A new brand, a product nobody has seen yet, a process that loses people halfway. Tell us the problem and we’ll show you how we’d solve it.',
-    link: { label: 'Reach out', href: '/contact' } satisfies Link,
+    link: { label: 'Reach Out', href: '/contact' } satisfies Link,
   },
 
   featured: {
     eyebrow: 'Featured work',
-    client: 'Hyperloop TT, Dubai',
-    title: 'Designing the hyperloop journey before the first passenger boards',
-    body: 'We mapped the rider journey from departure to arrival for daily commuters and tourists, then built the tube, pods and city context in 3D so stakeholders could see how the system would work.',
-    tags: ['Strategy & Consulting', '3D Animation'],
-    link: { label: 'See the project', href: '/work/hyperloop-tt' } satisfies Link,
+    client: 'Energend',
+    title: 'Building an energy brand, from the particle to the showroom',
+    body: 'We created Energend’s positioning, story and identity, then rendered its products, showroom and factory in 3D, so investors, partners and customers can see technology that’s hard to picture.',
+    tags: ['Brand & Visual Identity', '3D Animation'],
+    link: { label: 'See the Project', href: '/work/energend' } satisfies Link,
     image: {
-      src: hyperloopRender,
-      alt: '3D cutaway render of the Hyperloop TT tube and passenger pods on an elevated pylon',
+      src: energendShowroom,
+      alt: '3D render of the Energend showroom, with a curved screen showing a satellite above Earth',
     },
   },
 
+  // Projects shown in the Selected work grid, by their slug in data/projects.ts.
   work: {
     eyebrow: 'Selected work',
     title: 'Work that does the explaining',
-    allLink: { label: 'See all work', href: '/work' } satisfies Link,
-    items: [
-      {
-        client: 'NIRI',
-        service: 'Brand & Visual Identity',
-        summary: 'A fine-dining identity, from logo and supergraphics to menus and social.',
-        href: '/work/niri',
-        image: { src: niriLogo, alt: 'NIRI logo over a 3D render of the restaurant’s dining room' },
-      },
-      {
-        client: 'MYJ',
-        service: '3D Animation & Motion Graphics',
-        summary:
-          'Photoreal renders of an investment firm’s new offices, from entrance to CEO suite.',
-        href: '/work/myj',
-        image: { src: myjEntrance, alt: '3D render of the MYJ office entrance facade at dusk' },
-      },
-      {
-        client: 'Cloudkitchens',
-        service: 'Strategy & Consulting',
-        summary:
-          'A global safety awareness campaign, with characters and posters kitchen teams remember.',
-        href: '/work/cloudkitchens-safety',
-        image: {
-          src: ckSafety,
-          alt: 'Cloudkitchens safety poster showing how to use a fire extinguisher, step by step',
-        },
-      },
-    ],
+    allLink: { label: 'See All Work', href: '/work' } satisfies Link,
+    projects: ['suricate-capital', 'myj', 'niri'],
   },
 
   industries: {
     eyebrow: 'Who we work with',
     statement:
-      'We work in sectors where every visual has to earn trust: finance, healthcare and luxury.',
+      'We work in sectors where every visual has to earn *trust*: finance, healthcare and luxury.',
     items: [
       {
-        title: 'Financial institutions',
+        title: 'Financial Institutions',
         body: 'Products, processes and spaces explained simply, without losing credibility.',
       },
       {
-        title: 'Healthcare innovators',
+        title: 'Healthcare Innovators',
         body: 'Approvals, safety and science turned into material people understand and act on.',
       },
       {
-        title: 'Luxury brands',
+        title: 'Luxury Brands',
         body: 'Identities and packaging with the craft your customers expect.',
       },
     ],

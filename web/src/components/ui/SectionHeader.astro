@@ -1,5 +1,6 @@
 ---
 import type { Tone } from '@/types'
+import Highlighted from './Highlighted.astro'
 
 type Props = {
   eyebrow?: string
@@ -18,6 +19,6 @@ const onLight = tone === 'light' || tone === 'signal'
     <p class:list={['eyebrow mb-4', onLight ? 'text-graphite' : 'text-signal']}>{eyebrow}</p>
   )}
   <Heading id={id} class:list={[Heading === 'h1' ? 'text-display-xl' : 'text-display-md']}>
-    {title}
+    <Highlighted text={title} />
   </Heading>
 </header>

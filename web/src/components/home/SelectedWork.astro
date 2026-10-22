@@ -4,8 +4,11 @@ import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import WorkCard from '@/components/ui/WorkCard.astro'
 import { home } from '@/data/home'
+import { projectBySlug, projectHref } from '@/data/projects'
+import { serviceNames } from '@/data/services'
 
 const { work } = home
+const projects = work.projects.map(projectBySlug)
 ---
 
 <PageSection id="work" tone="raised" labelledby="work-title">
@@ -18,14 +21,14 @@ const { work } = home
     </div>
   </div>
   <ul class="grid gap-12 md:grid-cols-3 md:gap-6 lg:gap-8">
-    {work.items.map((item) => (
+    {projects.map((project) => (
       <li>
         <WorkCard
-          client={item.client}
-          label={item.service}
-          summary={item.summary}
-          href={item.href}
-          image={item.image}
+          client={project.client}
+          label={serviceNames(project.services)}
+          summary={project.summary}
+          href={projectHref(project.slug)}
+          image={project.image}
         />
       </li>
     ))}

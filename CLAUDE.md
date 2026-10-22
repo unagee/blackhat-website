@@ -32,8 +32,8 @@ CI (`.github/workflows/ci.yml`) runs Format, Lint, Type Check and Build on every
 
 ## Structure
 
-- `web/src/pages/`: routes (`index.astro`, `contact.astro`, `404.astro`, `sitemap.xml.ts`, `robots.txt.ts`). Add new pages to the list in `sitemap.xml.ts`.
-- `web/src/data/`: all page copy (`home.ts`, `contact.ts`, `site.ts` for navigation and shared labels).
+- `web/src/pages/`: routes (`index.astro`, `what-we-do/`, `work/`, `contact.astro`, `404.astro`, `sitemap.xml.ts`, `robots.txt.ts`). Add new pages to the list in `sitemap.xml.ts`.
+- `web/src/data/`: all page copy (`home.ts`, `services.ts`, `projects.ts`, `work.ts`, `contact.ts`, `site.ts` for navigation and shared labels). `projects.ts` drives the Work page, project pages, service page work grids and the homepage Selected work.
 - `web/src/config.ts`: site name, legal name, contact email, address, social links.
 - `web/src/assets/`: wordmark, client logos, and project images grouped by project.
 - `web/src/layout/`: `Layout.astro`, `Header.astro` (with the "What we do" menu), `Footer.astro`, `SEOMetadata.astro`, `StructuredData.astro` (Organization + LocalBusiness JSON-LD).
@@ -47,8 +47,9 @@ Every page passes a `meta` object (`title`, `description`, optional `noIndex`) t
 ## Design system
 
 - **Tokens** live in `web/src/styles.css` (`@theme`), taken from blackhat.agency: `ink` (black ground), `ink-raised` (alternate dark ground), `hairline` (borders), `bone` (white text and light ground), `ash` (secondary text on dark), `graphite` (secondary text on light), `signal` (yellow accent) and `on-signal`. Never hard-code hex values.
-- **Type**: Zalando Sans for everything, self-hosted via `@fontsource-variable/zalando-sans`. Never heavier than `font-medium` (500). Sizes: `text-display-xl` (page h1), `text-display-lg` (statements), `text-display-md` (section h2), `text-lead`, plus the `eyebrow` utility (colour set per section).
+- **Type**: Work Sans for everything (`@fontsource-variable/work-sans`), never heavier than medium (500): headings and buttons 500, body 400. Source Serif 4 italic (`@fontsource-variable/source-serif-4`) only for highlight words, written as `*word*` in a data file and rendered by `ui/Highlighted.astro`; at most one per heading, on the most important headings only. Sizes: `text-display-xl` (page h1), `text-display-lg` (statements), `text-display-md` (section h2), `text-lead`, plus the `eyebrow` utility (colour set per section).
 - **Accent**: signal yellow marks the main action and small accents only, never as text on light grounds.
+- **Brand graphics**: `ui/Wordmark.astro` (the supplied light wordmark, used uncropped), `public/favicon.svg` (the B). Hero imagery gets `ui/Grain.astro` film grain. Sections without imagery take `PageSection graphic="left" | "right"`, which adds `ui/Supergraphic.astro` (hairline grid and the slanted Blackhat star). Use it at most twice per page, one near the top and one near the bottom.
 - **Sections**: mostly dark. `PageSection` takes `tone="ink" | "raised" | "light" | "signal"`; light and yellow tones use dark text (`on-light` also darkens focus rings).
 
 ## Conventions

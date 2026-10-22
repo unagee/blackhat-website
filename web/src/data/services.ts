@@ -1,11 +1,8 @@
-import animationDiagram from '@/assets/services/3damg-diagram.png'
-import brandDiagram from '@/assets/services/branding-and-visual-identity-diagram.png'
-import strategyDiagram from '@/assets/services/strategy-and-consulting-diagram.png'
-import ckProcess from '@/assets/work/cloudkitchens-permitting/jurisdictional-approval-playbook.png'
-import ckMap from '@/assets/work/cloudkitchens-permitting/mapping-of-cloudkitchens-facilities-in-the-us.png'
 import ckOnboarding from '@/assets/work/cloudkitchens-safety/global-safety-awareness-campaign-onboarding-training.png'
 import cooklaneOwner from '@/assets/work/cooklane/cooklane-3d-character-business-owner.png'
 import hyperloopJourney from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-2.png'
+import hyperloopContext from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-3.png'
+import hyperloopRender from '@/assets/work/hyperloop/hyperloop-tt-realistic-render-of-highway.jpg'
 import innovairProduct from '@/assets/work/innovair/innovair-product-visualization.png'
 import myjDataCenter from '@/assets/work/myj/myj-office-design-3d-data-center.jpg'
 import myjCeo from '@/assets/work/myj/myj-office-design-3d-render-ceo-office.jpg'
@@ -25,13 +22,18 @@ export type Service = {
   summary: string
   intro: { title: string; body: string[] }
   offerings: { title: string; items: { title: string; body: string; image: Picture }[] }
-  process: { title: string; diagram: Picture; steps: { title: string; body: string }[] }
+  // `motion` picks the animated diagram set in components/services/MotionScene.astro.
+  process: {
+    title: string
+    motion: 'brand' | 'animation' | 'strategy'
+    steps: { title: string; body: string }[]
+  }
   prompt: { title: string; body: string; link: Link }
   work: { title: string }
   faq: { title: string; items: { question: string; answer: string }[] }
 }
 
-const startProject: Link = { label: 'Start a project', href: '/contact' }
+const startProject: Link = { label: 'Start a Project', href: '/contact' }
 
 export const services: Service[] = [
   {
@@ -61,12 +63,12 @@ export const services: Service[] = [
       title: 'What we can help with',
       items: [
         {
-          title: 'Brand image & identity',
+          title: 'Brand Image & Identity',
           body: 'Logos, colour palettes, typography and tone of voice, built into a system your team can use with confidence.',
           image: { src: tcdcLogo, alt: 'TCDC logo on a dark wall in a design studio' },
         },
         {
-          title: 'Visual storytelling',
+          title: 'Visual Storytelling',
           body: 'Illustrations, supergraphics and campaign visuals that show where your brand comes from and what it stands for.',
           image: {
             src: niriConcept,
@@ -74,7 +76,7 @@ export const services: Service[] = [
           },
         },
         {
-          title: 'Experience design',
+          title: 'Experience Design',
           body: 'Menus, packaging, signage, merchandise and social templates that bring the identity into the real world.',
           image: { src: vespaPackaging, alt: 'Vespa Tết limited-edition gift box packaging' },
         },
@@ -82,10 +84,7 @@ export const services: Service[] = [
     },
     process: {
       title: 'How we work',
-      diagram: {
-        src: brandDiagram,
-        alt: 'Illustration of our branding process: vision, mission, back story and idea come together into logo, colour, tone of voice and graphics, which form the brand identity',
-      },
+      motion: 'brand',
       steps: [
         {
           title: 'Discover',
@@ -156,7 +155,7 @@ export const services: Service[] = [
       title: 'What we can help with',
       items: [
         {
-          title: 'Product visualisation & visual effects',
+          title: 'Product Visualisation & Visual Effects',
           body: 'Accurate, detailed renders that show how a product looks and works, inside and out.',
           image: {
             src: innovairProduct,
@@ -164,12 +163,12 @@ export const services: Service[] = [
           },
         },
         {
-          title: 'Story-driven animation',
+          title: 'Story-Driven Animation',
           body: 'Characters and worlds built to carry a story, like the Cooklane town we made to explain cloud retail.',
           image: { src: cooklaneOwner, alt: '3D character of a Cooklane restaurant owner' },
         },
         {
-          title: 'Cinematic walk-throughs',
+          title: 'Cinematic Walk-Throughs',
           body: 'Photoreal interiors and architecture that let people walk through a space while it’s still being designed.',
           image: { src: myjCeo, alt: '3D render of the CEO’s office designed for MYJ' },
         },
@@ -177,21 +176,18 @@ export const services: Service[] = [
     },
     process: {
       title: 'How we work',
-      diagram: {
-        src: animationDiagram,
-        alt: 'Illustration of our 3D process: storyboarding, then character and world development, then animation and videography',
-      },
+      motion: 'animation',
       steps: [
         {
           title: 'Storyboard',
           body: 'We plan every scene and shot, so you see the story before we build it.',
         },
         {
-          title: 'Characters & worlds',
+          title: 'Characters & Worlds',
           body: 'We design and model the characters, products and environments the story needs.',
         },
         {
-          title: 'Animation & video',
+          title: 'Animation & Video',
           body: 'We light, animate and render the final pieces, ready for your channels.',
         },
       ],
@@ -208,7 +204,7 @@ export const services: Service[] = [
         {
           question: 'What kinds of 3D work do you do?',
           answer:
-            'Product visualisation, architectural and interior renders, character design, isometric worlds and animation. Recent work includes office interiors for an investment firm, a 3D town for a cloud retail platform, and photoreal vehicles and characters for games.',
+            'Product visualisation, architectural and interior renders, character design, isometric worlds and animation. Recent work includes products and a showroom for an energy technology company, office interiors for an investment firm, a 3D town for a cloud retail platform, and photoreal vehicles and characters for games.',
         },
         {
           question: 'Can you produce motion graphics and video for social media?',
@@ -234,8 +230,8 @@ export const services: Service[] = [
     hero: {
       lead: 'We take complicated businesses, processes and ideas and turn them into something people understand and act on.',
       image: {
-        src: ckMap,
-        alt: 'Map of Cloudkitchens facilities across the United States from the permitting playbook Blackhat designed',
+        src: hyperloopRender,
+        alt: '3D cutaway render of the Hyperloop TT tube and passenger pods on an elevated pylon',
       },
     },
     summary:
@@ -244,14 +240,14 @@ export const services: Service[] = [
       title: 'We make complicated things easy to follow',
       body: [
         'We start by finding where people get lost: in a customer journey, an approval process or a business model. Then we simplify it, design the materials that explain it and help train the teams who use it.',
-        'For Cloudkitchens that meant a permitting playbook for facilities across the US and a global safety campaign for kitchen teams. For Hyperloop TT, it meant mapping a rider’s journey through a system that doesn’t exist yet.',
+        'For Cloudkitchens that meant a global safety campaign for kitchen teams. For Hyperloop TT, it meant mapping a rider’s journey through a system that doesn’t exist yet.',
       ],
     },
     offerings: {
       title: 'What we can help with',
       items: [
         {
-          title: 'Customer journey',
+          title: 'Customer Journey',
           body: 'Step-by-step maps of how customers and staff move through your service, and where it can work better.',
           image: {
             src: hyperloopJourney,
@@ -259,15 +255,15 @@ export const services: Service[] = [
           },
         },
         {
-          title: 'Business strategy',
-          body: 'Playbooks and frameworks that break complex processes, like approvals across different jurisdictions, into simple steps.',
+          title: 'Business Strategy',
+          body: 'Playbooks and frameworks that break complex processes and systems into simple steps people can follow.',
           image: {
-            src: ckProcess,
-            alt: 'Cloudkitchens jurisdictional approval playbook diagram',
+            src: hyperloopContext,
+            alt: 'Hyperloop TT diagram showing the system sections in their urban context',
           },
         },
         {
-          title: 'Interactive training decks',
+          title: 'Interactive Training Decks',
           body: 'Onboarding and training materials, with characters and templates teams can adapt to local rules.',
           image: {
             src: ckOnboarding,
@@ -278,21 +274,18 @@ export const services: Service[] = [
     },
     process: {
       title: 'How we work',
-      diagram: {
-        src: strategyDiagram,
-        alt: 'Illustration of our strategy process: identify and diagnose, simplify and execute, then consolidate and train',
-      },
+      motion: 'strategy',
       steps: [
         {
-          title: 'Identify & diagnose',
+          title: 'Identify & Diagnose',
           body: 'We map the problem and find where people, processes or messages break down.',
         },
         {
-          title: 'Simplify & execute',
+          title: 'Simplify & Execute',
           body: 'We redesign the process and create the materials that explain it.',
         },
         {
-          title: 'Consolidate & train',
+          title: 'Consolidate & Train',
           body: 'We bring it together in playbooks and training, so the change sticks.',
         },
       ],
@@ -314,7 +307,7 @@ export const services: Service[] = [
         {
           question: 'Do you work on projects outside Singapore?',
           answer:
-            'Yes. Our strategy work includes a permitting playbook for Cloudkitchens facilities across the United States and customer journey design for Hyperloop TT in Dubai.',
+            'Yes. Our strategy work includes a global safety awareness campaign for Cloudkitchens and customer journey design for Hyperloop TT in Dubai.',
         },
         {
           question: 'Can you design the training as well as the strategy?',
@@ -338,7 +331,7 @@ export const servicePage = {
   faqEyebrow: 'FAQ',
   relatedEyebrow: 'Explore',
   relatedTitle: 'Our other services',
-  allWork: { label: 'See all work', href: '/work' } satisfies Link,
+  allWork: { label: 'See All Work', href: '/work' } satisfies Link,
 }
 
 // The What we do overview page.
@@ -353,4 +346,81 @@ export const whatWeDo = {
   lead: 'Most of our projects use more than one discipline. Pick a starting point, or tell us the problem and we’ll suggest the mix.',
   listTitle: 'Our services',
   linkLabel: 'Explore',
+}
+
+// "Brand & Visual Identity · 3D Animation & Motion Graphics" for project cards.
+export const serviceNames = (slugs: ServiceSlug[]) =>
+  slugs.map((slug) => services.find((service) => service.slug === slug)?.name ?? '').join(' · ')
+
+// Engagement models on the What we do overview: Plan, Design, Execute.
+export const engagement = {
+  eyebrow: 'How we engage',
+  title: 'Three ways to work with us',
+  lead: 'Start where you are. Some clients need the thinking, some need the design, and some need a team to keep the brand running. Many start with one and grow into the next.',
+  deliverablesLabel: 'Sample Deliverables',
+  timeframeLabel: 'Timeframe',
+  // DRAFT: deliverables and timeframes awaiting the owner's confirmation.
+  items: [
+    {
+      id: 'plan',
+      name: 'Plan',
+      kicker: 'Vision to concept',
+      body: 'Everything conceptual. We translate your vision into a concept you can build on: positioning, brand story and creative direction.',
+      deliverables: [
+        'Brand Positioning & Strategy',
+        'Brand Story & Messaging',
+        'Creative Direction & Moodboards',
+        'Concept Presentation',
+      ],
+      timeframe: '2–4 Weeks',
+      cta: 'Start with a Plan',
+    },
+    {
+      id: 'design',
+      name: 'Design',
+      kicker: 'Brand and full deck design',
+      body: 'We design the brand deck and every deck around it: identity, guidelines, and pitch and presentation decks, ready to use.',
+      deliverables: [
+        'Logo & Visual Identity System',
+        'Brand Guidelines Deck',
+        'Pitch & Presentation Decks',
+        'Key Collateral & Templates',
+      ],
+      timeframe: '4–8 Weeks',
+      cta: 'Start with Design',
+    },
+    {
+      id: 'execute',
+      name: 'Execute',
+      kicker: 'Brand deck execution',
+      body: 'The ongoing part. We maintain your brand deck, produce new assets and manage your social media, month after month.',
+      deliverables: [
+        'Brand Deck Updates & Upkeep',
+        'New On-Brand Assets',
+        'Social Media Content & Scheduling',
+        'Monthly Content Calendar',
+      ],
+      timeframe: 'Ongoing, Monthly',
+      cta: 'Start with Execution',
+    },
+  ],
+}
+
+// The enquiry form on the What we do overview. Sending opens the visitor's email app.
+export const enquiry = {
+  eyebrow: 'Contact',
+  title: 'Let’s talk about your project',
+  fields: {
+    name: 'Name',
+    organisation: 'Organisation',
+    email: 'Email',
+    engagement: 'What do you need?',
+    message: 'How can we help?',
+    messageHint: 'Tell us about your project, your challenge or what you want to achieve.',
+  },
+  notSure: 'Not sure yet',
+  required: '(required)',
+  submit: 'Send',
+  note: 'Sending opens your email app with your message ready to go.',
+  subject: 'New project enquiry',
 }
