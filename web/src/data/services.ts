@@ -377,7 +377,7 @@ export const engagement = {
       name: 'Execute',
       kicker: 'Brand deck execution',
       body: 'The ongoing part. We maintain your brand deck, produce new assets and manage your social media, month after month.',
-      cta: 'Talk About Ongoing Support',
+      cta: 'Start with Execution',
     },
   ],
 }
