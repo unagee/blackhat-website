@@ -73,8 +73,7 @@ export const site = {
     playVideo: 'Play Video',
     search: 'Search',
     searchLabel: 'Search the site',
-    searchPlaceholder: 'Search projects, services and pages',
-    searchClose: 'Close search',
+    searchPlaceholder: 'Search…',
     // "{count}" and "{query}" are replaced when results show.
     searchResults: '{count} results',
     searchEmpty: 'No results for “{query}”',
