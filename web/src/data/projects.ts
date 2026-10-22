@@ -204,6 +204,99 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'waves',
+    client: 'Waves',
+    sector: 'Beverages',
+    title: 'A canned cocktail brand built for the morning after',
+    meta: {
+      title: 'Waves: Canned Cocktail Brand Identity | Blackhat',
+      description:
+        'Brand identity for Waves, a canned cocktail brand: logo, colour, type, cut-out imagery, photography direction, social media and can packaging.',
+    },
+    summary:
+      'A bold, playful identity for a canned cocktail brand, from logo and type to social and cans.',
+    overview: [
+      'Waves makes canned cocktails for people who want to sip, laugh and live it up without paying the price the next morning. We built a brand with the same energy: a hand-drawn logo, Ocean Teal, Vanilla Mist and Lime Zest, and Acme Gothic Compressed headlines.',
+      'Cut-out people and cocktails, rubber-hose characters, a grunge texture and a warm, moody photography direction come together across social media templates and a range of can designs.',
+    ],
+    services: ['brand-visual-identity'],
+    image: {
+      src: img('waves/waves-cans.jpg'),
+      alt: 'Six Waves cocktail cans in pink, orange, yellow and green',
+    },
+    gallery: [
+      {
+        src: img('waves/waves-cocktails.jpg'),
+        alt: 'Waves cut-out cocktail graphics on dark teal',
+      },
+      {
+        src: img('waves/waves-logo.jpg'),
+        alt: 'Waves logo in teal, lime and white, and over a photograph',
+      },
+      {
+        src: img('waves/waves-colour.jpg'),
+        alt: 'Waves primary colours: Ocean Teal, Vanilla Mist and Lime Zest',
+      },
+      { src: img('waves/waves-type.jpg'), alt: 'Waves primary typeface, Acme Gothic Compressed' },
+      {
+        src: img('waves/waves-composition.jpg'),
+        alt: 'Waves posters combining the logo, cut-outs and bold headlines',
+      },
+      {
+        src: img('waves/waves-social.jpg'),
+        alt: 'Waves social media posts showcasing cans and benefits',
+      },
+      { src: img('waves/waves-packaging.jpg'), alt: 'Waves packaging page with six can designs' },
+    ],
+  },
+  {
+    slug: 'fleet',
+    client: 'Fleet',
+    sector: 'Operations software',
+    title: 'Teaching every Fleet user their role, from Super Admin to Technician',
+    meta: {
+      title: 'Fleet: Onboarding Training Guide and Brand | Blackhat',
+      description:
+        'A role-based onboarding training guide for Fleet, an operations platform, designed in Fleet’s brand across the web platform and mobile app.',
+    },
+    summary: 'A role-based onboarding guide for an operations platform, designed in Fleet’s brand.',
+    overview: [
+      'Fleet is an operations platform that helps teams manage tasks, forms, documents and workflows across many locations, on the web and in the Fleet Tasks mobile app.',
+      'We designed its onboarding training guide around the people who use it: Super Admins, Admins, Managers and Technicians. Each section shows exactly what that role can do, with annotated screens, role diagrams and troubleshooting, all in Fleet’s brand.',
+    ],
+    services: ['brand-visual-identity', 'strategy-consulting'],
+    image: {
+      src: img('fleet/fleet-dashboard-crop.jpg'),
+      alt: 'Fleet dashboard map showing sites across Europe',
+    },
+    gallery: [
+      {
+        src: img('fleet/fleet-training-cover.jpg'),
+        alt: 'Fleet onboarding guide section cover: “Basic Training Guide” on blue',
+      },
+      {
+        src: img('fleet/fleet-dashboard-map.jpg'),
+        alt: 'Annotated Fleet home dashboard with a map of sites',
+      },
+      {
+        src: img('fleet/fleet-user-roles.jpg'),
+        alt: 'Fleet user roles overview: Super Admin, Admin, Manager and Technician',
+      },
+      {
+        src: img('fleet/fleet-user-relationship.jpg'),
+        alt: 'Diagram of how Fleet user roles relate across locations',
+      },
+      {
+        src: img('fleet/fleet-mobile-app.jpg'),
+        alt: 'Fleet Tasks mobile app download page in the guide',
+      },
+      {
+        src: img('fleet/fleet-mobile-tasks.jpg'),
+        alt: 'Fleet Tasks mobile screens: home, filter by type and filter by location',
+      },
+    ],
+  },
+  {
     slug: 'niri',
     client: 'NIRI',
     sector: 'Hospitality',

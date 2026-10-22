@@ -33,7 +33,7 @@ export type Service = {
   faq: { title: string; items: { question: string; answer: string }[] }
 }
 
-const startProject: Link = { label: 'Start a project', href: '/contact' }
+const startProject: Link = { label: 'Start a Project', href: '/contact' }
 
 export const services: Service[] = [
   {
@@ -331,7 +331,7 @@ export const servicePage = {
   faqEyebrow: 'FAQ',
   relatedEyebrow: 'Explore',
   relatedTitle: 'Our other services',
-  allWork: { label: 'See all work', href: '/work' } satisfies Link,
+  allWork: { label: 'See All Work', href: '/work' } satisfies Link,
 }
 
 // The What we do overview page.
@@ -363,21 +363,21 @@ export const engagement = {
       name: 'Plan',
       kicker: 'Vision to concept',
       body: 'Everything conceptual. We translate your vision into a concept you can build on: positioning, brand story and creative direction.',
-      cta: 'Start with a plan',
+      cta: 'Start with a Plan',
     },
     {
       id: 'design',
       name: 'Design',
       kicker: 'Brand and full deck design',
       body: 'We design the brand deck and every deck around it: identity, guidelines, and pitch and presentation decks, ready to use.',
-      cta: 'Start with design',
+      cta: 'Start with Design',
     },
     {
       id: 'execute',
       name: 'Execute',
       kicker: 'Brand deck execution',
       body: 'The ongoing part. We maintain your brand deck, produce new assets and manage your social media, month after month.',
-      cta: 'Talk about ongoing support',
+      cta: 'Talk About Ongoing Support',
     },
   ],
 }

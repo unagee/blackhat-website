@@ -8,19 +8,19 @@ const services: Link[] = [
 
 const nav: NavItem[] = [
   {
-    label: 'What we do',
+    label: 'What We Do',
     columns: [
-      { title: 'Services', links: services },
+      { title: 'Services', links: [{ label: 'Overview', href: '/what-we-do' }, ...services] },
       {
         title: 'Industries',
         links: [
-          { label: 'Financial institutions', href: '/work' },
+          { label: 'Financial Institutions', href: '/work' },
           { label: 'Healthcare', href: '/work' },
           { label: 'Luxury', href: '/work' },
         ],
       },
     ],
-    footerLink: { label: 'All services', href: '/what-we-do' },
+    footerLink: { label: 'All Services', href: '/what-we-do' },
   },
   { label: 'Work', href: '/work' },
 ]
@@ -36,7 +36,7 @@ export const site = {
     eyebrow: 'Contact',
     title: 'Tell us what you’re *working on*.',
     body: 'A rough brief, a half-finished deck, a hunch. Send whatever you have and we’ll come back with how we’d approach it.',
-    emailLabel: 'Email us',
+    emailLabel: 'Email Us',
     emailSubject: 'New project enquiry',
     emailBody:
       'Name:\nCompany:\nWhich services are you interested in?\nTell us about your project:\n',
@@ -44,14 +44,14 @@ export const site = {
   footer: {
     title: 'Keep exploring',
     links: [
-      { label: 'What we do', href: '/what-we-do' },
+      { label: 'What We Do', href: '/what-we-do' },
       { label: 'Work', href: '/work' },
       { label: 'Contact', href: '/contact' },
     ] satisfies Link[],
     legal: [
-      { label: 'Terms of service', href: '/terms' },
-      { label: 'Privacy policy', href: '/privacy' },
-      { label: 'Cookie policy', href: '/cookies' },
+      { label: 'Terms of Service', href: '/terms' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Cookie Policy', href: '/cookies' },
     ] satisfies Link[],
     legalTitle: 'Legal',
     visitTitle: 'Visit',
@@ -67,9 +67,9 @@ export const site = {
     closeMenu: 'Close menu',
     menu: 'Menu',
     rights: 'All rights reserved.',
-    pauseMotion: 'Pause animation',
-    playMotion: 'Play animation',
-    pauseVideo: 'Pause video',
-    playVideo: 'Play video',
+    pauseMotion: 'Pause Animation',
+    playMotion: 'Play Animation',
+    pauseVideo: 'Pause Video',
+    playVideo: 'Play Video',
   },
 }

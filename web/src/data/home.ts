@@ -8,7 +8,7 @@ import vespa from '@/assets/logos/partners/vespa-logo.png'
 import cooklaneWorld from '@/assets/work/cooklane/cooklane-3d-world-building.jpg'
 import energendShowroom from '@/assets/work/energend/energend-showroom-interior-dome.jpg'
 import warJets from '@/assets/work/game-3d/3d-realistic-render-war-jets.jpg'
-import hyperloopJourney from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-2.png'
+import hyperloopRender from '@/assets/work/hyperloop/hyperloop-tt-realistic-render-of-highway.jpg'
 import myjLobby from '@/assets/work/myj/myj-office-design-3d-lobby.jpg'
 import niriSupergraphic from '@/assets/work/niri/niri-luxury-restaurant-supergraphic.png'
 import { site } from '@/data/site'
@@ -38,8 +38,8 @@ export const home = {
     eyebrow: 'Strategy-driven creative agency, Singapore',
     title: 'We turn complex ideas into *brands* people trust.',
     lead: 'Brand identity, 3D animation and strategy for financial institutions, healthcare innovators and luxury brands. Based in Singapore, working worldwide.',
-    primary: { label: 'Start a project', href: '/contact' } satisfies Link,
-    secondary: { label: 'See our work', href: '/work' } satisfies Link,
+    primary: { label: 'Start a Project', href: '/contact' } satisfies Link,
+    secondary: { label: 'See Our Work', href: '/work' } satisfies Link,
     // Widened so the hero handles both the still and the reel.
     media: heroMedia as HeroMedia,
   },
@@ -68,8 +68,8 @@ export const home = {
         ...strategy,
         body: 'Customer journeys, business strategy and interactive training decks that turn a complicated business into a plan your teams can follow.',
         image: {
-          src: hyperloopJourney,
-          alt: 'Hyperloop TT customer journey diagram for commuters and tourists, designed by Blackhat',
+          src: hyperloopRender,
+          alt: '3D cutaway render of the Hyperloop TT tube and passenger pods, built by Blackhat',
         },
       },
     ],
@@ -91,7 +91,7 @@ export const home = {
   prompt: {
     title: 'What do you need people to understand?',
     body: 'A new brand, a product nobody has seen yet, a process that loses people halfway. Tell us the problem and we’ll show you how we’d solve it.',
-    link: { label: 'Reach out', href: '/contact' } satisfies Link,
+    link: { label: 'Reach Out', href: '/contact' } satisfies Link,
   },
 
   featured: {
@@ -100,7 +100,7 @@ export const home = {
     title: 'Building an energy brand, from the particle to the showroom',
     body: 'We created Energend’s positioning, story and identity, then rendered its products, showroom and factory in 3D, so investors, partners and customers can see technology that’s hard to picture.',
     tags: ['Brand & Visual Identity', '3D Animation'],
-    link: { label: 'See the project', href: '/work/energend' } satisfies Link,
+    link: { label: 'See the Project', href: '/work/energend' } satisfies Link,
     image: {
       src: energendShowroom,
       alt: '3D render of the Energend showroom, with a curved screen showing a satellite above Earth',
@@ -111,7 +111,7 @@ export const home = {
   work: {
     eyebrow: 'Selected work',
     title: 'Work that does the explaining',
-    allLink: { label: 'See all work', href: '/work' } satisfies Link,
+    allLink: { label: 'See All Work', href: '/work' } satisfies Link,
     projects: ['suricate-capital', 'myj', 'niri'],
   },
 

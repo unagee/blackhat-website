@@ -11,7 +11,7 @@ export const workPage = {
   title: 'Work that does the explaining',
   lead: 'Brand identities, 3D worlds and strategy for companies in energy, finance, hospitality, education and more.',
   filterLabel: 'Filter by service',
-  allLabel: 'All work',
+  allLabel: 'All Work',
   // "{count}" is replaced with the number of projects shown.
   resultsLabel: 'Showing {count} projects',
 }
@@ -25,7 +25,7 @@ export const projectPage = {
   overviewTitle: 'Overview',
   galleryTitle: 'Gallery',
   videoTitle: 'Film',
-  playLabel: 'Play the film',
+  playLabel: 'Play the Film',
   nextLabel: 'Next project',
-  allWork: { label: 'See all work', href: '/work' } satisfies Link,
+  allWork: { label: 'See All Work', href: '/work' } satisfies Link,
 }
