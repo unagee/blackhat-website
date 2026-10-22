@@ -352,7 +352,7 @@ export const whatWeDo = {
 export const serviceNames = (slugs: ServiceSlug[]) =>
   slugs.map((slug) => services.find((service) => service.slug === slug)?.name ?? '').join(' · ')
 
-// Engagement models on the What we do overview: Plan, Design, Maintenance.
+// Engagement models on the What we do overview: Plan, Design, Maintain.
 export const engagement = {
   eyebrow: 'How we engage',
   title: 'Three ways to work with us',
@@ -389,7 +389,7 @@ export const engagement = {
     },
     {
       id: 'maintenance',
-      name: 'Maintenance',
+      name: 'Maintain',
       body: 'The ongoing part. We maintain your brand deck, produce new assets and manage your social media, month after month.',
       deliverables: [
         'Brand Deck Updates & Upkeep',
