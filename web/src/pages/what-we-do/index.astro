@@ -18,12 +18,12 @@ const schema = [
 
 <Layout meta={whatWeDo.meta} schema={schema}>
   <PageHero eyebrow={whatWeDo.eyebrow} title={whatWeDo.title} lead={whatWeDo.lead} />
+  <Engagement />
   <ServiceList
     eyebrow={servicePage.offeringsEyebrow}
     title={whatWeDo.listTitle}
     services={services}
   />
-  <Engagement />
   <Industries />
   <EnquiryForm />
 </Layout>

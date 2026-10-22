@@ -63,12 +63,12 @@ export const services: Service[] = [
       title: 'What we can help with',
       items: [
         {
-          title: 'Brand image & identity',
+          title: 'Brand Image & Identity',
           body: 'Logos, colour palettes, typography and tone of voice, built into a system your team can use with confidence.',
           image: { src: tcdcLogo, alt: 'TCDC logo on a dark wall in a design studio' },
         },
         {
-          title: 'Visual storytelling',
+          title: 'Visual Storytelling',
           body: 'Illustrations, supergraphics and campaign visuals that show where your brand comes from and what it stands for.',
           image: {
             src: niriConcept,
@@ -76,7 +76,7 @@ export const services: Service[] = [
           },
         },
         {
-          title: 'Experience design',
+          title: 'Experience Design',
           body: 'Menus, packaging, signage, merchandise and social templates that bring the identity into the real world.',
           image: { src: vespaPackaging, alt: 'Vespa Tết limited-edition gift box packaging' },
         },
@@ -155,7 +155,7 @@ export const services: Service[] = [
       title: 'What we can help with',
       items: [
         {
-          title: 'Product visualisation & visual effects',
+          title: 'Product Visualisation & Visual Effects',
           body: 'Accurate, detailed renders that show how a product looks and works, inside and out.',
           image: {
             src: innovairProduct,
@@ -163,12 +163,12 @@ export const services: Service[] = [
           },
         },
         {
-          title: 'Story-driven animation',
+          title: 'Story-Driven Animation',
           body: 'Characters and worlds built to carry a story, like the Cooklane town we made to explain cloud retail.',
           image: { src: cooklaneOwner, alt: '3D character of a Cooklane restaurant owner' },
         },
         {
-          title: 'Cinematic walk-throughs',
+          title: 'Cinematic Walk-Throughs',
           body: 'Photoreal interiors and architecture that let people walk through a space while it’s still being designed.',
           image: { src: myjCeo, alt: '3D render of the CEO’s office designed for MYJ' },
         },
@@ -183,11 +183,11 @@ export const services: Service[] = [
           body: 'We plan every scene and shot, so you see the story before we build it.',
         },
         {
-          title: 'Characters & worlds',
+          title: 'Characters & Worlds',
           body: 'We design and model the characters, products and environments the story needs.',
         },
         {
-          title: 'Animation & video',
+          title: 'Animation & Video',
           body: 'We light, animate and render the final pieces, ready for your channels.',
         },
       ],
@@ -247,7 +247,7 @@ export const services: Service[] = [
       title: 'What we can help with',
       items: [
         {
-          title: 'Customer journey',
+          title: 'Customer Journey',
           body: 'Step-by-step maps of how customers and staff move through your service, and where it can work better.',
           image: {
             src: hyperloopJourney,
@@ -255,7 +255,7 @@ export const services: Service[] = [
           },
         },
         {
-          title: 'Business strategy',
+          title: 'Business Strategy',
           body: 'Playbooks and frameworks that break complex processes and systems into simple steps people can follow.',
           image: {
             src: hyperloopContext,
@@ -263,7 +263,7 @@ export const services: Service[] = [
           },
         },
         {
-          title: 'Interactive training decks',
+          title: 'Interactive Training Decks',
           body: 'Onboarding and training materials, with characters and templates teams can adapt to local rules.',
           image: {
             src: ckOnboarding,
@@ -277,15 +277,15 @@ export const services: Service[] = [
       motion: 'strategy',
       steps: [
         {
-          title: 'Identify & diagnose',
+          title: 'Identify & Diagnose',
           body: 'We map the problem and find where people, processes or messages break down.',
         },
         {
-          title: 'Simplify & execute',
+          title: 'Simplify & Execute',
           body: 'We redesign the process and create the materials that explain it.',
         },
         {
-          title: 'Consolidate & train',
+          title: 'Consolidate & Train',
           body: 'We bring it together in playbooks and training, so the change sticks.',
         },
       ],
