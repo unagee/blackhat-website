@@ -3,6 +3,7 @@ import ArrowIcon from '@/components/ui/ArrowIcon.astro'
 import ContactClose from '@/components/ui/ContactClose.astro'
 import PageHero from '@/components/ui/PageHero.astro'
 import PageSection from '@/components/ui/PageSection.astro'
+import VideoEmbed from '@/components/ui/VideoEmbed.astro'
 import Gallery from '@/components/work/Gallery.astro'
 import { websiteConfig } from '@/config'
 import { projectHref, projects, type Project } from '@/data/projects'
@@ -95,6 +96,20 @@ const schema = [
       </div>
     </div>
   </PageSection>
+
+  {project.video && (
+    <PageSection labelledby="video-title">
+      <h2 id="video-title" class="sr-only">
+        {projectPage.videoTitle}
+      </h2>
+      <VideoEmbed
+        youtubeId={project.video.youtubeId}
+        title={project.video.title}
+        poster={project.video.poster}
+        playLabel={projectPage.playLabel}
+      />
+    </PageSection>
+  )}
 
   <PageSection tone="raised" labelledby="gallery-title">
     <h2 id="gallery-title" class="sr-only">

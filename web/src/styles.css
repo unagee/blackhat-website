@@ -3,7 +3,7 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  /* Work Sans everywhere, never heavier than semibold (600).
+  /* Work Sans everywhere, never heavier than medium (500).
      Source Serif italic only for the few words marked *like this* in a heading. */
   --font-sans: 'Work Sans Variable', system-ui, sans-serif;
   --font-display: 'Work Sans Variable', system-ui, sans-serif;
@@ -58,11 +58,7 @@
   }
 
   h1,
-  h2 {
-    font-family: var(--font-display);
-    font-weight: 600;
-  }
-
+  h2,
   h3,
   h4,
   b,

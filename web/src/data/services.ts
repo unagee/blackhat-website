@@ -1,6 +1,3 @@
-import animationDiagram from '@/assets/services/3damg-diagram.png'
-import brandDiagram from '@/assets/services/branding-and-visual-identity-diagram.png'
-import strategyDiagram from '@/assets/services/strategy-and-consulting-diagram.png'
 import ckOnboarding from '@/assets/work/cloudkitchens-safety/global-safety-awareness-campaign-onboarding-training.png'
 import cooklaneOwner from '@/assets/work/cooklane/cooklane-3d-character-business-owner.png'
 import hyperloopJourney from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-2.png'
@@ -25,7 +22,12 @@ export type Service = {
   summary: string
   intro: { title: string; body: string[] }
   offerings: { title: string; items: { title: string; body: string; image: Picture }[] }
-  process: { title: string; diagram: Picture; steps: { title: string; body: string }[] }
+  // `motion` picks the animated diagram set in components/services/MotionScene.astro.
+  process: {
+    title: string
+    motion: 'brand' | 'animation' | 'strategy'
+    steps: { title: string; body: string }[]
+  }
   prompt: { title: string; body: string; link: Link }
   work: { title: string }
   faq: { title: string; items: { question: string; answer: string }[] }
@@ -82,10 +84,7 @@ export const services: Service[] = [
     },
     process: {
       title: 'How we work',
-      diagram: {
-        src: brandDiagram,
-        alt: 'Illustration of our branding process: vision, mission, back story and idea come together into logo, colour, tone of voice and graphics, which form the brand identity',
-      },
+      motion: 'brand',
       steps: [
         {
           title: 'Discover',
@@ -177,10 +176,7 @@ export const services: Service[] = [
     },
     process: {
       title: 'How we work',
-      diagram: {
-        src: animationDiagram,
-        alt: 'Illustration of our 3D process: storyboarding, then character and world development, then animation and videography',
-      },
+      motion: 'animation',
       steps: [
         {
           title: 'Storyboard',
@@ -278,10 +274,7 @@ export const services: Service[] = [
     },
     process: {
       title: 'How we work',
-      diagram: {
-        src: strategyDiagram,
-        alt: 'Illustration of our strategy process: identify and diagnose, simplify and execute, then consolidate and train',
-      },
+      motion: 'strategy',
       steps: [
         {
           title: 'Identify & diagnose',
@@ -358,3 +351,52 @@ export const whatWeDo = {
 // "Brand & Visual Identity · 3D Animation & Motion Graphics" for project cards.
 export const serviceNames = (slugs: ServiceSlug[]) =>
   slugs.map((slug) => services.find((service) => service.slug === slug)?.name ?? '').join(' · ')
+
+// Engagement models on the What we do overview: Plan, Design, Execute.
+export const engagement = {
+  eyebrow: 'How we engage',
+  title: 'Three ways to work with us',
+  lead: 'Start where you are. Some clients need the thinking, some need the design, and some need a team to keep the brand running. Many start with one and grow into the next.',
+  items: [
+    {
+      id: 'plan',
+      name: 'Plan',
+      kicker: 'Vision to concept',
+      body: 'Everything conceptual. We translate your vision into a concept you can build on: positioning, brand story and creative direction.',
+      cta: 'Start with a plan',
+    },
+    {
+      id: 'design',
+      name: 'Design',
+      kicker: 'Brand and full deck design',
+      body: 'We design the brand deck and every deck around it: identity, guidelines, and pitch and presentation decks, ready to use.',
+      cta: 'Start with design',
+    },
+    {
+      id: 'execute',
+      name: 'Execute',
+      kicker: 'Brand deck execution',
+      body: 'The ongoing part. We maintain your brand deck, produce new assets and manage your social media, month after month.',
+      cta: 'Talk about ongoing support',
+    },
+  ],
+}
+
+// The enquiry form on the What we do overview. Sending opens the visitor's email app.
+export const enquiry = {
+  eyebrow: 'Contact',
+  title: 'Let’s talk about your project',
+  fields: {
+    name: 'Name',
+    organisation: 'Organisation',
+    email: 'Email',
+    engagement: 'What do you need?',
+    message: 'How can we help?',
+    messageHint: 'Tell us about your project, your challenge or what you want to achieve.',
+  },
+  notSure: 'Not sure yet',
+  required: '(required)',
+  submit: 'Send',
+  note: 'Sending opens your email app with your message ready to go.',
+  subject: 'New project enquiry',
+}

@@ -1,0 +1,56 @@
+---
+import Container from '@/components/ui/Container.astro'
+import { engagement } from '@/data/services'
+
+// Linear icons for Plan, Design and Execute.
+const icons: Record<string, string> = {
+  plan: 'M14 34a12 12 0 1 1 20 9M34 43l2-7-7 1M24 24h.01',
+  design: 'M10 14h22v16H10zM16 20h22v16H16zM22 26h22v16H22z',
+  execute: 'M38 18A14 14 0 0 0 12 22M10 30a14 14 0 0 0 26 4M38 10v8h-8M10 38v-8h8',
+}
+---
+
+<section id="engage" aria-labelledby="engage-title" class="bg-ink py-20 sm:py-28">
+  <Container>
+    <div class="on-light rounded-3xl bg-linear-to-br from-signal via-bone to-bone p-6 text-ink sm:p-10 lg:p-14">
+      <div class="grid gap-6 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <p class="eyebrow text-graphite">{engagement.eyebrow}</p>
+          <h2 id="engage-title" class="text-display-lg mt-4">
+            {engagement.title}
+          </h2>
+        </div>
+        <p class="text-lead self-end text-graphite">{engagement.lead}</p>
+      </div>
+      <ol class="mt-12 grid gap-4 md:grid-cols-3 md:gap-6">
+        {engagement.items.map((item, index) => (
+          <li class="flex flex-col rounded-2xl bg-ink p-6 text-bone sm:p-8">
+            <p class="text-sm text-ash">{String(index + 1).padStart(2, '0')}</p>
+            <svg
+              viewBox="0 0 48 48"
+              class="mt-6 size-14 text-signal"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d={icons[item.id]} />
+            </svg>
+            <h3 class="mt-6 text-3xl">{item.name}</h3>
+            <p class="mt-1 text-sm text-ash">{item.kicker}</p>
+            <p class="mt-4 flex-1 text-bone/85">{item.body}</p>
+            <a
+              href="#enquiry"
+              data-engagement={item.id}
+              class="mt-8 inline-flex justify-center rounded-full bg-signal px-6 py-3 font-medium text-on-signal transition-colors hover:bg-bone"
+            >
+              {item.cta}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </Container>
+</section>

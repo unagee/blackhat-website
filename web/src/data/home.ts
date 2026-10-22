@@ -112,7 +112,7 @@ export const home = {
     eyebrow: 'Selected work',
     title: 'Work that does the explaining',
     allLink: { label: 'See all work', href: '/work' } satisfies Link,
-    projects: ['myj', 'niri', 'cloudkitchens-safety'],
+    projects: ['suricate-capital', 'myj', 'niri'],
   },
 
   industries: {

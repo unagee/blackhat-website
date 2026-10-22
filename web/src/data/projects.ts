@@ -19,6 +19,8 @@ export type Project = {
   overview: string[]
   services: ServiceSlug[]
   image: Picture
+  // Optional YouTube film, shown above the gallery.
+  video?: { youtubeId: string; title: string; poster: Picture }
   gallery: GalleryImage[]
 }
 
@@ -53,6 +55,14 @@ export const projects: Project[] = [
       'The identity pairs Radiant Orange with Core Black, textured gradients and particle patterns. We then brought the technology to life in 3D, with renders of smart glasses, a satellite solar array, an EV battery and a battery storage system, alongside the showroom, the factory and a company intro video.',
     ],
     services: ['brand-visual-identity', '3d-animation-motion-graphics'],
+    video: {
+      youtubeId: '2o7BofCSICU',
+      title: 'Energend company intro film',
+      poster: {
+        src: img('energend/energend-showroom-interior-exhibit.jpg'),
+        alt: 'Energend showroom render with an “Evolution of Energy” timeline wall',
+      },
+    },
     image: {
       src: img('energend/energend-showroom-interior-dome.jpg'),
       alt: '3D render of the Energend showroom, with a curved screen showing a satellite above Earth',
@@ -111,9 +121,17 @@ export const projects: Project[] = [
     summary: 'Photoreal renders of an investment firm’s new offices, from entrance to CEO suite.',
     overview: [
       'MYJ is an investment firm. We rendered its offices in photoreal 3D, room by room: the entrance facade, a lobby with a stone reception desk, the staff area with branded panelling, a secure data centre and the CEO’s office.',
-      'Each render shows the materials, light and layout of the space in detail. We also produced an animation and a book for MYJ.',
+      'Each render shows the materials, light and layout of the space in detail. We also produced MYJ’s animated film, below, and a book.',
     ],
     services: ['3d-animation-motion-graphics'],
+    video: {
+      youtubeId: 'w4cxV6Wn83E',
+      title: 'MYJ animated film',
+      poster: {
+        src: img('myj/myj-office-design-3d-lobby.jpg'),
+        alt: 'MYJ office lobby, rendered in 3D',
+      },
+    },
     image: {
       src: img('myj/myj-office-design-render-entrance.jpg'),
       alt: '3D render of the MYJ office entrance facade at dusk',
@@ -134,6 +152,54 @@ export const projects: Project[] = [
       {
         src: img('myj/myj-office-design-3d-data-center.jpg'),
         alt: 'MYJ data centre corridor, rendered in 3D',
+      },
+    ],
+  },
+  {
+    slug: 'suricate-capital',
+    client: 'Suricate Capital',
+    sector: 'Investment',
+    title: 'An investment brand that never takes its eyes off the market',
+    meta: {
+      title: 'Suricate Capital: Investment Brand Identity | Blackhat',
+      description:
+        'Brand strategy and identity for Suricate Capital, an investment platform for a new generation of investors: story, logo, colour, app and web.',
+    },
+    summary:
+      'Positioning, story and identity for an investment platform built for a new generation of investors.',
+    overview: [
+      'Suricate Capital is a fast, accessible investment platform for younger investors, operating under MYJ Capital’s regulatory framework. We placed it in the space between serious fund management and entry-level investing apps, and built the brand story around the suricate sentinel: “Eyes Above the Ground”.',
+      'The promise “Investment Instinct, Within Reach” and the tagline “Always Alert, Investing Right” lead into an identity of a sentinel logo, Dark Walnut, Chestnut, Ivory and Powder Blue, textures, icons, and app and web visuals.',
+    ],
+    services: ['brand-visual-identity'],
+    image: {
+      src: img('suricate/suricate-app.jpg'),
+      alt: 'Hand holding a phone showing the Suricate Capital app',
+    },
+    gallery: [
+      {
+        src: img('suricate/suricate-cover.jpg'),
+        alt: 'Suricate Capital brand guidelines cover in chestnut',
+      },
+      {
+        src: img('suricate/suricate-logo.jpg'),
+        alt: 'Suricate Capital logo: a standing suricate beside the name',
+      },
+      {
+        src: img('suricate/suricate-tagline.jpg'),
+        alt: 'Suricate Capital tagline page: “Always Alert, Investing Right”',
+      },
+      {
+        src: img('suricate/suricate-colour.jpg'),
+        alt: 'Suricate Capital colour proportions with app widgets in light and dark',
+      },
+      {
+        src: img('suricate/suricate-brand-story.jpg'),
+        alt: 'Suricate Capital brand story page: a suricate beside the line “Eyes Above the Ground”',
+      },
+      {
+        src: img('suricate/suricate-web.jpg'),
+        alt: 'Suricate Capital website pages in chestnut, ivory and blue',
       },
     ],
   },

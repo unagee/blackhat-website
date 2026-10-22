@@ -1,0 +1,125 @@
+---
+import PageSection from '@/components/ui/PageSection.astro'
+import { websiteConfig } from '@/config'
+import { engagement, enquiry } from '@/data/services'
+
+const { fields } = enquiry
+const input =
+  'mt-2 w-full rounded-lg border border-hairline bg-ink-raised px-4 py-3 text-bone placeholder:text-ash/70 focus:border-bone focus:outline-none'
+---
+
+<PageSection id="enquiry" tone="raised" labelledby="enquiry-title">
+  <div class="mx-auto max-w-2xl">
+    <p class="eyebrow text-center text-signal">{enquiry.eyebrow}</p>
+    <h2 id="enquiry-title" class="text-display-md mt-4 text-center">
+      {enquiry.title}
+    </h2>
+    <form
+      class="mt-12 space-y-6"
+      action={`mailto:${websiteConfig.email}`}
+      method="post"
+      enctype="text/plain"
+      data-enquiry
+      data-email={websiteConfig.email}
+      data-subject={enquiry.subject}
+    >
+      <div>
+        <label for="enquiry-name" class="flex justify-between">
+          <span>{fields.name}</span>
+          <span class="text-sm text-ash">{enquiry.required}</span>
+        </label>
+        <input id="enquiry-name" name="name" autocomplete="name" required class={input} />
+      </div>
+      <div>
+        <label for="enquiry-organisation">{fields.organisation}</label>
+        <input
+          id="enquiry-organisation"
+          name="organisation"
+          autocomplete="organization"
+          class={input}
+        />
+      </div>
+      <div>
+        <label for="enquiry-email" class="flex justify-between">
+          <span>{fields.email}</span>
+          <span class="text-sm text-ash">{enquiry.required}</span>
+        </label>
+        <input
+          id="enquiry-email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          class={input}
+        />
+      </div>
+      <div>
+        <label for="enquiry-engagement">{fields.engagement}</label>
+        <select id="enquiry-engagement" name="engagement" class={input}>
+          {engagement.items.map((item) => (
+            <option value={item.name}>{`${item.name}: ${item.kicker}`}</option>
+          ))}
+          <option value={enquiry.notSure} selected>
+            {enquiry.notSure}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="enquiry-message" class="flex justify-between">
+          <span>{fields.message}</span>
+          <span class="text-sm text-ash">{enquiry.required}</span>
+        </label>
+        <textarea
+          id="enquiry-message"
+          name="message"
+          rows="5"
+          required
+          placeholder={fields.messageHint}
+          class={input}
+        ></textarea>
+      </div>
+      <div class="flex flex-col items-center gap-3 pt-2">
+        <button
+          type="submit"
+          class="rounded-full bg-signal px-10 py-3 font-medium text-on-signal transition-colors hover:bg-bone"
+        >
+          {enquiry.submit}
+        </button>
+        <p class="text-sm text-ash">{enquiry.note}</p>
+      </div>
+    </form>
+  </div>
+</PageSection>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-enquiry]')
+  const select = form?.querySelector<HTMLSelectElement>('select[name="engagement"]')
+
+  // The Plan, Design and Execute buttons preselect their option.
+  document.querySelectorAll<HTMLAnchorElement>('[data-engagement]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const option = [...(select?.options ?? [])].find((item) =>
+        item.value.toLowerCase().startsWith(link.dataset.engagement ?? '~'),
+      )
+      if (select && option) select.value = option.value
+    })
+  })
+
+  // Compose the email ourselves so it arrives readable in every mail app.
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const data = new FormData(form)
+    const labels = [...form.querySelectorAll('label')].map((label) => [
+      label.htmlFor,
+      label.querySelector('span')?.textContent ?? label.textContent ?? '',
+    ])
+    const body = labels
+      .map(([id, label]) => {
+        const field = form.querySelector<HTMLInputElement>(`#${id}`)
+        return `${label}: ${field ? (data.get(field.name) ?? '') : ''}`
+      })
+      .join('\n')
+    const subject = `${form.dataset.subject ?? ''}: ${data.get('engagement') ?? ''}`
+    window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  })
+</script>
