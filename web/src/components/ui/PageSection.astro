@@ -1,14 +1,18 @@
 ---
 import type { Tone } from '@/types'
 import Container from './Container.astro'
+import Supergraphic from './Supergraphic.astro'
 
 type Props = {
   id?: string
   tone?: Tone
   labelledby?: string
+  // Adds the star line-pattern supergraphic behind the content.
+  graphic?: 'left' | 'right'
 }
 
-const { id, tone = 'ink', labelledby } = Astro.props
+const { id, tone = 'ink', labelledby, graphic } = Astro.props
+const onLight = tone === 'light' || tone === 'signal'
 ---
 
 <section
@@ -16,12 +20,14 @@ const { id, tone = 'ink', labelledby } = Astro.props
   aria-labelledby={labelledby}
   class:list={[
     'scroll-mt-20 py-20 sm:py-28',
+    graphic && 'relative isolate overflow-hidden',
     tone === 'ink' && 'border-t border-hairline bg-ink text-bone',
     tone === 'raised' && 'border-t border-hairline bg-ink-raised text-bone',
     tone === 'light' && 'on-light bg-bone text-ink',
     tone === 'signal' && 'on-light bg-signal text-on-signal',
   ]}
 >
+  {graphic && <Supergraphic side={graphic} onLight={onLight} />}
   <Container>
     <slot />
   </Container>

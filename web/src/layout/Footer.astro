@@ -1,9 +1,8 @@
 ---
-import wordmark from '@/assets/logos/blackhat-wordmark.png'
 import Container from '@/components/ui/Container.astro'
+import Wordmark from '@/components/ui/Wordmark.astro'
 import { websiteConfig } from '@/config'
 import { site } from '@/data/site'
-import { Image } from 'astro:assets'
 
 const { footer, labels } = site
 const { address } = websiteConfig
@@ -78,12 +77,10 @@ const year = new Date().getFullYear()
     </div>
 
     <div class="mt-20 flex flex-col gap-6 border-t border-hairline pt-8 text-sm sm:flex-row sm:items-center sm:justify-between">
-      <Image
-        src={wordmark}
-        alt={websiteConfig.name}
-        width={200}
-        class="h-6 w-auto self-start invert"
-      />
+      <p class="self-start">
+        <span class="sr-only">{websiteConfig.name}</span>
+        <Wordmark class="h-6 w-auto text-bone" />
+      </p>
       <p>
         © {year} {websiteConfig.legalName} {labels.rights}
       </p>

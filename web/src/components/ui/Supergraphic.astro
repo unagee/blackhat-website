@@ -1,0 +1,99 @@
+---
+type Props = {
+  side?: 'left' | 'right'
+  // Light grounds (white, yellow) get dark lines and no glow.
+  onLight?: boolean
+}
+
+// Decorative line pattern built from the Blackhat star (the counter of the B logogram):
+// hairline grid lines with concave corners, a large outlined star cropped at the edge, and a soft glow.
+const { side = 'right', onLight = false } = Astro.props
+const id = `sg-${Math.random().toString(36).slice(2, 8)}`
+
+// The four-point star with concave sides, slanted like the logo (about 13 degrees).
+const star = (cx: number, cy: number, r: number) => {
+  const k = 0.13 * r
+  const m = 0.3 * r
+  return [
+    `M${cx} ${cy - r}`,
+    `C${cx + k} ${cy - m} ${cx + m} ${cy - k} ${cx + r} ${cy}`,
+    `C${cx + m} ${cy + k} ${cx + k} ${cy + m} ${cx} ${cy + r}`,
+    `C${cx - k} ${cy + m} ${cx - m} ${cy + k} ${cx - r} ${cy}`,
+    `C${cx - m} ${cy - k} ${cx - k} ${cy - m} ${cx} ${cy - r}Z`,
+  ].join(' ')
+}
+const slant = (cx: number, cy: number) =>
+  `translate(${cx} ${cy}) skewX(-13) translate(${-cx} ${-cy})`
+---
+
+<div
+  aria-hidden="true"
+  class:list={[
+    'pointer-events-none absolute inset-0 -z-10 overflow-hidden',
+    onLight ? 'text-ink' : 'text-bone',
+    side === 'left' && '-scale-x-100',
+  ]}
+>
+  <svg
+    viewBox="0 0 1440 800"
+    preserveAspectRatio="xMidYMid slice"
+    class="size-full"
+    fill="none"
+    stroke="currentColor"
+  >
+    <defs>
+      <radialGradient id={`${id}-glow`}>
+        <stop offset="0" stop-color="currentColor" stop-opacity="0.16"></stop>
+        <stop offset="0.6" stop-color="currentColor" stop-opacity="0.04"></stop>
+        <stop offset="1" stop-color="currentColor" stop-opacity="0"></stop>
+      </radialGradient>
+      <linearGradient id={`${id}-fade`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="currentColor" stop-opacity="0"></stop>
+        <stop offset="0.3" stop-color="currentColor" stop-opacity="1"></stop>
+        <stop offset="0.8" stop-color="currentColor" stop-opacity="1"></stop>
+        <stop offset="1" stop-color="currentColor" stop-opacity="0"></stop>
+      </linearGradient>
+    </defs>
+
+    {!onLight && <circle cx="1120" cy="420" r="420" fill={`url(#${id}-glow)`} stroke="none" />}
+
+    <!-- Grid lines -->
+    <g stroke-opacity={onLight ? 0.14 : 0.12} stroke-width="1">
+      <path d="M860 0 V800" stroke={`url(#${id}-fade)`}></path>
+      <path d="M1300 0 V800" stroke={`url(#${id}-fade)`}></path>
+      <path d="M700 180 H1440"></path>
+      <path d="M760 660 H1440"></path>
+    </g>
+
+    <!-- Concave corners where the lines cross, like cut-out rounded cells -->
+    <g stroke-opacity={onLight ? 0.22 : 0.2} stroke-width="1">
+      <path d="M860 260 A80 80 0 0 1 940 180"></path>
+      <path d="M1220 180 A80 80 0 0 1 1300 260"></path>
+      <path d="M860 580 A80 80 0 0 0 940 660"></path>
+    </g>
+
+    <!-- The Blackhat star, large and cropped -->
+    <path
+      d={star(1120, 420, 300)}
+      transform={slant(1120, 420)}
+      stroke-opacity={onLight ? 0.2 : 0.22}
+      stroke-width="1.2"
+    ></path>
+    <path
+      d={star(1120, 420, 190)}
+      transform={slant(1120, 420)}
+      stroke-opacity={onLight ? 0.1 : 0.1}
+      stroke-width="1"
+      stroke-dasharray="2 6"
+    ></path>
+
+    <!-- A small solid star where two lines meet -->
+    <path
+      d={star(860, 180, 14)}
+      transform={slant(860, 180)}
+      fill="currentColor"
+      stroke="none"
+      opacity={onLight ? 0.5 : 0.7}
+    ></path>
+  </svg>
+</div>

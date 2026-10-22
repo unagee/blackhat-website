@@ -2,7 +2,9 @@
 import type { Link, Picture } from '@/types'
 import { Image } from 'astro:assets'
 import Container from './Container.astro'
-import Highlighted from './Highlighted.astro'
+import FocusTitle from './FocusTitle.astro'
+import Grain from './Grain.astro'
+import Supergraphic from './Supergraphic.astro'
 
 type Props = {
   title: string
@@ -38,8 +40,10 @@ const { title, lead, eyebrow, breadcrumb, image } = Astro.props
         aria-hidden="true"
         class="absolute inset-0 bg-linear-to-t from-ink via-ink/70 to-ink/20"
       />
+      <Grain />
     </div>
   )}
+  {!image && <Supergraphic side="right" />}
   <Container class="relative">
     {breadcrumb && (
       <nav aria-label={breadcrumb.label} class="mb-6">
@@ -59,7 +63,7 @@ const { title, lead, eyebrow, breadcrumb, image } = Astro.props
     )}
     {eyebrow && <p class="eyebrow mb-6 text-signal">{eyebrow}</p>}
     <h1 class="text-display-xl max-w-5xl">
-      <Highlighted text={title} />
+      <FocusTitle text={title} />
     </h1>
     <p class="text-lead mt-8 max-w-2xl text-bone/85">{lead}</p>
   </Container>

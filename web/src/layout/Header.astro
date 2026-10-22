@@ -1,11 +1,10 @@
 ---
-import wordmark from '@/assets/logos/blackhat-wordmark.png'
 import ArrowIcon from '@/components/ui/ArrowIcon.astro'
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
+import Wordmark from '@/components/ui/Wordmark.astro'
 import { site } from '@/data/site'
 import type { NavItem, NavMenu } from '@/types'
-import { Image } from 'astro:assets'
 
 const isMenu = (item: NavItem): item is NavMenu => 'columns' in item
 const path = Astro.url.pathname
@@ -15,7 +14,7 @@ const current = (href: string) => (href === path ? 'page' : undefined)
 <header data-site-header class="sticky top-0 z-50 border-b border-hairline bg-ink/90 backdrop-blur">
   <Container class="flex h-16 items-center justify-between gap-6">
     <a href="/" aria-label={site.labels.home} class="shrink-0">
-      <Image src={wordmark} alt="" width={160} class="h-5 w-auto invert sm:h-6" loading="eager" />
+      <Wordmark class="h-5 w-auto text-bone sm:h-6" />
     </a>
 
     <nav aria-label={site.labels.mainNavigation} class="hidden flex-1 md:block">
