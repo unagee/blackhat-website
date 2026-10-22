@@ -6,6 +6,11 @@ import Layout from '@/layout/Layout.astro'
 ---
 
 <Layout meta={contactPage.meta}>
-  <PageHero eyebrow={contactPage.eyebrow} title={contactPage.title} lead={contactPage.lead} />
+  <PageHero
+    eyebrow={contactPage.eyebrow}
+    title={contactPage.title}
+    lead={contactPage.lead}
+    graphic={false}
+  />
   <EnquiryForm heading={false} />
 </Layout>

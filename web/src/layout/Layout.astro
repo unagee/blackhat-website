@@ -4,6 +4,7 @@ import '@fontsource-variable/work-sans'
 import '@/styles.css'
 import { site } from '@/data/site'
 import type { PageMeta } from '@/types'
+import CookieConsent from './CookieConsent.astro'
 import Footer from './Footer.astro'
 import Header from './Header.astro'
 import SEOMetadata from './SEOMetadata.astro'
@@ -41,5 +42,6 @@ const { meta, schema = [] } = Astro.props
       <slot />
     </main>
     <Footer />
+    <CookieConsent />
   </body>
 </html>

@@ -66,14 +66,31 @@ const input =
       </div>
       <div>
         <label for="enquiry-engagement">{fields.engagement}</label>
-        <select id="enquiry-engagement" name="engagement" class={input}>
-          {engagement.items.map((item) => (
-            <option value={item.name}>{item.name}</option>
-          ))}
-          <option value={enquiry.notSure} selected>
-            {enquiry.notSure}
-          </option>
-        </select>
+        <!-- Our own chevron, inset like the text, instead of the browser's arrow at the edge. -->
+        <div class="relative">
+          <select
+            id="enquiry-engagement"
+            name="engagement"
+            class:list={[input, 'cursor-pointer appearance-none pr-12']}
+          >
+            {engagement.items.map((item) => (
+              <option value={item.name}>{item.name}</option>
+            ))}
+            <option value={enquiry.notSure} selected>
+              {enquiry.notSure}
+            </option>
+          </select>
+          <svg
+            viewBox="0 0 16 16"
+            class="pointer-events-none absolute top-1/2 right-4 mt-1 size-4 -translate-y-1/2 text-ash"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="M4 6l4 4 4-4"></path>
+          </svg>
+        </div>
       </div>
       <div>
         <label for="enquiry-message" class="flex justify-between">
