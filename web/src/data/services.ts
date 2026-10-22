@@ -352,7 +352,7 @@ export const whatWeDo = {
 export const serviceNames = (slugs: ServiceSlug[]) =>
   slugs.map((slug) => services.find((service) => service.slug === slug)?.name ?? '').join(' · ')
 
-// Engagement models on the What we do overview: Plan, Design, Execute.
+// Engagement models on the What we do overview: Plan, Design, Maintenance.
 export const engagement = {
   eyebrow: 'How we engage',
   title: 'Three ways to work with us',
@@ -364,7 +364,6 @@ export const engagement = {
     {
       id: 'plan',
       name: 'Plan',
-      kicker: 'Vision to concept',
       body: 'Everything conceptual. We translate your vision into a concept you can build on: positioning, brand story and creative direction.',
       deliverables: [
         'Brand Positioning & Strategy',
@@ -378,7 +377,6 @@ export const engagement = {
     {
       id: 'design',
       name: 'Design',
-      kicker: 'Brand and full deck design',
       body: 'We design the brand deck and every deck around it: identity, guidelines, and pitch and presentation decks, ready to use.',
       deliverables: [
         'Logo & Visual Identity System',
@@ -390,9 +388,8 @@ export const engagement = {
       cta: 'Start with Design',
     },
     {
-      id: 'execute',
-      name: 'Execute',
-      kicker: 'Brand deck execution',
+      id: 'maintenance',
+      name: 'Maintenance',
       body: 'The ongoing part. We maintain your brand deck, produce new assets and manage your social media, month after month.',
       deliverables: [
         'Brand Deck Updates & Upkeep',
@@ -401,7 +398,7 @@ export const engagement = {
         'Monthly Content Calendar',
       ],
       timeframe: 'Ongoing, Monthly',
-      cta: 'Start with Execution',
+      cta: 'Start with Maintenance',
     },
   ],
 }
