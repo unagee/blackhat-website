@@ -71,7 +71,15 @@ export const projects: Project[] = [
       src: img('energend/energend-showroom-interior-dome.jpg'),
       alt: '3D render of the Energend showroom, with a curved screen showing a satellite above Earth',
     },
+    cardImage: {
+      src: img('energend/energend-factory-render.jpg'),
+      alt: '3D render of the Energend factory floor, with robotic production cells and battery crates',
+    },
     gallery: [
+      {
+        src: img('energend/energend-factory-render.jpg'),
+        alt: '3D render of the Energend factory floor, with robotic production cells and battery crates',
+      },
       {
         src: img('energend/energend-smart-glasses.png'),
         alt: 'Energend-branded smart glasses with orange solar arms, rendered in 3D',
@@ -140,6 +148,10 @@ export const projects: Project[] = [
     image: {
       src: img('myj/myj-office-design-render-entrance.jpg'),
       alt: '3D render of the MYJ office entrance facade at dusk',
+    },
+    cardImage: {
+      src: img('myj/myj-office-design-3d-data-center.jpg'),
+      alt: 'MYJ data centre corridor, rendered in 3D',
     },
     gallery: [
       {
