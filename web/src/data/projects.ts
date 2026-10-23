@@ -81,6 +81,18 @@ export const projects: Project[] = [
         alt: '3D render of the Energend factory floor, with robotic production cells and battery crates',
       },
       {
+        src: img('energend/energend-factory-robot-cells.jpg'),
+        alt: 'Energend factory render: yellow robot arms beside white production machines and loaded crates',
+      },
+      {
+        src: img('energend/energend-factory-floor-wide.jpg'),
+        alt: 'Wide 3D render of the Energend factory floor under a skylit roof, with branded robot cells and a forklift',
+      },
+      {
+        src: img('energend/energend-factory-battery-stacks.jpg'),
+        alt: 'Energend factory render: stacked battery cells in crates beside robot arms and numbered bays',
+      },
+      {
         src: img('energend/energend-smart-glasses.png'),
         alt: 'Energend-branded smart glasses with orange solar arms, rendered in 3D',
         ground: 'dark',
