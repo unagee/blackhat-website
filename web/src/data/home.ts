@@ -47,7 +47,7 @@ export const home = {
   },
 
   hero: {
-    eyebrow: 'Strategy-driven creative agency, Singapore',
+    eyebrow: 'Strategy-driven creative agency',
     title: 'We turn complex ideas into *brands* people trust.',
     lead: 'Brand identity, 3D animation and strategy for financial institutions, healthcare innovators and luxury brands. Based in Singapore, working worldwide.',
     primary: { label: 'Start a Project', href: '/contact' } satisfies Link,
@@ -58,7 +58,7 @@ export const home = {
 
   services: {
     eyebrow: 'What we do',
-    title: 'Designed to own the category',
+    title: 'Designed to Own the Category',
     items: [
       {
         ...branding,

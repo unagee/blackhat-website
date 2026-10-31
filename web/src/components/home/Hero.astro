@@ -14,41 +14,55 @@ const poster =
   media.type === 'video' ? await getImage({ src: media.poster.src, width: 1920 }) : null
 ---
 
-<section class="relative isolate flex min-h-[calc(100svh-4rem)] items-end overflow-hidden pt-32 pb-16 sm:pb-24">
+<section class="relative isolate flex min-h-[calc(100svh-4rem)] items-end overflow-hidden pt-32 pb-12 sm:pb-16">
   <div class="absolute inset-0 -z-10">
-    <Image
-      src={still.src}
-      alt={still.alt}
-      widths={[640, 960, 1280, 1920, 2400]}
-      sizes="100vw"
-      loading="eager"
-      fetchpriority="high"
-      class="size-full object-cover"
-    />
-    {media.type === 'video' && poster && (
-      <video
-        data-hero-video
-        class="absolute inset-0 size-full object-cover motion-reduce:hidden"
-        poster={poster.src}
-        autoplay
-        muted
-        loop
-        playsinline
-        aria-hidden="true"
-      >
-        {media.sources.map((source) => (
-          <source src={source.src} type={source.type} media={source.media} />
-        ))}
-      </video>
-    )}
-    <!-- Overlays keep the headline at WCAG AA contrast on any frame; the reel gets a darker wash. -->
+    <!-- The reel sits in the top part of the hero and fades out, so the words typed in the reel
+         stay above the headline instead of behind it. -->
+    <div
+      class:list={[
+        'absolute inset-0',
+        media.type === 'video' &&
+          'bottom-[38%] [mask-image:linear-gradient(to_bottom,black_70%,transparent)] md:bottom-[24%]',
+      ]}
+    >
+      <Image
+        src={still.src}
+        alt={still.alt}
+        widths={[640, 960, 1280, 1920, 2400]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        class:list={['size-full object-cover', media.type === 'video' && 'md:object-[center_75%]']}
+      />
+      {media.type === 'video' && poster && (
+        <video
+          data-hero-video
+          class="absolute inset-0 size-full object-cover motion-reduce:hidden md:object-[center_75%]"
+          poster={poster.src}
+          autoplay
+          muted
+          loop
+          playsinline
+          aria-hidden="true"
+        >
+          {media.sources.map((source) => (
+            <source src={source.src} type={source.type} media={source.media} />
+          ))}
+        </video>
+      )}
+    </div>
+    <!-- Overlays keep the headline at WCAG AA contrast on any frame; the reel gets a light wash
+         so it shows through, and the dark gradient sits under the text. -->
     <div
       aria-hidden="true"
-      class:list={['absolute inset-0', media.type === 'video' ? 'bg-ink/55' : 'bg-ink/40']}
+      class:list={['absolute inset-0', media.type === 'video' ? 'bg-ink/25' : 'bg-ink/40']}
     ></div>
     <div
       aria-hidden="true"
-      class="absolute inset-0 bg-linear-to-t from-ink via-ink/60 to-ink/10"
+      class:list={[
+        'absolute inset-0 bg-linear-to-t from-ink',
+        media.type === 'video' ? 'via-ink/70 via-35% to-transparent' : 'via-ink/60 to-ink/10',
+      ]}
     ></div>
     <Grain />
   </div>
@@ -58,8 +72,8 @@ const poster =
     <h1 class="text-display-xl max-w-5xl">
       <Highlighted text={hero.title} />
     </h1>
-    <p class="text-lead mt-8 max-w-2xl text-bone/85">{hero.lead}</p>
-    <div class="mt-10 flex flex-wrap gap-4">
+    <p class="text-lead mt-6 max-w-3xl text-bone/85">{hero.lead}</p>
+    <div class="mt-8 flex flex-wrap gap-4">
       <Button href={hero.primary.href} arrow>
         {hero.primary.label}
       </Button>
