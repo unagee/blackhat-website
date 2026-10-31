@@ -43,7 +43,7 @@ All paths are relative to `web/src/`.
 | Header menu, footer links, labels                                                | every page                                                                                                         | `data/site.ts`                                                                                    |
 | Company name, email, address, socials                                            | every page                                                                                                         | `config.ts`                                                                                       |
 
-The home hero plays the Blackhat reel from `web/public/video/`, listed in `heroMedia` in `data/home.ts`. To replace it, re-encode the new video as H.264 MP4 and VP9 WebM, each at 1920px and 960px wide (phones get the smaller ones), with no audio, and keep a still from it as the poster.
+The home hero plays the Blackhat reel from `web/public/video/`, listed in `heroMedia` in `data/home.ts`. To replace it, re-encode the new video as H.264 MP4 and VP9 WebM, each at 1920px and 960px wide (phones get the smaller ones), with no audio; desktop H.264 at CRF 23, and keep a still from it as the poster.
 
 ## Images
 
