@@ -669,68 +669,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'cloudkitchens-safety',
-    client: 'Cloudkitchens',
-    sector: 'Food and hospitality',
-    title: 'A global safety campaign for kitchen teams',
-    meta: {
-      title: 'Cloudkitchens: Global Safety Awareness Campaign | Blackhat',
-      description:
-        'A global safety awareness campaign for Cloudkitchens: characters, onboarding templates, escalation flows and emergency response posters.',
-    },
-    summary:
-      'A global safety awareness campaign, with characters and posters kitchen teams remember.',
-    overview: [
-      'Cloudkitchens runs kitchens around the world, each with its own local safety rules. We created a global safety awareness campaign that every site can adapt.',
-      'The system includes a cast of characters, onboarding training templates, an accident escalation flow and step-by-step emergency posters for fires, gas leaks and electric shocks.',
-    ],
-    services: ['strategy-consulting'],
-    image: {
-      src: img('cloudkitchens-safety/how-to-use-fire-extinguisher.jpg'),
-      alt: 'Cloudkitchens safety poster showing how to use a fire extinguisher, step by step',
-    },
-    gallery: [
-      {
-        src: img('cloudkitchens-safety/character-design-for-safety-awareness-campaign.png'),
-        alt: 'Cloudkitchens safety campaign characters: a smiling flame and a warning triangle',
-      },
-      {
-        src: img('cloudkitchens-safety/global-safety-awareness-campaign-onboarding-training.png'),
-        alt: 'Onboarding training slide with a smiling sun character',
-      },
-      {
-        src: img(
-          'cloudkitchens-safety/global-safety-awareness-campaign-accident-report-escalation-flow.png',
-        ),
-        alt: 'Accident report escalation flow diagram',
-      },
-      {
-        src: img(
-          'cloudkitchens-safety/global-safety-awareness-campaign-electrical-equipment-catches-fire.png',
-        ),
-        alt: 'Poster: what to do if electrical equipment catches fire',
-      },
-      {
-        src: img(
-          'cloudkitchens-safety/global-safety-awareness-campaign-emergency-response-poster-gas-leaks.jpg',
-        ),
-        alt: 'Poster: what to do if gas leaks',
-      },
-      {
-        src: img(
-          'cloudkitchens-safety/global-safety-awareness-campaign-emergency-response-poster-oil-catches-fire.jpg',
-        ),
-        alt: 'Poster: what to do if oil catches fire',
-      },
-      {
-        src: img(
-          'cloudkitchens-safety/global-safety-awareness-campaign-emergency-response-poster-electric-shock.jpg',
-        ),
-        alt: 'Poster: electric shock emergency response',
-      },
-    ],
-  },
-  {
     slug: 'hyperloop-tt',
     client: 'Hyperloop TT',
     sector: 'Transport',

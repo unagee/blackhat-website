@@ -38,6 +38,9 @@ services:
       - type: redirect
         source: /strategy
         destination: /what-we-do/strategy-consulting
+      - type: redirect
+        source: /work/cloudkitchens-safety
+        destination: /work
     headers:
       - path: /*
         name: Content-Security-Policy

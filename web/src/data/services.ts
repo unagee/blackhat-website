@@ -1,5 +1,5 @@
-import ckOnboarding from '@/assets/work/cloudkitchens-safety/global-safety-awareness-campaign-onboarding-training.png'
 import cooklaneOwner from '@/assets/work/cooklane/cooklane-3d-character-business-owner.png'
+import fleetUserRoles from '@/assets/work/fleet/fleet-user-roles.jpg'
 import hyperloopJourney from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-2.png'
 import hyperloopContext from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-3.png'
 import hyperloopRender from '@/assets/work/hyperloop/hyperloop-tt-realistic-render-of-highway.jpg'
@@ -225,7 +225,7 @@ export const services: Service[] = [
     meta: {
       title: 'Strategy & Consulting Agency in Singapore | Blackhat',
       description:
-        'Customer journey mapping, business strategy and training decks that make complex processes easy to follow. Work for Cloudkitchens and Hyperloop TT.',
+        'Customer journey mapping, business strategy and training decks that make complex processes easy to follow. Work for Fleet, MYJ and Hyperloop TT.',
     },
     hero: {
       lead: 'We take complicated businesses, processes and ideas and turn them into something people understand and act on.',
@@ -240,7 +240,7 @@ export const services: Service[] = [
       title: 'We make complicated things easy to follow',
       body: [
         'We start by finding where people get lost: in a customer journey, an approval process or a business model. Then we simplify it, design the materials that explain it and help train the teams who use it.',
-        'For Cloudkitchens that meant a global safety campaign for kitchen teams. For Hyperloop TT, it meant mapping a rider’s journey through a system that doesn’t exist yet.',
+        'For Fleet that meant an onboarding guide for every user, from Super Admin to Technician. For Hyperloop TT, it meant mapping a rider’s journey through a system that doesn’t exist yet.',
       ],
     },
     offerings: {
@@ -264,10 +264,10 @@ export const services: Service[] = [
         },
         {
           title: 'Interactive Training Decks',
-          body: 'Onboarding and training materials, with characters and templates teams can adapt to local rules.',
+          body: 'Onboarding and training materials built around each role, so every user learns exactly what they need.',
           image: {
-            src: ckOnboarding,
-            alt: 'Cloudkitchens onboarding training slide with a smiling sun character',
+            src: fleetUserRoles,
+            alt: 'Fleet onboarding guide page showing the user roles: Super Admin, Admin, Manager and Technician',
           },
         },
       ],
@@ -307,12 +307,12 @@ export const services: Service[] = [
         {
           question: 'Do you work on projects outside Singapore?',
           answer:
-            'Yes. Our strategy work includes a global safety awareness campaign for Cloudkitchens and customer journey design for Hyperloop TT in Dubai.',
+            'Yes. Our strategy work includes customer journey design for Hyperloop TT in Dubai.',
         },
         {
           question: 'Can you design the training as well as the strategy?',
           answer:
-            'Yes. For Cloudkitchens we created the characters, onboarding templates, escalation flows and emergency posters for a global safety awareness campaign.',
+            'Yes. For Fleet we designed a role-based onboarding guide, with annotated screens, role diagrams and troubleshooting, all in Fleet’s brand.',
         },
       ],
     },
