@@ -1,36 +1,69 @@
 ---
+import ArrowIcon from '@/components/ui/ArrowIcon.astro'
 import Button from '@/components/ui/Button.astro'
 import PageSection from '@/components/ui/PageSection.astro'
-import SectionHeader from '@/components/ui/SectionHeader.astro'
-import WorkCard from '@/components/ui/WorkCard.astro'
 import { home } from '@/data/home'
 import { projectBySlug, projectHref } from '@/data/projects'
 import { serviceNames } from '@/data/services'
+import { Image } from 'astro:assets'
 
 const { work } = home
-const projects = work.projects.map(projectBySlug)
+const projects = work.projects.map((item) => ({ ...projectBySlug(item.slug), image: item.image }))
 ---
 
+<!-- Staggered cards: every second card sits lower, and a large number sits behind each image. -->
 <PageSection id="work" tone="raised" labelledby="work-title">
-  <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-    <SectionHeader id="work-title" eyebrow={work.eyebrow} title={work.title} />
-    <div class="-mt-4 mb-12 sm:mt-0">
+  <div class="flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
+    <div class="max-w-3xl">
+      <p class="eyebrow mb-4 text-signal">{work.eyebrow}</p>
+      <h2 id="work-title" class="text-display-md">
+        {work.title}
+      </h2>
+    </div>
+    <div class="shrink-0">
       <Button href={work.allLink.href} variant="secondary" arrow>
         {work.allLink.label}
       </Button>
     </div>
   </div>
-  <ul class="grid gap-12 md:grid-cols-3 md:gap-6 lg:gap-8">
-    {projects.map((project) => (
-      <li>
-        <WorkCard
-          client={project.client}
-          label={serviceNames(project.services)}
-          summary={project.summary}
-          href={projectHref(project.slug)}
-          image={project.cardImage ?? project.image}
-        />
+
+  <ol class="mt-12 grid gap-14 sm:mt-16 md:grid-cols-3 md:gap-8 lg:gap-10">
+    {projects.map((project, index) => (
+      <li class:list={['group relative', index % 2 === 1 && 'md:mt-16']}>
+        <div class="relative pt-12 sm:pt-16">
+          <span
+            aria-hidden="true"
+            class="absolute top-0 right-2 text-8xl leading-none font-semibold tracking-tight text-bone/15 sm:text-9xl"
+          >
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <div class="relative overflow-hidden rounded-lg bg-ink">
+            <Image
+              src={project.image.src}
+              alt={project.image.alt}
+              widths={[480, 720, 960]}
+              sizes="(min-width: 768px) 33vw, 100vw"
+              class="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
+            />
+          </div>
+        </div>
+        <p class="mt-5 text-xs text-ash">{serviceNames(project.services)}</p>
+        <h3 class="mt-3 text-xl">
+          <a
+            href={projectHref(project.slug)}
+            class="inline-flex items-center gap-3 after:absolute after:inset-0 group-hover:text-signal"
+          >
+            {project.client}
+            <span
+              aria-hidden="true"
+              class="grid size-7 place-items-center rounded-full bg-bone text-ink transition-colors group-hover:bg-signal"
+            >
+              <ArrowIcon class="size-3" />
+            </span>
+          </a>
+        </h3>
+        <p class="mt-3 max-w-xs text-sm text-ash">{project.summary}</p>
       </li>
     ))}
-  </ul>
+  </ol>
 </PageSection>

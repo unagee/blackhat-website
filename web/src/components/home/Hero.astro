@@ -29,17 +29,23 @@ const poster =
       <video
         data-hero-video
         class="absolute inset-0 size-full object-cover motion-reduce:hidden"
-        src={media.src}
         poster={poster.src}
         autoplay
         muted
         loop
         playsinline
         aria-hidden="true"
-      />
+      >
+        {media.sources.map((source) => (
+          <source src={source.src} type={source.type} media={source.media} />
+        ))}
+      </video>
     )}
-    <!-- Overlays keep the headline at WCAG AA contrast on any frame. -->
-    <div aria-hidden="true" class="absolute inset-0 bg-ink/40"></div>
+    <!-- Overlays keep the headline at WCAG AA contrast on any frame; the reel gets a darker wash. -->
+    <div
+      aria-hidden="true"
+      class:list={['absolute inset-0', media.type === 'video' ? 'bg-ink/55' : 'bg-ink/40']}
+    ></div>
     <div
       aria-hidden="true"
       class="absolute inset-0 bg-linear-to-t from-ink via-ink/60 to-ink/10"
