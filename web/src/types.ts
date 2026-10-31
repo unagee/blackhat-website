@@ -19,7 +19,9 @@ export type Picture = {
 // Hero background: a still image, or a video reel with a poster still.
 // The poster shows while the video loads, and instead of it for reduced-motion visitors.
 export type HeroMedia =
-  { type: 'image'; image: Picture } | { type: 'video'; src: string; poster: Picture }
+  | { type: 'image'; image: Picture }
+  // Sources in order of preference; the browser plays the first it supports whose media matches.
+  | { type: 'video'; sources: { src: string; type: string; media?: string }[]; poster: Picture }
 
 export type NavMenu = {
   label: string

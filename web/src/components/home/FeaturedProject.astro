@@ -1,44 +1,138 @@
 ---
+import ArrowIcon from '@/components/ui/ArrowIcon.astro'
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
 import { home } from '@/data/home'
 import { Image } from 'astro:assets'
 
 const { featured } = home
+const total = featured.items.length
+const position = (index: number) =>
+  featured.position.replace('{current}', String(index + 1)).replace('{total}', String(total))
 ---
 
-<section aria-labelledby="featured-title" class="border-t border-hairline bg-ink py-20 sm:py-28">
+<!-- Featured projects in a row: the current card fills the column and the next one peeks in,
+     faded, from the right. Clicking a faded card or the buttons below moves the row. Faded cards
+     are inert, so they leave the tab order and the reading order. -->
+<section
+  aria-label={featured.label}
+  aria-roledescription="carousel"
+  data-featured
+  data-position={featured.position}
+  class="overflow-hidden border-t border-hairline bg-ink py-20 sm:py-28"
+>
   <Container>
-    <div class="relative isolate overflow-hidden rounded-lg bg-ink-raised">
-      <Image
-        src={featured.image.src}
-        alt={featured.image.alt}
-        widths={[640, 960, 1280, 1920]}
-        sizes="(min-width: 1152px) 1152px, 100vw"
-        class="aspect-video w-full object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
-      />
-      <div
-        aria-hidden="true"
-        class="absolute inset-0 hidden bg-linear-to-r from-ink/95 via-ink/70 to-transparent lg:block"
-      ></div>
-      <div class="relative p-6 sm:p-10 lg:flex lg:min-h-[38rem] lg:max-w-xl lg:flex-col lg:justify-end lg:p-14">
-        <p class="eyebrow text-signal">{featured.eyebrow}</p>
-        <p class="mt-6 text-ash">{featured.client}</p>
-        <h2 id="featured-title" class="text-display-md mt-2">
-          {featured.title}
-        </h2>
-        <p class="mt-5 text-bone/80">{featured.body}</p>
-        <ul class="mt-6 flex flex-wrap gap-2">
-          {featured.tags.map((tag) => (
-            <li class="rounded-full border border-bone/30 px-3 py-1 text-sm text-bone/80">{tag}</li>
-          ))}
-        </ul>
-        <div class="mt-8">
-          <Button href={featured.link.href} variant="secondary" arrow>
-            {featured.link.label}
-          </Button>
+    <div
+      data-featured-track
+      class="flex gap-6 transition-transform duration-700 ease-out motion-reduce:transition-none"
+    >
+      {featured.items.map((item, index) => (
+        <div
+          data-featured-slot
+          class:list={[
+            'w-full shrink-0 transition-opacity duration-700 motion-reduce:transition-none',
+            index > 0 && 'cursor-pointer opacity-40 hover:opacity-60',
+          ]}
+        >
+          <article
+            data-featured-slide
+            aria-roledescription="slide"
+            aria-label={position(index)}
+            inert={index > 0}
+            class="relative isolate h-full overflow-hidden rounded-lg bg-ink-raised"
+          >
+            <Image
+              src={item.image.src}
+              alt={item.image.alt}
+              widths={[640, 960, 1280, 1920]}
+              sizes="(min-width: 1152px) 1152px, 100vw"
+              class="aspect-video w-full object-cover lg:absolute lg:inset-0 lg:-z-10 lg:aspect-auto lg:h-full"
+            />
+            <div
+              aria-hidden="true"
+              class="absolute inset-0 -z-10 hidden bg-linear-to-r from-ink/95 via-ink/70 to-transparent lg:block"
+            ></div>
+            <div class="p-6 sm:p-10 lg:flex lg:min-h-[38rem] lg:max-w-xl lg:flex-col lg:justify-end lg:p-14">
+              <p class="eyebrow text-signal">{featured.eyebrow}</p>
+              <p class="mt-6 text-ash">{item.client}</p>
+              <h2 class="text-display-md mt-2">{item.title}</h2>
+              <p class="mt-5 text-bone/80">{item.body}</p>
+              <ul class="mt-6 flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <li class="rounded-full border border-bone/30 px-3 py-1 text-sm text-bone/80">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-8">
+                <Button href={item.link.href} variant="secondary" arrow>
+                  {item.link.label}
+                </Button>
+              </div>
+            </div>
+          </article>
         </div>
-      </div>
+      ))}
     </div>
+
+    {total > 1 && (
+      <div class="mt-6 flex items-center justify-end gap-3">
+        <p data-featured-status aria-live="polite" class="mr-2 text-sm text-ash">
+          {position(0)}
+        </p>
+        <button
+          type="button"
+          data-featured-step="-1"
+          aria-label={featured.previous}
+          class="grid size-12 place-items-center rounded-full border border-bone/40 text-bone transition-colors hover:border-bone"
+        >
+          <ArrowIcon class="size-4 rotate-180" />
+        </button>
+        <button
+          type="button"
+          data-featured-step="1"
+          aria-label={featured.next}
+          class="grid size-12 place-items-center rounded-full bg-bone text-ink transition-colors hover:bg-signal"
+        >
+          <ArrowIcon class="size-4" />
+        </button>
+      </div>
+    )}
   </Container>
 </section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-featured]')
+  const track = root?.querySelector<HTMLElement>('[data-featured-track]')
+  const slots = [...(root?.querySelectorAll<HTMLElement>('[data-featured-slot]') ?? [])]
+  const status = root?.querySelector<HTMLElement>('[data-featured-status]')
+  let current = 0
+
+  const show = (index: number) => {
+    current = (index + slots.length) % slots.length
+    // Each card is the track's full width plus the 1.5rem gap.
+    if (track) track.style.transform = `translateX(calc(${-current} * (100% + 1.5rem)))`
+    slots.forEach((slot, i) => {
+      const active = i === current
+      slot.classList.toggle('opacity-40', !active)
+      slot.classList.toggle('hover:opacity-60', !active)
+      slot.classList.toggle('cursor-pointer', !active)
+      slot.querySelector('[data-featured-slide]')?.toggleAttribute('inert', !active)
+    })
+    if (status && root?.dataset.position)
+      status.textContent = root.dataset.position
+        .replace('{current}', String(current + 1))
+        .replace('{total}', String(slots.length))
+  }
+
+  root?.querySelectorAll<HTMLButtonElement>('[data-featured-step]').forEach((button) => {
+    button.addEventListener('click', () => show(current + Number(button.dataset.featuredStep)))
+  })
+
+  // A faded card is a shortcut to itself (the buttons cover keyboard and screen reader users).
+  slots.forEach((slot, i) => {
+    slot.addEventListener('click', () => {
+      if (i !== current) show(i)
+    })
+  })
+</script>
