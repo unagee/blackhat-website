@@ -291,8 +291,8 @@ export const projects: Project[] = [
       alt: 'Six Waves cocktail cans in pink, orange, yellow and green',
     },
     cardImage: {
-      src: img('waves/waves-photo-card.jpg'),
-      alt: 'Waves brand photography: a woman smiling over a cocktail glass',
+      src: img('waves/waves-packaging-card.jpg'),
+      alt: 'Four Waves cocktail cans: Paloma, Negroni, French 75 and Dirty Martini',
     },
     gallery: [
       {
@@ -338,7 +338,7 @@ export const projects: Project[] = [
     services: ['brand-visual-identity', 'strategy-consulting'],
     image: {
       src: img('fleet/fleet-brand-guide-stack.jpg'),
-      alt: 'Fleet brand guidelines pages stacked in perspective: the cover, typography and colour roles',
+      alt: 'Fleet brand guidelines pages stacked in perspective, with the Fleet logo on the cover',
     },
     heroShade: 'light',
     cardImage: {
@@ -349,6 +349,22 @@ export const projects: Project[] = [
       {
         src: img('fleet/fleet-brand-guide-spread.jpg'),
         alt: 'Six pages of the Fleet brand guidelines laid out on cream',
+      },
+      {
+        src: img('fleet/fleet-logo-lockup.jpg'),
+        alt: 'Fleet logo lockup in white on black: the stepped F logogram beside the Fleet wordmark',
+      },
+      {
+        src: img('fleet/fleet-logogram.jpg'),
+        alt: 'Fleet logogram in navy: two stepped parallelograms forming an F',
+      },
+      {
+        src: img('fleet/fleet-logo-badge.jpg'),
+        alt: 'Fleet logo badge: the white logogram in a rounded navy square',
+      },
+      {
+        src: img('fleet/fleet-logo-colours.jpg'),
+        alt: 'Fleet logo colour combinations: white on navy, navy on light grey and white on a blue gradient',
       },
       {
         src: img('fleet/fleet-brand-palette-ratio.jpg'),
@@ -540,6 +556,10 @@ export const projects: Project[] = [
     image: {
       src: img('studyzone/studyzone-pre-university-education-advertising-mockup.jpg'),
       alt: 'Studyzone billboard reading “Connecting the world and you” in a station',
+    },
+    cardImage: {
+      src: img('studyzone/studyzone-card.jpg'),
+      alt: 'Studyzone brand card: “Weaving stories, goals and dreams with studyzone” on green with an orange ribbon',
     },
     gallery: [
       {

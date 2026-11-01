@@ -8,7 +8,7 @@ export const workPage = {
       'Branding, 3D animation and strategy projects for energy, finance, hospitality and education brands, from Energend and MYJ to NIRI and Hyperloop TT.',
   },
   eyebrow: 'Work',
-  title: 'Work that does the explaining',
+  title: 'Make Them Look Twice',
   lead: 'Brand identities, 3D worlds and strategy for companies in energy, finance, hospitality, education and more.',
   filterLabel: 'Filter by service',
   allLabel: 'All Work',
@@ -26,6 +26,6 @@ export const projectPage = {
   galleryTitle: 'Gallery',
   videoTitle: 'Film',
   playLabel: 'Play the Film',
-  nextLabel: 'Next project',
+  nextLabel: 'Next Project',
   allWork: { label: 'See All Work', href: '/work' } satisfies Link,
 }

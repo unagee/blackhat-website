@@ -3,6 +3,7 @@ import Button from '@/components/ui/Button.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import WorkCard from '@/components/ui/WorkCard.astro'
+import { home } from '@/data/home'
 import { projectHref, type Project } from '@/data/projects'
 import { serviceNames } from '@/data/services'
 import type { Link } from '@/types'
@@ -15,6 +16,8 @@ type Props = {
 }
 
 const { eyebrow, title, projects, allLink } = Astro.props
+// Projects featured on the homepage use the same image here, so they look the same across the site.
+const homeImage = (slug: string) => home.work.projects.find((item) => item.slug === slug)?.image
 ---
 
 <PageSection id="work" labelledby="work-title">
@@ -34,7 +37,7 @@ const { eyebrow, title, projects, allLink } = Astro.props
           label={serviceNames(project.services)}
           summary={project.summary}
           href={projectHref(project.slug)}
-          image={project.cardImage ?? project.image}
+          image={homeImage(project.slug) ?? project.cardImage ?? project.image}
         />
       </li>
     ))}

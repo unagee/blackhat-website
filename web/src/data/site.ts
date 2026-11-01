@@ -42,7 +42,7 @@ export const site = {
       'Name:\nCompany:\nWhich services are you interested in?\nTell us about your project:\n',
   },
   footer: {
-    title: 'Keep exploring',
+    title: 'Keep Exploring',
     links: [
       { label: 'What We Do', href: '/what-we-do' },
       { label: 'Work', href: '/work' },
@@ -55,7 +55,7 @@ export const site = {
     ] satisfies Link[],
     legalTitle: 'Legal',
     visitTitle: 'Visit',
-    contactTitle: 'Talk to us',
+    contactTitle: 'Talk to Us',
   },
   labels: {
     skipToContent: 'Skip to main content',

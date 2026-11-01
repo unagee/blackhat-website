@@ -9,7 +9,7 @@ Professional and straightforward first, bold where it counts. Each line should s
 - Audience: decision makers at financial institutions, healthcare innovators and luxury brands choosing a creative partner.
 - Sound like a sharp person talking, not a brochure. Lead with what the client gets, then how.
 - No forced wit or jokes. Confidence comes from specifics, not puns or exclamation marks.
-- Headings: short and plain, sentence case ("Work that does the explaining", "Brands we’ve worked with"). Buttons, navigation and subsection titles (the small headings on cards and lists, such as "Financial Institutions" or "Brand Image & Identity") use Title Case. Section and page headings stay in sentence case.
+- Headings: short headings of up to about four words use Title Case ("Make Them Look Twice", "Our Expertise", "Branding Work", "How We Work"), as do buttons, navigation and card titles. Longer headings that read as sentences stay in sentence case ("Recent projects across brand, 3D and strategy", "Let’s talk about your project").
 - Never use: clarity, "make it clear", seamless, elevate, unlock, empower, transform, crafted, cutting-edge, world-class, "in today’s world", "not just X but Y", or em dashes.
 - British English (Singapore audience: "colour", "visualise"), short sentences, active voice. No emoji.
 - Never invent clients, numbers, results or testimonials. Describe only what the work shows.
