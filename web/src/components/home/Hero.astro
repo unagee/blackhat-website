@@ -17,12 +17,12 @@ const poster =
 <section class="relative isolate flex min-h-[calc(100svh-4rem)] items-end overflow-hidden pt-32 pb-12 sm:pb-16">
   <div class="absolute inset-0 -z-10">
     <!-- The reel sits in the top part of the hero and fades out, so the words typed in the reel
-         stay above the headline instead of behind it. -->
+         stay above the headline instead of behind it. Shorter screens give it less room. -->
     <div
       class:list={[
         'absolute inset-0',
         media.type === 'video' &&
-          'bottom-[38%] [mask-image:linear-gradient(to_bottom,black_70%,transparent)] md:bottom-[24%]',
+          'bottom-[38%] [mask-image:linear-gradient(to_bottom,black_70%,transparent)] md:bottom-[14%] [@media(min-width:768px)_and_(max-height:820px)]:bottom-[24%]!',
       ]}
     >
       <Image
@@ -32,12 +32,16 @@ const poster =
         sizes="100vw"
         loading="eager"
         fetchpriority="high"
-        class:list={['size-full object-cover', media.type === 'video' && 'md:object-[center_75%]']}
+        class:list={[
+          'size-full object-cover',
+          media.type === 'video' &&
+            'md:object-[center_40%] [@media(min-width:768px)_and_(max-height:820px)]:object-[center_75%]!',
+        ]}
       />
       {media.type === 'video' && poster && (
         <video
           data-hero-video
-          class="absolute inset-0 size-full object-cover motion-reduce:hidden md:object-[center_75%]"
+          class="absolute inset-0 size-full object-cover motion-reduce:hidden md:object-[center_40%] [@media(min-width:768px)_and_(max-height:820px)]:object-[center_75%]!"
           poster={poster.src}
           autoplay
           muted
@@ -68,12 +72,10 @@ const poster =
   </div>
 
   <Container class="relative">
-    <p class="eyebrow mb-6 text-signal">{hero.eyebrow}</p>
     <h1 class="text-display-xl max-w-5xl">
       <Highlighted text={hero.title} />
     </h1>
-    <p class="text-lead mt-6 max-w-3xl text-bone/85">{hero.lead}</p>
-    <div class="mt-8 flex flex-wrap gap-4">
+    <div class="mt-10 flex flex-wrap gap-4">
       <Button href={hero.primary.href} arrow>
         {hero.primary.label}
       </Button>
