@@ -60,7 +60,7 @@ export const services: Service[] = [
       ],
     },
     offerings: {
-      title: 'What we can help with',
+      title: 'Brands That Refuse to Blend In',
       items: [
         {
           title: 'Brand Image & Identity',
@@ -152,7 +152,7 @@ export const services: Service[] = [
       ],
     },
     offerings: {
-      title: 'What we can help with',
+      title: 'If It Can’t Be Photographed, We Build It',
       items: [
         {
           title: 'Product Visualisation & Visual Effects',
@@ -244,7 +244,7 @@ export const services: Service[] = [
       ],
     },
     offerings: {
-      title: 'What we can help with',
+      title: 'Complex In, Simple Out',
       items: [
         {
           title: 'Customer Journey',

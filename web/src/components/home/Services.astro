@@ -2,24 +2,18 @@
 import ArrowIcon from '@/components/ui/ArrowIcon.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { expertiseGrid, expertiseShapes, expertiseSizes } from '@/components/ui/expertiseLayout'
 import { home } from '@/data/home'
 import { Image } from 'astro:assets'
 
 const { services } = home
-// Image shape and width per column, in order: wide, square, small landscape.
-const shapes = ['aspect-[16/10]', 'aspect-square', 'aspect-4/3']
-const sizes = [
-  '(min-width: 768px) 46vw, 100vw',
-  '(min-width: 768px) 31vw, 100vw',
-  '(min-width: 768px) 22vw, 100vw',
-]
 ---
 
 <!-- Three columns of different widths, each image with its own shape: brand widest, strategy
      smallest, so the row reads as a composition rather than a grid. Stacks on phones. -->
 <PageSection id="services" labelledby="services-title">
   <SectionHeader id="services-title" eyebrow={services.eyebrow} title={services.title} />
-  <ol class="grid items-start gap-12 md:grid-cols-[1.7fr_1.15fr_0.8fr] md:gap-8 lg:gap-12">
+  <ol class={expertiseGrid}>
     {services.items.map((item, index) => (
       <li class="group relative flex flex-col">
         <div class="relative overflow-hidden rounded-lg bg-ink-raised">
@@ -27,10 +21,10 @@ const sizes = [
             src={item.image.src}
             alt={item.image.alt}
             widths={[480, 720, 960, 1280]}
-            sizes={sizes[index]}
+            sizes={expertiseSizes[index]}
             class:list={[
               'w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none',
-              shapes[index],
+              expertiseShapes[index],
             ]}
           />
         </div>

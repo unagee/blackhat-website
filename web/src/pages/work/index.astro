@@ -15,6 +15,25 @@ const schema = [
     { label: workPage.eyebrow, href: '/work' },
   ]),
 ]
+// Scattered layout on wide screens: each card takes a column start and width on a 12-column grid,
+// following a pattern, so the page reads as a spread of work rather than a table. Cards flow to the
+// next row whenever their start column is already taken.
+const scatter = [
+  'lg:col-start-1 lg:col-span-4',
+  'lg:col-start-6 lg:col-span-3 lg:mt-24',
+  'lg:col-start-10 lg:col-span-3',
+  'lg:col-start-3 lg:col-span-3',
+  'lg:col-start-7 lg:col-span-4 lg:mt-16',
+  'lg:col-start-1 lg:col-span-3 lg:mt-10',
+  'lg:col-start-5 lg:col-span-3',
+  'lg:col-start-9 lg:col-span-4 lg:mt-20',
+  'lg:col-start-2 lg:col-span-4',
+  'lg:col-start-8 lg:col-span-3 lg:mt-12',
+  'lg:col-start-1 lg:col-span-3 lg:mt-8',
+  'lg:col-start-5 lg:col-span-4 lg:mt-20',
+  'lg:col-start-10 lg:col-span-3',
+]
+const wide = (index: number) => scatter[index % scatter.length].includes('span-4')
 const filters = [
   { value: 'all', label: workPage.allLabel },
   ...services.map((service) => ({ value: service.slug, label: service.name })),
@@ -55,15 +74,19 @@ const filters = [
         {workPage.resultsLabel.replace('{count}', String(projects.length))}
       </p>
     </div>
-    <ul class="grid gap-12 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
-      {projects.map((project) => (
-        <li data-services={project.services.join(' ')}>
+    <ul class="grid items-start gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-16">
+      {projects.map((project, index) => (
+        <li data-services={project.services.join(' ')} class={scatter[index % scatter.length]}>
           <WorkCard
             client={project.client}
             label={serviceNames(project.services)}
             summary={project.summary}
             href={projectHref(project.slug)}
             image={project.cardImage ?? project.image}
+            sizes={
+              wide(index) ? '(min-width: 1024px) 30vw, 50vw' : '(min-width: 1024px) 22vw, 50vw'
+            }
+            compact
           />
         </li>
       ))}

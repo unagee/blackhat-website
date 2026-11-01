@@ -9,9 +9,20 @@ type Props = {
   summary: string
   href: string
   image: Picture
+  // Compact: a square thumbnail with the client and services only, for the scattered Work page.
+  compact?: boolean
+  sizes?: string
 }
 
-const { client, label, summary, href, image } = Astro.props
+const {
+  client,
+  label,
+  summary,
+  href,
+  image,
+  compact = false,
+  sizes = '(min-width: 768px) 33vw, 100vw',
+} = Astro.props
 ---
 
 <article class="group relative">
@@ -20,12 +31,15 @@ const { client, label, summary, href, image } = Astro.props
       src={image.src}
       alt={image.alt}
       widths={[480, 720, 960]}
-      sizes="(min-width: 768px) 33vw, 100vw"
-      class="aspect-4/5 w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
+      sizes={sizes}
+      class:list={[
+        'w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none',
+        compact ? 'aspect-square' : 'aspect-4/5',
+      ]}
     />
   </div>
-  <p class="mt-5 text-sm text-ash">{label}</p>
-  <h3 class="mt-2 text-2xl">
+  {!compact && <p class="mt-5 text-sm text-ash">{label}</p>}
+  <h3 class:list={compact ? 'mt-4 text-lg' : 'mt-2 text-2xl'}>
     <a
       href={href}
       class="inline-flex items-center gap-3 after:absolute after:inset-0 group-hover:text-signal"
@@ -34,5 +48,5 @@ const { client, label, summary, href, image } = Astro.props
       <ArrowIcon class="transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />
     </a>
   </h3>
-  <p class="mt-2 text-ash">{summary}</p>
+  {compact ? <p class="mt-1 text-sm text-ash">{label}</p> : <p class="mt-2 text-ash">{summary}</p>}
 </article>
