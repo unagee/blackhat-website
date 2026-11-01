@@ -373,29 +373,39 @@ export const whatWeDo = {
 export const serviceNames = (slugs: ServiceSlug[]) =>
   slugs.map((slug) => services.find((service) => service.slug === slug)?.name ?? '').join(' · ')
 
-// Engagement models on the What we do overview: Design, Execute.
+// Engagement models on the What we do overview: Plan (strategy), Design, Execute.
 export const engagement = {
   eyebrow: 'How we engage',
-  title: 'Two ways to work with us',
-  lead: 'Start where you are. Some clients need the brand built, some need a team to keep it running. Many start with the first and grow into the second.',
+  title: 'Three ways to work with us',
+  lead: 'Start where you are. Some clients need the strategy, some need the design, and some need a team to keep the brand running. Many start with one and grow into the next.',
   deliverablesLabel: 'Sample Deliverables',
   timeframeLabel: 'Timeframe',
-  // DRAFT: deliverables and timeframes awaiting the owner's confirmation. Design folds in the
-  // former Plan card; its timeframe adds the two earlier ranges.
+  // DRAFT: deliverables and timeframes awaiting the owner's confirmation.
   items: [
     {
-      id: 'design',
-      name: 'Design',
-      body: 'From concept to a brand you can use. We set the positioning, story and creative direction, then design the identity, guidelines and every deck around it.',
+      id: 'plan',
+      name: 'Plan',
+      body: 'The strategy. We translate your vision into a concept you can build on: positioning, brand story and creative direction.',
       deliverables: [
         'Brand Positioning & Strategy',
         'Brand Story & Messaging',
+        'Creative Direction & Moodboards',
+        'Concept Presentation',
+      ],
+      timeframe: '2–4 Weeks',
+      cta: 'Start with a Plan',
+    },
+    {
+      id: 'design',
+      name: 'Design',
+      body: 'We design the brand deck and every deck around it: identity, guidelines, and pitch and presentation decks, ready to use.',
+      deliverables: [
         'Logo & Visual Identity System',
         'Brand Guidelines Deck',
         'Pitch & Presentation Decks',
         'Key Collateral & Templates',
       ],
-      timeframe: '6–12 Weeks',
+      timeframe: '4–8 Weeks',
       cta: 'Start with Design',
     },
     {

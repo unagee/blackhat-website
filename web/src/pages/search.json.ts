@@ -39,7 +39,7 @@ export const GET: APIRoute = () => {
       kind: 'Page',
       description: whatWeDo.meta.description,
       url: '/what-we-do',
-      keywords: 'services strategy design execution execute engagement',
+      keywords: 'services strategy plan design execution execute engagement',
     },
     ...services.map((service) => ({
       title: service.name,
