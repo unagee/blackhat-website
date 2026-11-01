@@ -344,53 +344,64 @@ export const whatWeDo = {
   eyebrow: 'What we do',
   title: 'Brand, 3D and strategy under one roof',
   lead: 'Most of our projects use more than one discipline. Pick a starting point, or tell us the problem and we’ll suggest the mix.',
-  listTitle: 'Our services',
+  listTitle: 'Our Services',
   linkLabel: 'Explore',
+  // The overview groups the three services as Strategy, Design and Execution; each row links to
+  // the matching service page.
+  list: [
+    {
+      name: 'Strategy',
+      summary:
+        'Positioning, customer journeys and business strategy that turn a complicated business into a plan your teams can follow.',
+      slug: 'strategy-consulting',
+    },
+    {
+      name: 'Design',
+      summary: 'Brand identities, guidelines and decks that carry your story to every touchpoint.',
+      slug: 'brand-visual-identity',
+    },
+    {
+      name: 'Execution',
+      summary:
+        '3D animation, motion graphics and on-brand assets that show what words and photos can’t.',
+      slug: '3d-animation-motion-graphics',
+    },
+  ] satisfies { name: string; summary: string; slug: ServiceSlug }[],
 }
 
 // "Brand & Visual Identity · 3D Animation & Motion Graphics" for project cards.
 export const serviceNames = (slugs: ServiceSlug[]) =>
   slugs.map((slug) => services.find((service) => service.slug === slug)?.name ?? '').join(' · ')
 
-// Engagement models on the What we do overview: Plan, Design, Maintain.
+// Engagement models on the What we do overview: Design, Execute.
 export const engagement = {
   eyebrow: 'How we engage',
-  title: 'Three ways to work with us',
-  lead: 'Start where you are. Some clients need the thinking, some need the design, and some need a team to keep the brand running. Many start with one and grow into the next.',
+  title: 'Two ways to work with us',
+  lead: 'Start where you are. Some clients need the brand built, some need a team to keep it running. Many start with the first and grow into the second.',
   deliverablesLabel: 'Sample Deliverables',
   timeframeLabel: 'Timeframe',
-  // DRAFT: deliverables and timeframes awaiting the owner's confirmation.
+  // DRAFT: deliverables and timeframes awaiting the owner's confirmation. Design folds in the
+  // former Plan card; its timeframe adds the two earlier ranges.
   items: [
-    {
-      id: 'plan',
-      name: 'Plan',
-      body: 'Everything conceptual. We translate your vision into a concept you can build on: positioning, brand story and creative direction.',
-      deliverables: [
-        'Brand Positioning & Strategy',
-        'Brand Story & Messaging',
-        'Creative Direction & Moodboards',
-        'Concept Presentation',
-      ],
-      timeframe: '2–4 Weeks',
-      cta: 'Start with a Plan',
-    },
     {
       id: 'design',
       name: 'Design',
-      body: 'We design the brand deck and every deck around it: identity, guidelines, and pitch and presentation decks, ready to use.',
+      body: 'From concept to a brand you can use. We set the positioning, story and creative direction, then design the identity, guidelines and every deck around it.',
       deliverables: [
+        'Brand Positioning & Strategy',
+        'Brand Story & Messaging',
         'Logo & Visual Identity System',
         'Brand Guidelines Deck',
         'Pitch & Presentation Decks',
         'Key Collateral & Templates',
       ],
-      timeframe: '4–8 Weeks',
+      timeframe: '6–12 Weeks',
       cta: 'Start with Design',
     },
     {
-      id: 'maintenance',
-      name: 'Maintain',
-      body: 'The ongoing part. We maintain your brand deck, produce new assets and manage your social media, month after month.',
+      id: 'execute',
+      name: 'Execute',
+      body: 'The ongoing part. We keep your brand deck current, produce new assets and manage your social media, month after month.',
       deliverables: [
         'Brand Deck Updates & Upkeep',
         'New On-Brand Assets',
@@ -398,7 +409,7 @@ export const engagement = {
         'Monthly Content Calendar',
       ],
       timeframe: 'Ongoing, Monthly',
-      cta: 'Start with Maintenance',
+      cta: 'Start with Execution',
     },
   ],
 }

@@ -5,9 +5,10 @@ import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { serviceHref, type Service } from '@/data/services'
 
 type Props = {
-  eyebrow: string
+  eyebrow?: string
   title: string
-  services: Service[]
+  // Services by their own names, or rows with their own names that link to a service.
+  services: Pick<Service, 'slug' | 'name' | 'summary'>[]
 }
 
 // Large rows linking to each service, like a table of contents.

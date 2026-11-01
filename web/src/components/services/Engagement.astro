@@ -2,11 +2,10 @@
 import Container from '@/components/ui/Container.astro'
 import { engagement } from '@/data/services'
 
-// Fine linear icons for Plan (a route to a pin), Design (layered frames) and Maintenance (a loop).
+// Fine linear icons for Design (layered frames) and Execute (a loop).
 const icons: Record<string, string> = {
-  plan: 'M13 40a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 37c8 0 6-9 13-11s6-3 6-3M35 6a6 6 0 0 0-6 6c0 4.5 6 10.5 6 10.5s6-6 6-10.5a6 6 0 0 0-6-6ZM35 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z',
   design: 'M8 12h22v16H8zM14 19h22v16H14zM20 26h22v16H20z',
-  maintenance: 'M38 18A14 14 0 0 0 12 22M10 30a14 14 0 0 0 26 4M38 10v8h-8M10 38v-8h8',
+  execute: 'M38 18A14 14 0 0 0 12 22M10 30a14 14 0 0 0 26 4M38 10v8h-8M10 38v-8h8',
 }
 ---
 
@@ -22,7 +21,7 @@ const icons: Record<string, string> = {
         </div>
         <p class="text-lead self-end text-graphite">{engagement.lead}</p>
       </div>
-      <ol class="mt-12 grid gap-4 md:grid-cols-3 md:gap-x-6 md:gap-y-0">
+      <ol class="mt-12 grid gap-4 md:grid-cols-2 md:gap-x-6 md:gap-y-0">
         {engagement.items.map((item) => (
           <li class="flex flex-col rounded-2xl bg-ink p-6 text-bone sm:p-8 md:row-span-6 md:grid md:grid-rows-subgrid md:gap-0">
             <svg
