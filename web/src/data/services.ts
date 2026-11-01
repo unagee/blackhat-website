@@ -385,14 +385,15 @@ export const engagement = {
     {
       id: 'plan',
       name: 'Plan',
-      body: 'The strategy. We translate your vision into a concept you can build on: positioning, brand story and creative direction.',
+      body: 'The strategy. We map where your business is going, who it serves and where people get lost along the way, then turn it into a plan your teams can follow.',
       deliverables: [
-        'Brand Positioning & Strategy',
-        'Brand Story & Messaging',
-        'Creative Direction & Moodboards',
-        'Concept Presentation',
+        'Business Direction & Positioning',
+        'Customer & Market Insights',
+        'Customer Journey Mapping',
+        'Process & Service Blueprints',
+        'Strategy Playbook & Roadmap',
       ],
-      timeframe: '2–4 Weeks',
+      timeframe: '3–6 Weeks',
       cta: 'Start with a Plan',
     },
     {
