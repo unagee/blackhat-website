@@ -83,7 +83,7 @@ export const services: Service[] = [
       ],
     },
     process: {
-      title: 'How we work',
+      title: 'How We Work',
       motion: 'brand',
       steps: [
         {
@@ -105,9 +105,9 @@ export const services: Service[] = [
       body: 'Tell us where you are today and where you want to be. We’ll show you how we’d get there.',
       link: startProject,
     },
-    work: { title: 'Branding work' },
+    work: { title: 'Branding Work' },
     faq: {
-      title: 'Questions we often hear',
+      title: 'Questions We Often Hear',
       items: [
         {
           question: 'What does a brand identity project include?',
@@ -175,7 +175,7 @@ export const services: Service[] = [
       ],
     },
     process: {
-      title: 'How we work',
+      title: 'How We Work',
       motion: 'animation',
       steps: [
         {
@@ -197,9 +197,9 @@ export const services: Service[] = [
       body: 'A product launch, a new space, a story that needs characters. Tell us what you want people to see and we’ll show you how we’d build it.',
       link: startProject,
     },
-    work: { title: '3D and motion work' },
+    work: { title: '3D and Motion Work' },
     faq: {
-      title: 'Questions we often hear',
+      title: 'Questions We Often Hear',
       items: [
         {
           question: 'What kinds of 3D work do you do?',
@@ -273,7 +273,7 @@ export const services: Service[] = [
       ],
     },
     process: {
-      title: 'How we work',
+      title: 'How We Work',
       motion: 'strategy',
       steps: [
         {
@@ -295,9 +295,9 @@ export const services: Service[] = [
       body: 'Tell us where things get stuck. We’ll show you how we’d simplify it.',
       link: startProject,
     },
-    work: { title: 'Strategy work' },
+    work: { title: 'Strategy Work' },
     faq: {
-      title: 'Questions we often hear',
+      title: 'Questions We Often Hear',
       items: [
         {
           question: 'What does a strategy project produce?',
@@ -330,7 +330,7 @@ export const servicePage = {
   workEyebrow: 'Selected work',
   faqEyebrow: 'FAQ',
   relatedEyebrow: 'Explore',
-  relatedTitle: 'Our other services',
+  relatedTitle: 'Our Other Services',
   allWork: { label: 'See All Work', href: '/work' } satisfies Link,
 }
 

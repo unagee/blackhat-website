@@ -86,7 +86,7 @@ export const home = {
   },
 
   clients: {
-    title: 'Brands we’ve worked with',
+    title: 'Brands We’ve Worked With',
     logos: [
       { src: ikea, alt: 'IKEA' },
       { src: ea, alt: 'Electronic Arts' },
