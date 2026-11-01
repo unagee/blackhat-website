@@ -56,7 +56,7 @@ export const home = {
 
   services: {
     eyebrow: 'What we do',
-    title: 'Designed to Own the Category',
+    title: 'Our Expertise',
     items: [
       {
         ...branding,
