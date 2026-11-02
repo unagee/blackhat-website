@@ -8,10 +8,13 @@ type Props = {
   // Shown before the video loads and, for visitors who prefer reduced motion, instead of it.
   poster: Picture
   class?: string
+  // Leave playback to the parent (for clips that take turns); the clip still never plays for
+  // reduced motion.
+  manual?: boolean
 }
 
 // A short, silent, looping clip used as an image. It only plays while on screen.
-const { src, poster, class: className } = Astro.props
+const { src, poster, class: className, manual = false } = Astro.props
 const still = await getImage({ src: poster.src, width: 1280 })
 ---
 
@@ -24,7 +27,8 @@ const still = await getImage({ src: poster.src, width: 1280 })
     class="absolute inset-0 size-full object-cover"
   />
   <video
-    data-loop-video
+    data-loop-video={manual ? undefined : ''}
+    data-manual-video={manual ? '' : undefined}
     class="absolute inset-0 size-full object-cover motion-reduce:hidden"
     poster={still.src}
     muted

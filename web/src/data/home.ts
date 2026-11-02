@@ -3,7 +3,6 @@ import myjAnimation from '@/assets/home/discipline-myj-animation.jpg'
 import wavesCaipirinha from '@/assets/home/discipline-waves.jpg'
 import posterFeaturedEnergend from '@/assets/home/poster-featured-energend.jpg'
 import posterFeaturedWaves from '@/assets/home/poster-featured-waves.jpg'
-import posterCollage from '@/assets/home/poster-portfolio-collage.jpg'
 import posterWorkEnergend from '@/assets/home/poster-work-energend.jpg'
 import posterWorkMyj from '@/assets/home/poster-work-myj.jpg'
 import posterWorkSuricate from '@/assets/home/poster-work-suricate.jpg'
@@ -210,12 +209,8 @@ export const home = {
     ],
   },
 
-  // A collage of the whole portfolio in motion, under the industries section.
+  // Every project as a row of slats near the foot of the page.
   showcase: {
-    video: '/video/home/portfolio-collage.mp4',
-    image: {
-      src: posterCollage,
-      alt: 'Blackhat’s portfolio in motion: dozens of project images gather into one cluster, then glow yellow and white',
-    },
+    title: 'All Projects',
   },
 }
