@@ -2,8 +2,8 @@
 import ArrowIcon from '@/components/ui/ArrowIcon.astro'
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
+import LoopVideo from '@/components/ui/LoopVideo.astro'
 import { home } from '@/data/home'
-import { Image } from 'astro:assets'
 
 const { featured } = home
 const total = featured.items.length
@@ -41,16 +41,15 @@ const position = (index: number) =>
             inert={index > 0}
             class="relative isolate h-full overflow-hidden rounded-lg bg-ink-raised"
           >
-            <Image
-              src={item.image.src}
-              alt={item.image.alt}
-              widths={[640, 960, 1280, 1920]}
-              sizes="(min-width: 1152px) 1152px, 100vw"
-              class="aspect-video w-full object-cover lg:absolute lg:inset-0 lg:-z-10 lg:aspect-auto lg:h-full"
+            <!-- The project's story in motion, on the right; the words sit on the left. -->
+            <LoopVideo
+              src={item.video}
+              poster={item.image}
+              class="aspect-video w-full lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:aspect-auto lg:w-[64%]"
             />
             <div
               aria-hidden="true"
-              class="absolute inset-0 -z-10 hidden bg-linear-to-r from-ink/95 via-ink/70 to-transparent lg:block"
+              class="absolute inset-0 -z-10 hidden bg-linear-to-r from-ink-raised from-35% via-ink-raised/40 via-45% to-transparent to-55% lg:block"
             ></div>
             <div class="p-6 sm:p-10 lg:flex lg:min-h-[38rem] lg:max-w-xl lg:flex-col lg:justify-end lg:p-14">
               <p class="eyebrow text-signal">{featured.eyebrow}</p>

@@ -1,0 +1,60 @@
+---
+import type { Picture } from '@/types'
+import { getImage } from 'astro:assets'
+
+type Props = {
+  // An H.264 .mp4; a VP9 .webm with the same name sits beside it as a fallback.
+  src: string
+  // Shown before the video loads and, for visitors who prefer reduced motion, instead of it.
+  poster: Picture
+  class?: string
+}
+
+// A short, silent, looping clip used as an image. It only plays while on screen.
+const { src, poster, class: className } = Astro.props
+const still = await getImage({ src: poster.src, width: 1280 })
+---
+
+<div class:list={['relative overflow-hidden', className]}>
+  <img
+    src={still.src}
+    alt={poster.alt}
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 size-full object-cover"
+  />
+  <video
+    data-loop-video
+    class="absolute inset-0 size-full object-cover motion-reduce:hidden"
+    poster={still.src}
+    muted
+    loop
+    playsinline
+    preload="none"
+    aria-hidden="true"
+  >
+    <source src={src} type="video/mp4" />
+    <source src={src.replace(/\.mp4$/, '.webm')} type="video/webm" />
+  </video>
+</div>
+
+<script>
+  // Play each clip only while it is in view, and never for reduced motion.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const videos = document.querySelectorAll<HTMLVideoElement>('[data-loop-video]')
+  if (!reduce && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement
+          if (entry.isIntersecting) {
+            video.preload = 'auto'
+            void video.play().catch(() => {})
+          } else video.pause()
+        })
+      },
+      { threshold: 0.2 },
+    )
+    videos.forEach((video) => observer.observe(video))
+  }
+</script>

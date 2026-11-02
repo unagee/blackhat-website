@@ -1,5 +1,10 @@
 ---
-import { expertiseGrid, expertiseShapes, expertiseSizes } from '@/components/ui/expertiseLayout'
+import {
+  expertiseGrid,
+  expertiseOffsets,
+  expertiseShapes,
+  expertiseSizes,
+} from '@/components/ui/expertiseLayout'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import type { Service } from '@/data/services'
@@ -18,7 +23,7 @@ const { eyebrow, offerings } = Astro.props
   <SectionHeader id="offerings-title" eyebrow={eyebrow} title={offerings.title} />
   <ol class={expertiseGrid}>
     {offerings.items.map((item, index) => (
-      <li>
+      <li class={expertiseOffsets[index]}>
         <div class="overflow-hidden rounded-lg bg-ink">
           <Image
             src={item.image.src}

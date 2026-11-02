@@ -2,20 +2,22 @@
 import ArrowIcon from '@/components/ui/ArrowIcon.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
-import { expertiseGrid, expertiseShapes, expertiseSizes } from '@/components/ui/expertiseLayout'
+import { expertiseGrid, expertiseOffsets, expertiseSizes } from '@/components/ui/expertiseLayout'
 import { home } from '@/data/home'
 import { Image } from 'astro:assets'
 
 const { services } = home
+// Homepage shapes: the brand work square, the 3D and strategy renders landscape.
+const shapes = ['aspect-square', 'aspect-video', 'aspect-[16/10]']
 ---
 
 <!-- Three columns of different widths, each image with its own shape: brand widest, strategy
      smallest, so the row reads as a composition rather than a grid. Stacks on phones. -->
 <PageSection id="services" labelledby="services-title">
-  <SectionHeader id="services-title" eyebrow={services.eyebrow} title={services.title} />
+  <SectionHeader id="services-title" title={services.title} />
   <ol class={expertiseGrid}>
     {services.items.map((item, index) => (
-      <li class="group relative flex flex-col">
+      <li class:list={['group relative flex flex-col', expertiseOffsets[index]]}>
         <div class="relative overflow-hidden rounded-lg bg-ink-raised">
           <Image
             src={item.image.src}
@@ -24,7 +26,7 @@ const { services } = home
             sizes={expertiseSizes[index]}
             class:list={[
               'w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none',
-              expertiseShapes[index],
+              shapes[index],
             ]}
           />
         </div>
