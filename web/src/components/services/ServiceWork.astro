@@ -17,7 +17,7 @@ type Props = {
 
 const { eyebrow, title, projects, allLink } = Astro.props
 // Projects featured on the homepage use the same image here, so they look the same across the site.
-const homeImage = (slug: string) => home.work.projects.find((item) => item.slug === slug)?.image
+const homeImage = (slug: string) => home.work.projects.find((item) => item.slug === slug)?.still
 ---
 
 <PageSection id="work" labelledby="work-title">

@@ -1,19 +1,114 @@
 ---
 import { home } from '@/data/home'
-import { Image } from 'astro:assets'
+import { projectHref, projects } from '@/data/projects'
+import { getImage } from 'astro:assets'
 
 const { showcase } = home
+// Every project as a tall slat; the hovered (or touched) one opens to show its thumbnail.
+const slats = await Promise.all(
+  projects.map(async (project) => {
+    const picture = project.cardImage ?? project.image
+    const image = await getImage({ src: picture.src, width: 720, format: 'webp' })
+    return {
+      href: projectHref(project.slug),
+      client: project.client,
+      sector: project.sector,
+      image,
+      alt: picture.alt,
+    }
+  }),
+)
 ---
 
-<figure class="relative bg-ink">
-  <Image
-    src={showcase.image.src}
-    alt={showcase.image.alt}
-    widths={[640, 960, 1280, 1920, 2400]}
-    sizes="100vw"
-    class="h-[60svh] min-h-80 w-full object-cover sm:h-[80svh]"
-  />
-  <figcaption class="mx-auto w-full max-w-6xl px-4 py-5 text-sm text-ash sm:px-6 lg:px-8">
-    {showcase.caption}
-  </figcaption>
-</figure>
+<!-- The whole portfolio as a row of angled slats, like spines on a shelf. Moving the cursor or a
+     finger along the row opens the slat underneath; tapping or clicking an open slat goes to its
+     project. Keyboard focus opens slats too. -->
+<section
+  aria-labelledby="showcase-title"
+  class="overflow-hidden border-t border-hairline bg-ink py-16 sm:py-24"
+>
+  <h2 id="showcase-title" class="sr-only">
+    {showcase.title}
+  </h2>
+  <ul
+    data-shelf
+    class="mx-auto flex h-[26rem] max-w-[90rem] items-stretch gap-1.5 overflow-x-auto px-4 [scrollbar-width:none] sm:h-[34rem] sm:gap-2 sm:overflow-visible sm:px-6 lg:px-8"
+  >
+    {slats.map((slat, index) => (
+      <li
+        data-slat
+        data-active={index === 0 ? '' : undefined}
+        class="group/slat relative w-9 flex-none [perspective:900px] transition-[width,flex-grow] duration-500 ease-out data-active:w-64 motion-reduce:transition-none sm:w-auto sm:min-w-0 sm:flex-[1] sm:data-active:w-auto sm:data-active:flex-[9]"
+      >
+        <a
+          href={slat.href}
+          class="relative block h-full overflow-hidden rounded-md bg-ink-raised transition-transform duration-500 ease-out [transform:rotateY(-28deg)] group-data-active/slat:[transform:none] focus-visible:outline-offset-4 motion-reduce:transition-none"
+        >
+          <img
+            src={slat.image.src}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 size-full object-cover opacity-70 transition-opacity duration-500 group-data-active/slat:opacity-100"
+          />
+          <span
+            aria-hidden="true"
+            class="absolute inset-0 bg-linear-to-t from-ink/85 via-ink/10 to-transparent opacity-0 transition-opacity duration-500 group-data-active/slat:opacity-100"
+          ></span>
+          <span class="absolute inset-x-5 bottom-5 translate-y-2 opacity-0 transition duration-500 group-data-active/slat:translate-y-0 group-data-active/slat:opacity-100 sm:inset-x-6 sm:bottom-6">
+            <span class="block text-xs tracking-widest text-ash uppercase">{slat.sector}</span>
+            <span class="mt-1 block text-xl whitespace-nowrap text-bone sm:text-2xl">
+              {slat.client}
+            </span>
+          </span>
+          <span class="sr-only">{slat.alt}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<script>
+  const shelf = document.querySelector<HTMLElement>('[data-shelf]')
+  const slats = [...(shelf?.querySelectorAll<HTMLElement>('[data-slat]') ?? [])]
+
+  const open = (slat: HTMLElement | undefined) => {
+    if (!slat || slat.hasAttribute('data-active')) return
+    slats.forEach((other) => other.toggleAttribute('data-active', other === slat))
+  }
+  // The slat under a point, so a finger sliding along the row opens each one it crosses.
+  const slatAt = (x: number, y: number) =>
+    slats.find((slat) => slat.contains(document.elementFromPoint(x, y)))
+
+  // Mouse and pen open slats as they move; touch is handled by touchmove and taps below.
+  shelf?.addEventListener('pointermove', (event) => {
+    if (event.pointerType !== 'touch') open(slatAt(event.clientX, event.clientY))
+  })
+  shelf?.addEventListener('focusin', (event) =>
+    open(slats.find((slat) => slat.contains(event.target as Node))),
+  )
+  shelf?.addEventListener(
+    'touchmove',
+    (event) => {
+      const touch = event.touches[0]
+      if (touch) open(slatAt(touch.clientX, touch.clientY))
+    },
+    { passive: true },
+  )
+  // On touch, the first tap on a closed slat opens it; a tap on the open one follows the link.
+  // Whether the slat was open is noted when the finger lands, before anything else moves it.
+  let wasOpen = true
+  shelf?.addEventListener('pointerdown', (event) => {
+    const slat = slats.find((item) => item.contains(event.target as Node))
+    wasOpen = event.pointerType !== 'touch' || Boolean(slat?.hasAttribute('data-active'))
+  })
+  slats.forEach((slat) => {
+    slat.querySelector('a')?.addEventListener('click', (event) => {
+      if (!wasOpen || !slat.hasAttribute('data-active')) {
+        wasOpen = true
+        event.preventDefault()
+        open(slat)
+      }
+    })
+  })
+</script>

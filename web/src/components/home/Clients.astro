@@ -1,33 +1,21 @@
 ---
 import Container from '@/components/ui/Container.astro'
 import { home } from '@/data/home'
-import { site } from '@/data/site'
 import { Image } from 'astro:assets'
 
 const { clients } = home
 ---
 
 <section aria-labelledby="clients-title" class="border-t border-hairline bg-ink py-16 sm:py-20">
-  <Container class="flex items-center justify-between gap-6">
+  <Container>
     <h2 id="clients-title" class="eyebrow text-ash">
       {clients.title}
     </h2>
-    <button
-      type="button"
-      data-marquee-toggle
-      data-label-pause={site.labels.pauseMotion}
-      data-label-play={site.labels.playMotion}
-      class="shrink-0 rounded-full border border-hairline px-4 py-1.5 whitespace-nowrap text-sm text-ash hover:border-bone hover:text-bone motion-reduce:hidden"
-    >
-      {site.labels.pauseMotion}
-    </button>
   </Container>
 
-  <div class="mt-10 overflow-hidden motion-reduce:overflow-visible">
-    <div
-      data-marquee
-      class="flex w-max animate-marquee motion-reduce:w-auto motion-reduce:animate-none"
-    >
+  <!-- The row pauses while hovered and stays still for visitors who prefer reduced motion. -->
+  <div class="group mt-10 overflow-hidden motion-reduce:overflow-visible">
+    <div class="flex w-max animate-marquee group-hover:[animation-play-state:paused] motion-reduce:w-auto motion-reduce:animate-none">
       {[false, true].map((duplicate) => (
         <ul
           class:list={[
@@ -53,15 +41,3 @@ const { clients } = home
     </div>
   </div>
 </section>
-
-<script>
-  const toggle = document.querySelector<HTMLButtonElement>('[data-marquee-toggle]')
-  const track = document.querySelector<HTMLElement>('[data-marquee]')
-
-  toggle?.addEventListener('click', () => {
-    const paused = toggle.dataset.paused !== 'true'
-    toggle.dataset.paused = String(paused)
-    toggle.textContent = (paused ? toggle.dataset.labelPlay : toggle.dataset.labelPause) ?? ''
-    if (track) track.style.animationPlayState = paused ? 'paused' : 'running'
-  })
-</script>

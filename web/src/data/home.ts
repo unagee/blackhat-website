@@ -1,11 +1,15 @@
-import fleetDiagram from '@/assets/home/discipline-fleet-diagram.jpg'
+import hyperloopRender from '@/assets/home/discipline-hyperloop.jpg'
 import myjAnimation from '@/assets/home/discipline-myj-animation.jpg'
-import wavesGrid from '@/assets/home/discipline-waves.jpg'
-import wavesFeatured from '@/assets/home/featured-waves.jpg'
+import wavesCaipirinha from '@/assets/home/discipline-waves.jpg'
+import posterFeaturedEnergend from '@/assets/home/poster-featured-energend.jpg'
+import posterFeaturedWaves from '@/assets/home/poster-featured-waves.jpg'
+import posterWorkEnergend from '@/assets/home/poster-work-energend.jpg'
+import posterWorkMyj from '@/assets/home/poster-work-myj.jpg'
+import posterWorkSuricate from '@/assets/home/poster-work-suricate.jpg'
 import reelPoster from '@/assets/home/reel-poster.jpg'
-import workEnergend from '@/assets/home/work-energend.jpg'
-import workMyj from '@/assets/home/work-myj.jpg'
-import workSuricate from '@/assets/home/work-suricate.jpg'
+import stillEnergend from '@/assets/home/work-energend.jpg'
+import stillMyj from '@/assets/home/work-myj.jpg'
+import stillSuricate from '@/assets/home/work-suricate.jpg'
 import citi from '@/assets/logos/partners/citi-logo.png'
 import ea from '@/assets/logos/partners/ea-logo.png'
 import ikea from '@/assets/logos/partners/ikea-logo.png'
@@ -13,8 +17,6 @@ import niri from '@/assets/logos/partners/niri-logo.png'
 import tcdc from '@/assets/logos/partners/tcdc-logo.png'
 import twh from '@/assets/logos/partners/twh-logo.png'
 import vespa from '@/assets/logos/partners/vespa-logo.png'
-import cooklaneWorld from '@/assets/work/cooklane/cooklane-3d-world-mono.jpg'
-import energendShowroom from '@/assets/work/energend/energend-showroom-interior-dome.jpg'
 import { site } from '@/data/site'
 import type { HeroMedia, Link } from '@/types'
 
@@ -55,15 +57,14 @@ export const home = {
   },
 
   services: {
-    eyebrow: 'What we do',
     title: 'Our Expertise',
     items: [
       {
         ...branding,
         body: 'We turn your values and goals into a logo, colours, a tone of voice and graphics that carry your story to every touchpoint.',
         image: {
-          src: wavesGrid,
-          alt: 'Waves social media grid: cocktail photography, cut-out people and bold headlines designed by Blackhat',
+          src: wavesCaipirinha,
+          alt: 'Waves Clarity Caipirinha can wrapped in a dense hand-drawn illustration, beside a woman sipping the cocktail at her desk',
         },
       },
       {
@@ -78,8 +79,8 @@ export const home = {
         ...strategy,
         body: 'Customer journeys, business strategy and interactive training decks that turn a complicated business into a plan your teams can follow.',
         image: {
-          src: fleetDiagram,
-          alt: 'Diagram from Blackhat’s Fleet onboarding deck showing how Super Admins, Admins, Managers and Technicians relate',
+          src: hyperloopRender,
+          alt: '3D cutaway render of the Hyperloop TT tube and passenger pods, built by Blackhat',
         },
       },
     ],
@@ -119,9 +120,10 @@ export const home = {
         body: 'We created Energend’s positioning, story and identity, then rendered its products, showroom and factory in 3D, so investors, partners and customers can see technology that’s hard to picture.',
         tags: ['Brand & Visual Identity', '3D Animation'],
         link: { label: 'See the Project', href: '/work/energend' } satisfies Link,
+        video: '/video/home/featured-energend.mp4',
         image: {
-          src: energendShowroom,
-          alt: '3D render of the Energend showroom, with a curved screen showing a satellite above Earth',
+          src: posterFeaturedEnergend,
+          alt: 'Energend work in motion: the showroom, the satellite, the battery container, the car and the factory, all rendered in 3D by Blackhat',
         },
       },
       {
@@ -130,40 +132,58 @@ export const home = {
         body: 'We gave Waves a hand-drawn logo, a teal, vanilla and lime palette, cut-out people and cocktails, and a warm photography direction, carried across social media and a range of cans.',
         tags: ['Brand & Visual Identity'],
         link: { label: 'See the Project', href: '/work/waves' } satisfies Link,
+        video: '/video/home/featured-waves.mp4',
         image: {
-          src: wavesFeatured,
-          alt: 'Waves brand collage: cut-out cocktails, a woman sipping a martini, Negroni and Martini cans and the Waves logo',
+          src: posterFeaturedWaves,
+          alt: 'Waves work in motion: the Caipirinha can, cut-out cocktails, the can range and social posts',
         },
       },
     ],
   },
 
-  // The Selected work grid. Images here are for the homepage only; the Work page keeps each
+  // The Selected work grid: short looping clips for the homepage only; the Work page keeps each
   // project's own card image.
   work: {
-    eyebrow: 'Selected work',
-    title: 'Recent projects across brand, 3D and strategy',
+    title: 'Recent Projects Across Brand, 3D and Strategy',
     allLink: { label: 'See All Work', href: '/work' } satisfies Link,
     projects: [
       {
         slug: 'suricate-capital',
-        image: {
-          src: workSuricate,
+        // Still image for the service pages' work grids.
+        still: {
+          src: stillSuricate,
           alt: 'Suricate Capital billboard: “Invest right, for what matters most.” beside a woman at breakfast',
+        },
+        video: '/video/home/work-suricate.mp4',
+        image: {
+          src: posterWorkSuricate,
+          alt: 'Suricate Capital in motion: the billboard, the app, the campaign and the logo',
         },
       },
       {
         slug: 'myj',
-        image: {
-          src: workMyj,
+        // Still image for the service pages' work grids.
+        still: {
+          src: stillMyj,
           alt: 'MYJ brand guide applications: business card, app icon, event screen, ID card and website',
+        },
+        video: '/video/home/work-myj.mp4',
+        image: {
+          src: posterWorkMyj,
+          alt: 'MYJ in motion: the 3D investment ring, market charts, the brand guide and the colour palette',
         },
       },
       {
         slug: 'energend',
-        image: {
-          src: workEnergend,
+        // Still image for the service pages' work grids.
+        still: {
+          src: stillEnergend,
           alt: 'Energend satellite with orange solar panels above the lights of Earth at night',
+        },
+        video: '/video/home/work-energend.mp4',
+        image: {
+          src: posterWorkEnergend,
+          alt: 'Energend in motion: the satellite, the product wall, the factory and the showroom',
         },
       },
     ],
@@ -189,11 +209,8 @@ export const home = {
     ],
   },
 
+  // Every project as a row of slats near the foot of the page.
   showcase: {
-    image: {
-      src: cooklaneWorld,
-      alt: 'Isometric 3D city in white and grey, with the Cooklane store and a delivery truck on the streets',
-    },
-    caption: 'Cooklane: an isometric 3D world built to explain cloud retail at a glance.',
+    title: 'All Projects',
   },
 }
