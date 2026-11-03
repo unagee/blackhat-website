@@ -39,19 +39,15 @@ const position = (index: number) =>
             aria-roledescription="slide"
             aria-label={position(index)}
             inert={index > 0}
-            class="relative isolate h-full overflow-hidden rounded-lg bg-ink-raised"
+            class="relative isolate h-full bg-ink"
           >
-            <!-- The project's story in motion, on the right; the words sit on the left. -->
+            <!-- The project's story in motion, straight on the page's black; the words sit on the left. -->
             <LoopVideo
               src={item.video}
               poster={item.image}
-              class="aspect-video w-full lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:aspect-auto lg:w-[64%]"
+              class="aspect-video w-full lg:absolute lg:top-1/2 lg:right-0 lg:-z-10 lg:w-[64%] lg:-translate-y-1/2"
             />
-            <div
-              aria-hidden="true"
-              class="absolute inset-0 -z-10 hidden bg-linear-to-r from-ink-raised from-35% via-ink-raised/40 via-45% to-transparent to-55% lg:block"
-            ></div>
-            <div class="p-6 sm:p-10 lg:flex lg:min-h-[38rem] lg:max-w-xl lg:flex-col lg:justify-end lg:p-14">
+            <div class="pt-8 lg:flex lg:min-h-[34rem] lg:max-w-[30%] lg:flex-col lg:justify-center lg:pt-0">
               <p class="eyebrow text-signal">{featured.eyebrow}</p>
               <p class="mt-6 text-ash">{item.client}</p>
               <h2 class="text-display-md mt-2">{item.title}</h2>

@@ -158,14 +158,18 @@ export const projects: Project[] = [
       },
     },
     image: {
-      src: img('myj/myj-office-design-render-entrance.jpg'),
-      alt: '3D render of the MYJ office entrance facade at dusk',
+      src: img('myj/myj-office-design-3d-lobby.jpg'),
+      alt: 'MYJ office lobby with a green stone reception desk, rendered in 3D',
     },
     cardImage: {
-      src: img('myj/myj-office-design-3d-data-center.jpg'),
-      alt: 'MYJ data centre corridor, rendered in 3D',
+      src: img('cards/myj-card.jpg'),
+      alt: 'MYJ’s 3D investment ring, split into stocks, bonds, currency, real estate and ETFs',
     },
     gallery: [
+      {
+        src: img('myj/myj-office-design-render-entrance.jpg'),
+        alt: '3D render of the MYJ office entrance facade at dusk',
+      },
       {
         src: img('myj/myj-brand-collage.jpg'),
         alt: 'MYJ brand applications: business card, app icon, event screen, ID card and website',
@@ -287,14 +291,18 @@ export const projects: Project[] = [
     ],
     services: ['brand-visual-identity'],
     image: {
-      src: img('waves/waves-cans.jpg'),
-      alt: 'Six Waves cocktail cans in pink, orange, yellow and green',
+      src: img('waves/waves-caipirinha-slide.jpg'),
+      alt: 'Waves Clarity Caipirinha can wrapped in a dense hand-drawn illustration, beside a woman sipping the cocktail',
     },
     cardImage: {
-      src: img('waves/waves-packaging-card.jpg'),
-      alt: 'Four Waves cocktail cans: Paloma, Negroni, French 75 and Dirty Martini',
+      src: img('cards/waves-card.jpg'),
+      alt: 'Waves Peach Paloma and Mangosteen Mai Thai cans among illustrated fruit, on teal',
     },
     gallery: [
+      {
+        src: img('waves/waves-cans.jpg'),
+        alt: 'Six Waves cocktail cans: Paloma, Negroni, Old Fashioned, French 75, Dirty Martini and Caipirinha',
+      },
       {
         src: img('waves/waves-cocktails.jpg'),
         alt: 'Waves cut-out cocktail graphics on dark teal',
@@ -513,10 +521,18 @@ export const projects: Project[] = [
     ],
     services: ['brand-visual-identity'],
     image: {
-      src: img('tcdc/tcdc-creative-agency-business-card.jpg'),
-      alt: 'TCDC business cards with the studio’s geometric pattern',
+      src: img('tcdc/tcdc-creative-agency-wall-vinyl-mockup.jpg'),
+      alt: 'TCDC logo and name on the glass wall of a studio office',
+    },
+    cardImage: {
+      src: img('cards/tcdc-card.jpg'),
+      alt: 'TCDC tote bag with the logo and geometric pattern, carried down concrete steps',
     },
     gallery: [
+      {
+        src: img('tcdc/tcdc-creative-agency-business-card.jpg'),
+        alt: 'TCDC business cards on a concrete block: the geometric pattern and the logo side',
+      },
       {
         src: img('tcdc/tcdc-creative-agency-logo-design.jpg'),
         alt: 'TCDC logo on a dark studio wall',
@@ -597,10 +613,18 @@ export const projects: Project[] = [
     ],
     services: ['brand-visual-identity'],
     image: {
-      src: img('vespa/vespa-tet-nguyen-dan-packaging-design-round.png'),
-      alt: 'Round Vespa Tết gift boxes with a festive illustrated pattern',
+      src: img('vespa/vespa-tet-nguyen-dan-packaging-design-rectangular.png'),
+      alt: 'Vespa Tết packaging boxes in yellow and red, scattered across a grey surface',
+    },
+    cardImage: {
+      src: img('cards/vespa-card.jpg'),
+      alt: 'Vespa Tết packaging: yellow boxes with a red floral Vespa illustration',
     },
     gallery: [
+      {
+        src: img('vespa/vespa-tet-nguyen-dan-packaging-design-round.png'),
+        alt: 'Round Vespa Tết packaging tins in yellow with the red floral illustration',
+      },
       {
         src: img('vespa/vespa-tet-nguyen-dan-packaging-design-concept.png'),
         alt: 'Vespa Tết Nguyên Đán packaging concept board',
@@ -628,10 +652,18 @@ export const projects: Project[] = [
     ],
     services: ['3d-animation-motion-graphics'],
     image: {
-      src: img('cooklane/cooklane-3d-restaurant-and-owner.jpg'),
-      alt: '3D render of a Cooklane restaurant owner character outside an isometric restaurant',
+      src: img('cooklane/cooklane-3d-world-building.jpg'),
+      alt: 'Isometric 3D town by Blackhat for Cooklane: streets, apartment blocks, a restaurant and a delivery truck',
+    },
+    cardImage: {
+      src: img('cards/cooklane-card.jpg'),
+      alt: 'Cooklane’s isometric 3D town, centred on the restaurant and a delivery truck',
     },
     gallery: [
+      {
+        src: img('cooklane/cooklane-3d-restaurant-and-owner.jpg'),
+        alt: 'Cooklane’s 3D restaurant with its owner character standing by the Open sign',
+      },
       {
         src: img('cooklane/cooklane-3d-world-building.jpg'),
         alt: 'Isometric 3D town with streets, restaurants and a delivery van',
@@ -707,6 +739,10 @@ export const projects: Project[] = [
     image: {
       src: img('hyperloop/hyperloop-tt-realistic-render-of-highway.jpg'),
       alt: '3D cutaway render of the Hyperloop TT tube and passenger pods on an elevated pylon',
+    },
+    cardImage: {
+      src: img('cards/hyperloop-card.jpg'),
+      alt: 'Hyperloop TT cutaway render: a passenger pod inside the elevated tube',
     },
     gallery: [
       {
