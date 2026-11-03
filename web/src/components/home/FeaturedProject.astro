@@ -39,19 +39,19 @@ const position = (index: number) =>
             aria-roledescription="slide"
             aria-label={position(index)}
             inert={index > 0}
-            class="relative isolate h-full overflow-hidden rounded-lg bg-ink-raised"
+            class="relative isolate h-full overflow-hidden rounded-lg border border-hairline bg-ink"
           >
             <!-- The project's story in motion, on the right; the words sit on the left. -->
             <LoopVideo
               src={item.video}
               poster={item.image}
-              class="aspect-video w-full lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:aspect-auto lg:w-[64%]"
+              class="aspect-video w-full lg:absolute lg:top-1/2 lg:right-0 lg:-z-10 lg:w-[63%] lg:-translate-y-1/2"
             />
             <div
               aria-hidden="true"
-              class="absolute inset-0 -z-10 hidden bg-linear-to-r from-ink-raised from-35% via-ink-raised/40 via-45% to-transparent to-55% lg:block"
+              class="absolute inset-0 -z-10 hidden bg-linear-to-r from-ink from-35% via-ink/40 via-45% to-transparent to-55% lg:block"
             ></div>
-            <div class="p-6 sm:p-10 lg:flex lg:min-h-[38rem] lg:max-w-xl lg:flex-col lg:justify-end lg:p-14">
+            <div class="p-6 sm:p-10 lg:flex lg:min-h-[38rem] lg:max-w-[29rem] lg:flex-col lg:justify-end lg:p-14 lg:pr-0">
               <p class="eyebrow text-signal">{featured.eyebrow}</p>
               <p class="mt-6 text-ash">{item.client}</p>
               <h2 class="text-display-md mt-2">{item.title}</h2>
