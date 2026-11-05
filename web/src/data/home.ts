@@ -49,7 +49,7 @@ export const home = {
   },
 
   hero: {
-    title: 'We turn complex ideas into *brands* people trust.',
+    title: 'We take the complicated stuff and make it *impossible* to ignore.',
     primary: { label: 'Start a Project', href: '/contact' } satisfies Link,
     secondary: { label: 'See Our Work', href: '/work' } satisfies Link,
     // Widened so the hero handles both the still and the reel.
@@ -100,8 +100,8 @@ export const home = {
   },
 
   prompt: {
-    title: 'What do you need people to understand?',
-    body: 'A new brand, a product nobody has seen yet, a process that loses people halfway. Tell us the problem and we’ll show you how we’d solve it.',
+    title: 'What are people still not getting?',
+    body: 'A brand nobody remembers. A product nobody’s seen. A process that loses people halfway. Bring us the mess.',
     link: { label: 'Reach Out', href: '/contact' } satisfies Link,
   },
 
