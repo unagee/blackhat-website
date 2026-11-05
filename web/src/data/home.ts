@@ -1,4 +1,4 @@
-import hyperloopRender from '@/assets/home/discipline-hyperloop.jpg'
+import hyperloopRender from '@/assets/home/discipline-hyperloop-desert.jpg'
 import myjAnimation from '@/assets/home/discipline-myj-animation.jpg'
 import wavesCaipirinha from '@/assets/home/discipline-waves.jpg'
 import posterFeaturedEnergend from '@/assets/home/poster-featured-energend.jpg'
@@ -77,7 +77,7 @@ export const home = {
         body: 'Customer journeys, business strategy and interactive training decks that turn a complicated business into a plan your teams can follow.',
         image: {
           src: hyperloopRender,
-          alt: '3D cutaway render of the Hyperloop TT tube and passenger pods, built by Blackhat',
+          alt: '3D render of the Hyperloop TT tube on pylons crossing desert dunes at sunset',
         },
       },
     ],
