@@ -3,6 +3,16 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
+  /* Corner radii: a quarter of Tailwind's defaults, for tighter, sharper corners everywhere.
+     Pills and circles (rounded-full) are unchanged. */
+  --radius-xs: 0.03125rem;
+  --radius-sm: 0.0625rem;
+  --radius-md: 0.09375rem;
+  --radius-lg: 0.125rem;
+  --radius-xl: 0.1875rem;
+  --radius-2xl: 0.25rem;
+  --radius-3xl: 0.375rem;
+  --radius-4xl: 0.5rem;
   /* Work Sans everywhere: semibold (600) for main titles, medium (500) at most elsewhere.
      Source Serif italic only for the few words marked *like this* in a heading. */
   --font-sans: 'Work Sans Variable', system-ui, sans-serif;
