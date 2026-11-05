@@ -277,7 +277,7 @@ export const projects: Project[] = [
     slug: 'waves',
     client: 'Waves',
     sector: 'Beverages',
-    title: 'A canned cocktail brand built for the morning after',
+    title: 'Zero-alcohol cocktails that still know how to party',
     meta: {
       title: 'Waves: Canned Cocktail Brand Identity | Blackhat',
       description:

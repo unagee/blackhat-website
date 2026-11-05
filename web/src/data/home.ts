@@ -3,9 +3,6 @@ import myjAnimation from '@/assets/home/discipline-myj-animation.jpg'
 import wavesCaipirinha from '@/assets/home/discipline-waves.jpg'
 import posterFeaturedEnergend from '@/assets/home/poster-featured-energend.jpg'
 import posterFeaturedWaves from '@/assets/home/poster-featured-waves.jpg'
-import posterWorkEnergend from '@/assets/home/poster-work-energend.jpg'
-import posterWorkMyj from '@/assets/home/poster-work-myj.jpg'
-import posterWorkSuricate from '@/assets/home/poster-work-suricate.jpg'
 import reelPoster from '@/assets/home/reel-poster.jpg'
 import stillEnergend from '@/assets/home/work-energend.jpg'
 import stillMyj from '@/assets/home/work-myj.jpg'
@@ -128,7 +125,7 @@ export const home = {
       },
       {
         client: 'Waves',
-        title: 'A canned cocktail brand built for the morning after',
+        title: 'Zero-alcohol cocktails that still know how to party',
         body: 'We gave Waves a hand-drawn logo, a teal, vanilla and lime palette, cut-out people and cocktails, and a warm photography direction, carried across social media and a range of cans.',
         tags: ['Brand & Visual Identity'],
         link: { label: 'See the Project', href: '/work/waves' } satisfies Link,
@@ -141,49 +138,28 @@ export const home = {
     ],
   },
 
-  // The Selected work grid: short looping clips for the homepage only; the Work page keeps each
-  // project's own card image.
+  // Images the service pages' work grids use for these projects, so they match across the site.
   work: {
-    title: 'Recent Projects Across Brand, 3D and Strategy',
-    allLink: { label: 'See All Work', href: '/work' } satisfies Link,
     projects: [
       {
         slug: 'suricate-capital',
-        // Still image for the service pages' work grids.
         still: {
           src: stillSuricate,
           alt: 'Suricate Capital billboard: “Invest right, for what matters most.” beside a woman at breakfast',
         },
-        video: '/video/home/work-suricate.mp4',
-        image: {
-          src: posterWorkSuricate,
-          alt: 'Suricate Capital in motion: the billboard, the app, the campaign and the logo',
-        },
       },
       {
         slug: 'myj',
-        // Still image for the service pages' work grids.
         still: {
           src: stillMyj,
           alt: 'MYJ brand guide applications: business card, app icon, event screen, ID card and website',
         },
-        video: '/video/home/work-myj.mp4',
-        image: {
-          src: posterWorkMyj,
-          alt: 'MYJ in motion: the 3D investment ring, market charts, the brand guide and the colour palette',
-        },
       },
       {
         slug: 'energend',
-        // Still image for the service pages' work grids.
         still: {
           src: stillEnergend,
           alt: 'Energend satellite with orange solar panels above the lights of Earth at night',
-        },
-        video: '/video/home/work-energend.mp4',
-        image: {
-          src: posterWorkEnergend,
-          alt: 'Energend in motion: the satellite, the product wall, the factory and the showroom',
         },
       },
     ],
