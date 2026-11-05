@@ -1,0 +1,55 @@
+---
+import ArrowIcon from '@/components/ui/ArrowIcon.astro'
+import ContactClose from '@/components/ui/ContactClose.astro'
+import PageHero from '@/components/ui/PageHero.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import { industries, industriesPage, industryHref } from '@/data/industries'
+import Layout from '@/layout/Layout.astro'
+import { breadcrumbSchema } from '@/lib/schema'
+
+const meta = { ...industriesPage.meta, noIndex: !industriesPage.ready }
+const schema = [
+  breadcrumbSchema([
+    { label: 'Home', href: '/' },
+    { label: industriesPage.eyebrow, href: '/industries' },
+  ]),
+]
+---
+
+<Layout meta={meta} schema={schema}>
+  <PageHero
+    eyebrow={industriesPage.eyebrow}
+    title={industriesPage.title}
+    lead={industriesPage.lead}
+  />
+  <!-- Every industry as a large row, like the service list: name, one line, arrow. -->
+  <PageSection id="industries" labelledby="industries-title">
+    <h2 id="industries-title" class="sr-only">
+      {industriesPage.eyebrow}
+    </h2>
+    <ul class="border-t border-hairline">
+      {industries.map((industry) => (
+        <li class="group relative border-b border-hairline">
+          <div class="grid gap-4 py-8 md:grid-cols-[1fr_1fr_auto] md:items-center md:gap-10">
+            <h3 class="text-display-md">
+              <a
+                href={industryHref(industry.slug)}
+                class="after:absolute after:inset-0 group-hover:text-signal"
+              >
+                {industry.name}
+              </a>
+            </h3>
+            <p class="text-ash">{industry.lead}</p>
+            <span
+              aria-hidden="true"
+              class="grid size-10 place-items-center rounded-full border border-bone/40 transition-colors group-hover:border-signal group-hover:bg-signal group-hover:text-on-signal"
+            >
+              <ArrowIcon />
+            </span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </PageSection>
+  <ContactClose />
+</Layout>

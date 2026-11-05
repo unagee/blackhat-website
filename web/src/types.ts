@@ -29,7 +29,15 @@ export type NavMenu = {
   footerLink: Link
 }
 
-export type NavItem = Link | NavMenu
+// Two-pane menu: a list of groups on the left; the hovered or focused group's items show on the right.
+export type NavPanes = {
+  label: string
+  hint: string
+  groups: (Link & { lead: string; items: { title: string; body: string }[] })[]
+  footerLink: Link
+}
+
+export type NavItem = Link | NavMenu | NavPanes
 
 // Section grounds: dark (default), slightly raised dark, white, or brand yellow.
 // Supergraphic shapes: see ui/Supergraphic.astro.

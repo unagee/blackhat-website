@@ -32,8 +32,8 @@ CI (`.github/workflows/ci.yml`) runs Format, Lint, Type Check and Build on every
 
 ## Structure
 
-- `web/src/pages/`: routes (`index.astro`, `what-we-do/`, `work/`, `contact.astro`, `404.astro`, `sitemap.xml.ts`, `robots.txt.ts`). Add new pages to the list in `sitemap.xml.ts`.
-- `web/src/data/`: all page copy (`home.ts`, `services.ts`, `projects.ts`, `work.ts`, `contact.ts`, `site.ts` for navigation and shared labels). `projects.ts` drives the Work page, project pages, service page work grids and the homepage Selected work.
+- `web/src/pages/`: routes (`index.astro`, `what-we-do/`, `industries/`, `work/`, `contact.astro`, `404.astro`, `sitemap.xml.ts`, `robots.txt.ts`). Add new pages to the list in `sitemap.xml.ts`.
+- `web/src/data/`: all page copy (`home.ts`, `services.ts`, `projects.ts`, `work.ts`, `contact.ts`, `industries.ts` for the Industries menu and pages, `site.ts` for navigation and shared labels). `projects.ts` drives the Work page, project pages, service page work grids and the homepage Selected work.
 - `web/src/config.ts`: site name, legal name, contact email, address, social links.
 - `web/src/assets/`: wordmark, client logos, and project images grouped by project.
 - `web/src/layout/`: `Layout.astro`, `Header.astro` (with the "What we do" menu), `Footer.astro`, `SEOMetadata.astro`, `StructuredData.astro` (Organization + LocalBusiness JSON-LD).
