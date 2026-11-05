@@ -741,8 +741,8 @@ export const projects: Project[] = [
       alt: '3D cutaway render of the Hyperloop TT tube and passenger pods on an elevated pylon',
     },
     cardImage: {
-      src: img('cards/hyperloop-card.jpg'),
-      alt: 'Hyperloop TT cutaway render: a passenger pod inside the elevated tube',
+      src: img('cards/hyperloop-desert-card.jpg'),
+      alt: 'Hyperloop TT render: the elevated tube crossing desert dunes at sunset',
     },
     gallery: [
       {
