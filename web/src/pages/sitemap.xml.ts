@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro'
 import { WEBSITE_URL } from 'astro:env/client'
 
+import { industries, industriesPage, industryHref } from '@/data/industries'
 import { projects } from '@/data/projects'
 import { services } from '@/data/services'
 
@@ -9,6 +10,10 @@ const paths = [
   '/',
   '/what-we-do',
   ...services.map((service) => `/what-we-do/${service.slug}`),
+  // Industry pages join the sitemap once their copy is signed off (industriesPage.ready).
+  ...(industriesPage.ready
+    ? ['/industries', ...industries.map((industry) => industryHref(industry.slug))]
+    : []),
   '/work',
   ...projects.map((project) => `/work/${project.slug}`),
   '/contact',

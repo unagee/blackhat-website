@@ -1,4 +1,5 @@
 import type { Link, NavItem } from '@/types'
+import { industries, industriesPage, industryHref } from './industries'
 
 const services: Link[] = [
   { label: 'Brand & Visual Identity', href: '/what-we-do/brand-visual-identity' },
@@ -11,16 +12,19 @@ const nav: NavItem[] = [
     label: 'What We Do',
     columns: [
       { title: 'Services', links: [{ label: 'Overview', href: '/what-we-do' }, ...services] },
-      {
-        title: 'Industries',
-        links: [
-          { label: 'Financial Institutions', href: '/work' },
-          { label: 'Healthcare', href: '/work' },
-          { label: 'Luxury', href: '/work' },
-        ],
-      },
     ],
     footerLink: { label: 'All Services', href: '/what-we-do' },
+  },
+  {
+    label: industriesPage.menuLabel,
+    hint: industriesPage.menuHint,
+    groups: industries.map((industry) => ({
+      label: industry.name,
+      href: industryHref(industry.slug),
+      lead: industry.lead,
+      items: industry.offerings.map(({ title, body }) => ({ title, body })),
+    })),
+    footerLink: industriesPage.allLink,
   },
   { label: 'Work', href: '/work' },
 ]
@@ -45,6 +49,7 @@ export const site = {
     title: 'Keep Exploring',
     links: [
       { label: 'What We Do', href: '/what-we-do' },
+      { label: 'Industries', href: '/industries' },
       { label: 'Work', href: '/work' },
       { label: 'Contact', href: '/contact' },
     ] satisfies Link[],

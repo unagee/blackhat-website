@@ -1,0 +1,72 @@
+---
+import ServiceWork from '@/components/services/ServiceWork.astro'
+import ContactClose from '@/components/ui/ContactClose.astro'
+import PageHero from '@/components/ui/PageHero.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { industries, industriesPage, industryHref, type Industry } from '@/data/industries'
+import { projectBySlug } from '@/data/projects'
+import { serviceHref, services } from '@/data/services'
+import Layout from '@/layout/Layout.astro'
+import { breadcrumbSchema } from '@/lib/schema'
+
+export function getStaticPaths() {
+  return industries.map((industry) => ({ params: { slug: industry.slug }, props: { industry } }))
+}
+
+type Props = {
+  industry: Industry
+}
+
+// One template for every industry: hero, what we do in this industry, the work, contact.
+const { industry } = Astro.props
+const meta = { ...industry.meta, noIndex: !industriesPage.ready }
+const parent = industriesPage.allLink
+const schema = [
+  breadcrumbSchema([
+    { label: 'Home', href: '/' },
+    { label: industriesPage.eyebrow, href: parent.href },
+    { label: industry.name, href: industryHref(industry.slug) },
+  ]),
+]
+const serviceName = (slug: string) => services.find((service) => service.slug === slug)?.name
+---
+
+<Layout meta={meta} schema={schema}>
+  <PageHero
+    title={industry.name}
+    lead={industry.lead}
+    breadcrumb={{
+      label: industriesPage.breadcrumbLabel,
+      items: [{ label: industriesPage.eyebrow, href: parent.href }],
+    }}
+  />
+  <PageSection id="offerings" labelledby="offerings-title">
+    <SectionHeader
+      id="offerings-title"
+      eyebrow={industriesPage.offeringsEyebrow}
+      title={industriesPage.offeringsTitle}
+    />
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {industry.offerings.map((offering) => (
+        <li class="flex flex-col rounded-lg border border-hairline bg-ink-raised p-8">
+          <h3 class="text-xl font-medium">{offering.title}</h3>
+          <p class="mt-3 text-ash">{offering.body}</p>
+          <a
+            href={serviceHref(offering.service)}
+            class="mt-auto pt-6 text-sm text-bone/80 underline-offset-4 hover:text-signal hover:underline"
+          >
+            {serviceName(offering.service)}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </PageSection>
+  <ServiceWork
+    eyebrow={industriesPage.workEyebrow}
+    title={industriesPage.workTitle}
+    projects={industry.projects.map(projectBySlug)}
+    allLink={industriesPage.allWork}
+  />
+  <ContactClose />
+</Layout>

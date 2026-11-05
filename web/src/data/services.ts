@@ -45,7 +45,7 @@ export const services: Service[] = [
         'Logo design, brand identity and visual storytelling for finance, healthcare and luxury brands. Branding work for NIRI, TCDC, Studyzone and Innovair.',
     },
     hero: {
-      lead: 'We turn your values and goals into a brand people recognise, remember and trust.',
+      lead: 'We don’t make logos. We make the reason people pick you twice.',
       image: {
         src: niriAdvertising,
         alt: 'NIRI restaurant posters on a street billboard, part of the identity Blackhat designed',
@@ -136,7 +136,7 @@ export const services: Service[] = [
         'Photoreal 3D renders, product visualisation, character design and animation for finance, healthcare and luxury brands, from a Singapore studio.',
     },
     hero: {
-      lead: 'We show people what doesn’t exist yet: products, spaces, characters and whole worlds, in photoreal 3D and motion.',
+      lead: 'It doesn’t exist yet. We’ll render it anyway, down to the dust.',
       image: {
         src: myjDataCenter,
         alt: '3D render of a secure server room designed for the investment firm MYJ',
@@ -228,7 +228,7 @@ export const services: Service[] = [
         'Customer journey mapping, business strategy and training decks that make complex processes easy to follow. Work for Fleet, MYJ and Hyperloop TT.',
     },
     hero: {
-      lead: 'We take complicated businesses, processes and ideas and turn them into something people understand and act on.',
+      lead: 'Your business makes sense to you. We make it make sense to everyone else.',
       image: {
         src: hyperloopRender,
         alt: '3D cutaway render of the Hyperloop TT tube and passenger pods on an elevated pylon',
