@@ -1,6 +1,6 @@
 import hyperloopRender from '@/assets/home/discipline-hyperloop-desert.jpg'
 import myjAnimation from '@/assets/home/discipline-myj-animation.jpg'
-import wavesCaipirinha from '@/assets/home/discipline-waves.jpg'
+import wavesCooler from '@/assets/home/discipline-waves-cooler.jpg'
 import posterFeaturedEnergend from '@/assets/home/poster-featured-energend.jpg'
 import posterFeaturedWaves from '@/assets/home/poster-featured-waves.jpg'
 import reelPoster from '@/assets/home/reel-poster.jpg'
@@ -60,8 +60,8 @@ export const home = {
         ...branding,
         body: 'We turn your values and goals into a logo, colours, a tone of voice and graphics that carry your story to every touchpoint.',
         image: {
-          src: wavesCaipirinha,
-          alt: 'Waves Clarity Caipirinha can wrapped in a dense hand-drawn illustration, beside a woman sipping the cocktail at her desk',
+          src: wavesCooler,
+          alt: 'Six illustrated Waves cocktail cans on ice in a mint cooler box, with a hand reaching for the Paloma',
         },
       },
       {
