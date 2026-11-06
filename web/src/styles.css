@@ -71,7 +71,7 @@
 }
 
 @utility liquid-glass-body {
-  background-color: color-mix(in srgb, var(--color-ink) 50%, transparent);
+  background-color: color-mix(in srgb, var(--color-ink) 78%, transparent);
 }
 
 /* The rim: bands along the top and, thicker, the bottom edge that blur and brighten harder than
