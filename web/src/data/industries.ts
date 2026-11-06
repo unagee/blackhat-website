@@ -1,6 +1,5 @@
 import posterEnergend from '@/assets/home/poster-featured-energend.jpg'
 import posterWaves from '@/assets/home/poster-featured-waves.jpg'
-import myjPoster from '@/assets/industries/myj-poster.jpg'
 import fleetPoster from '@/assets/work/fleet/fleet-film-poster.jpg'
 import type { PageMeta, Picture } from '@/types'
 import type { ServiceSlug } from './projects'
@@ -44,6 +43,8 @@ export type IndustryMedia =
       caption: string
     }
   | { type: 'project'; slug: string; caption: string }
+  // The project's YouTube film, playing muted on a loop (sound on YouTube's own controls).
+  | { type: 'film'; slug: string; caption: string }
 
 // The Industries menu (left column: industries; right column: the hovered industry's offerings)
 // and the pages at /industries/<slug>. Only industries we have real work to show for.
@@ -128,14 +129,8 @@ export const industries: Industry[] = [
       ],
     },
     media: {
-      type: 'video',
+      type: 'film',
       slug: 'myj',
-      src: '/video/industries/myj.mp4',
-      poster: {
-        src: myjPoster,
-        alt: 'MYJ in motion: the 3D investment ring, market charts, the brand guide and the colour palette',
-      },
-      shape: 'square',
       caption: 'MYJ: brand, 3D and social media for an investment group.',
     },
     faq: [

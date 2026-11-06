@@ -88,7 +88,16 @@ const others = industries.filter((other) => other.slug !== industry.slug)
       </div>
     ) : (
       <figure>
-        {media.type === 'video' ? (
+        {media.type === 'film' && mediaProject.video ? (
+          <div class="relative aspect-video w-full overflow-hidden rounded-lg bg-ink-raised">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${mediaProject.video.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${mediaProject.video.youtubeId}&playsinline=1&rel=0&modestbranding=1`}
+              title={mediaProject.video.title}
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+              class="absolute inset-0 size-full"
+            ></iframe>
+          </div>
+        ) : media.type === 'video' ? (
           <LoopVideo src={media.src} poster={media.poster} class="aspect-video w-full rounded-lg" />
         ) : (
           <Image
