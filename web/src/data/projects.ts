@@ -356,7 +356,6 @@ export const projects: Project[] = [
       src: img('fleet/fleet-pocket-map.jpg'),
       alt: 'Fleet banner reading “Your whole operation, in your pocket”, with properties pinned on a map of the United States',
     },
-    heroShade: 'light',
     cardImage: {
       src: img('cards/fleet-pocket-map-card.jpg'),
       alt: 'Fleet banner reading “Your whole operation, in your pocket”, with properties pinned on a map of the United States',
