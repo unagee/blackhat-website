@@ -8,7 +8,7 @@ export const workPage = {
       'Branding, 3D animation and strategy projects for energy, finance, hospitality and education brands, from Energend and MYJ to NIRI and Hyperloop TT.',
   },
   eyebrow: 'Work',
-  title: 'Proof We Steal Attention',
+  title: 'Caught Red-Handed',
   lead: 'Brand identities, 3D worlds and strategy for companies in energy, finance, hospitality, education and more.',
   filterLabel: 'Filter by service',
   allLabel: 'All Work',
