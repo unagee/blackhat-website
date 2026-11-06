@@ -24,8 +24,7 @@ export type Project = {
   // Portrait crop for cards, when the hero image doesn't crop well to one.
   cardImage?: Picture
   // 'light' for flat graphics such as a logo on colour, which the usual dark overlay would mute.
-  // 'frame' for banners with their own words: shown whole below the title instead of behind it.
-  heroShade?: 'full' | 'light' | 'frame'
+  heroShade?: 'full' | 'light'
   // Optional YouTube film, shown above the gallery.
   video?: { youtubeId: string; title: string; poster: Picture }
   // Optional film hosted on the site (an .mp4 with a .webm beside it), played with sound and
@@ -357,7 +356,7 @@ export const projects: Project[] = [
       src: img('fleet/fleet-pocket-map.jpg'),
       alt: 'Fleet banner reading “Your whole operation, in your pocket”, with properties pinned on a map of the United States',
     },
-    heroShade: 'frame',
+    heroShade: 'light',
     cardImage: {
       src: img('cards/fleet-pocket-map-card.jpg'),
       alt: 'Fleet banner reading “Your whole operation, in your pocket”, with properties pinned on a map of the United States',
