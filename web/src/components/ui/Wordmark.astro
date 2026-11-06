@@ -1,14 +1,18 @@
 ---
-import wordmark from '@/assets/logos/blackhat-wordmark-light.png'
+import wordmarkLight from '@/assets/logos/blackhat-wordmark-light.png'
+import wordmarkDark from '@/assets/logos/blackhat-wordmark.png'
 import { Image } from 'astro:assets'
 
 type Props = {
   class?: string
   eager?: boolean
+  // light: the white wordmark for dark grounds (default); dark: the black one for light grounds.
+  variant?: 'light' | 'dark'
 }
 
-// The Blackhat wordmark (light, on transparent), used exactly as supplied: never crop or recolour it.
-const { class: className, eager = false } = Astro.props
+// The Blackhat wordmark as supplied (light or dark, on transparent): never crop or recolour it.
+const { class: className, eager = false, variant = 'light' } = Astro.props
+const wordmark = variant === 'dark' ? wordmarkDark : wordmarkLight
 ---
 
 <Image

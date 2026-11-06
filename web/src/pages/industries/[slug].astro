@@ -41,7 +41,7 @@ const serviceName = (slug: string) => services.find((service) => service.slug ==
       items: [{ label: industriesPage.eyebrow, href: parent.href }],
     }}
   />
-  <PageSection id="offerings" labelledby="offerings-title">
+  <PageSection id="offerings" tone="grey" labelledby="offerings-title">
     <SectionHeader
       id="offerings-title"
       eyebrow={industriesPage.offeringsEyebrow}
@@ -67,6 +67,7 @@ const serviceName = (slug: string) => services.find((service) => service.slug ==
     title={industriesPage.workTitle}
     projects={industry.projects.map(projectBySlug)}
     allLink={industriesPage.allWork}
+    tone="white"
   />
   <ContactClose />
 </Layout>

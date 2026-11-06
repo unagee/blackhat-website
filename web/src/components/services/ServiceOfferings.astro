@@ -19,7 +19,7 @@ type Props = {
 const { eyebrow, offerings } = Astro.props
 ---
 
-<PageSection id="services" tone="raised" labelledby="offerings-title">
+<PageSection id="services" tone="grey" labelledby="offerings-title">
   <SectionHeader id="offerings-title" eyebrow={eyebrow} title={offerings.title} />
   <ol class={expertiseGrid}>
     {offerings.items.map((item, index) => (

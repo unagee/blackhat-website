@@ -25,7 +25,10 @@ const { title, lead, eyebrow, breadcrumb, image, shade = 'full', graphic = true 
 <section
   class:list={[
     'relative isolate overflow-hidden',
-    image ? 'flex min-h-[70svh] items-end pt-32 pb-16 sm:pb-20' : 'pt-24 pb-16 sm:pt-32 sm:pb-20',
+    // Pages without a hero image open on white; image heroes stay dark under their photo.
+    image
+      ? 'flex min-h-[70svh] items-end pt-32 pb-16 sm:pb-20'
+      : 'theme-white bg-ink pt-24 pb-16 sm:pt-32 sm:pb-20',
   ]}
 >
   {image && (
