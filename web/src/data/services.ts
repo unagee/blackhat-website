@@ -391,7 +391,7 @@ export const whatWeDo = {
 export const serviceNames = (slugs: ServiceSlug[]) =>
   slugs.map((slug) => services.find((service) => service.slug === slug)?.name ?? '').join(' · ')
 
-// Engagement models on the What we do overview: Plan (strategy), Design, Execute.
+// Engagement models on the What we do overview: Strategy, Design, Execution.
 export const engagement = {
   eyebrow: 'How we engage',
   title: 'Three ways to work with us',
@@ -402,8 +402,8 @@ export const engagement = {
   items: [
     {
       id: 'plan',
-      name: 'Plan',
-      body: 'The strategy. We map where your business is going, who it serves and where people get lost along the way, then turn it into a plan your teams can follow.',
+      name: 'Strategy',
+      body: 'We map where your business is going, who it serves and where people get lost along the way, then turn it into a plan your teams can follow.',
       deliverables: [
         'Business Direction & Positioning',
         'Customer & Market Insights',
@@ -412,7 +412,7 @@ export const engagement = {
         'Strategy Playbook & Roadmap',
       ],
       timeframe: '3–6 Weeks',
-      cta: 'Start with a Plan',
+      cta: 'Start with Strategy',
     },
     {
       id: 'design',
@@ -429,7 +429,7 @@ export const engagement = {
     },
     {
       id: 'execute',
-      name: 'Execute',
+      name: 'Execution',
       body: 'The ongoing part. We keep your brand deck current, produce new assets and manage your social media, month after month.',
       deliverables: [
         'Brand Deck Updates & Upkeep',
