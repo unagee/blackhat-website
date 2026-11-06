@@ -67,46 +67,52 @@
    page behind it, a glare along the top edge and a soft inner glow, like a glass lozenge. */
 @utility liquid-glass {
   isolation: isolate;
-  border-radius: 1.75rem;
-  box-shadow:
-    0 30px 60px -24px rgb(0 0 0 / 0.28),
-    0 0 0 1px rgb(0 0 0 / 0.06);
+  box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.28);
 }
 
 @utility liquid-glass-body {
-  border-radius: inherit;
-  background-color: color-mix(in srgb, var(--color-ink) 52%, transparent);
+  background-color: color-mix(in srgb, var(--color-ink) 50%, transparent);
 }
 
-/* The rim: a band, fading in from each edge over 28px, that blurs and brightens harder than the centre, so edges read as thick
-   glass bending the light. The blur itself is set with Tailwind's backdrop classes in the markup,
-   which survive the CSS minifier. */
+/* The rim: bands along the top and, thicker, the bottom edge that blur and brighten harder than
+   the centre, so the edges read as thick glass bending the light. The blur itself is set with
+   Tailwind's backdrop classes in the markup, which survive the CSS minifier. */
 @utility liquid-glass-rim {
-  border-radius: inherit;
-  mask-image:
-    linear-gradient(to right, #000, transparent 28px, transparent calc(100% - 28px), #000),
-    linear-gradient(to bottom, #000, transparent 28px, transparent calc(100% - 28px), #000);
+  mask-image: linear-gradient(
+    to bottom,
+    #000,
+    transparent 18px,
+    transparent calc(100% - 44px),
+    #000
+  );
+}
+
+/* Refraction: the page behind is warped by an SVG displacement filter (#liquid-refraction in
+   Header.astro), strongest along the edges. Browsers without SVG backdrop filters skip this
+   layer and keep the plain glass. */
+@utility liquid-glass-refraction {
+  backdrop-filter: url(#liquid-refraction);
+  mask-image: linear-gradient(
+    to bottom,
+    #000,
+    rgb(0 0 0 / 0.45) 60px,
+    rgb(0 0 0 / 0.45) calc(100% - 80px),
+    #000
+  );
 }
 
 @utility liquid-glass-shine {
-  border-radius: inherit;
-  background:
-    radial-gradient(
-      120% 60% at 50% -10%,
-      color-mix(in srgb, var(--color-glare) 55%, transparent),
-      transparent 60%
-    ),
-    linear-gradient(
-      to top,
-      color-mix(in srgb, var(--color-glare) 22%, transparent),
-      transparent 30%
-    );
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-glare) 40%, transparent),
+    transparent 22%,
+    transparent 75%,
+    color-mix(in srgb, var(--color-glare) 30%, transparent)
+  );
   box-shadow:
-    inset 0 1.5px 0.5px color-mix(in srgb, var(--color-glare) 95%, transparent),
-    inset 0 -1px 0.5px color-mix(in srgb, var(--color-glare) 60%, transparent),
-    inset 1px 0 0.5px color-mix(in srgb, var(--color-glare) 45%, transparent),
-    inset -1px 0 0.5px color-mix(in srgb, var(--color-glare) 45%, transparent),
-    inset 0 0 28px color-mix(in srgb, var(--color-glare) 45%, transparent);
+    inset 0 -1.5px 0.5px color-mix(in srgb, var(--color-glare) 95%, transparent),
+    inset 0 -6px 12px -6px color-mix(in srgb, var(--color-glare) 70%, transparent),
+    inset 0 0 36px color-mix(in srgb, var(--color-glare) 35%, transparent);
 }
 
 @layer base {

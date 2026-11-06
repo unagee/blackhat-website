@@ -22,6 +22,27 @@ const current = (href: string) => (href === path ? 'page' : undefined)
   class="theme-white sticky top-0 z-50 border-b border-hairline bg-transparent"
 >
   <div aria-hidden="true" class="absolute inset-0 -z-10 bg-ink"></div>
+  <!-- The displacement filter behind the menus' liquid glass refraction (see styles.css). -->
+  <svg aria-hidden="true" class="absolute size-0">
+    <filter
+      id="liquid-refraction"
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+      color-interpolation-filters="sRGB"
+    >
+      <feTurbulence type="fractalNoise" baseFrequency="0.0035 0.011" numOctaves="2" seed="7" />
+      <feGaussianBlur stdDeviation="3" result="waves" />
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="waves"
+        scale="34"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      />
+    </filter>
+  </svg>
   <Container class="flex h-16 items-center justify-between gap-6">
     <a href="/" aria-label={site.labels.home} class="shrink-0">
       <Wordmark class="h-6 sm:h-7" variant="dark" eager />
@@ -53,20 +74,20 @@ const current = (href: string) => (href === path ? 'page' : undefined)
               </button>
               <!-- Two-pane menus show their list on the left and the hovered or focused item's panel on
                    the right; without JavaScript the first panel stays visible. -->
-              <div
-                id={`nav-menu-${index}`}
-                hidden
-                class="liquid-glass absolute inset-x-3 top-full mt-2 lg:inset-x-6"
-              >
-                <!-- Liquid glass, in three layers behind the content: a lightly blurred body, a thicker
-                     rim that bends the page more, and the glare and inner glow on top. -->
+              <div id={`nav-menu-${index}`} hidden class="liquid-glass absolute inset-x-0 top-full">
+                <!-- Liquid glass, in layers behind the content: a lightly blurred body, a refraction
+                     layer that warps the page, a thicker rim along the edges, and the glare on top. -->
                 <div
                   aria-hidden="true"
-                  class="liquid-glass-body pointer-events-none absolute inset-0 -z-10 backdrop-blur-[10px] backdrop-brightness-[1.04] backdrop-saturate-[1.9]"
+                  class="liquid-glass-body pointer-events-none absolute inset-0 -z-10 backdrop-blur-[7px] backdrop-brightness-[1.04] backdrop-saturate-[1.9]"
                 ></div>
                 <div
                   aria-hidden="true"
-                  class="liquid-glass-rim pointer-events-none absolute inset-0 -z-10 backdrop-blur-[26px] backdrop-brightness-[1.18] backdrop-saturate-[2.2]"
+                  class="liquid-glass-refraction pointer-events-none absolute inset-0 -z-10"
+                ></div>
+                <div
+                  aria-hidden="true"
+                  class="liquid-glass-rim pointer-events-none absolute inset-0 -z-10 backdrop-blur-[18px] backdrop-brightness-[1.22] backdrop-saturate-[2.2]"
                 ></div>
                 <div
                   aria-hidden="true"
