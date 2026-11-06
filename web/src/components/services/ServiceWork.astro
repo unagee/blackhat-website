@@ -6,7 +6,7 @@ import WorkCard from '@/components/ui/WorkCard.astro'
 import { home } from '@/data/home'
 import { projectHref, type Project } from '@/data/projects'
 import { serviceNames } from '@/data/services'
-import type { Link, Tone } from '@/types'
+import type { Link, Picture, Tone } from '@/types'
 
 type Props = {
   eyebrow: string
@@ -15,9 +15,11 @@ type Props = {
   allLink: Link
   // Section ground: light grey on service pages, white where it follows a grey section.
   tone?: Tone
+  // Loops shown in place of a project's thumbnail on this page only, keyed by project slug.
+  videos?: Partial<Record<string, { src: string; poster: Picture }>>
 }
 
-const { eyebrow, title, projects, allLink, tone = 'grey' } = Astro.props
+const { eyebrow, title, projects, allLink, tone = 'grey', videos = {} } = Astro.props
 // Projects featured on the homepage use the same image here, so they look the same across the site.
 const homeImage = (slug: string) => home.work.projects.find((item) => item.slug === slug)?.still
 // Images keep their own shape (no cropping). Up to three projects sit in one staggered row, sized
@@ -56,7 +58,7 @@ const rowOffsets = ['', 'md:mt-28', 'md:mt-12']
           summary={project.summary}
           href={projectHref(project.slug)}
           image={homeImage(project.slug) ?? project.cardImage ?? project.image}
-          video={project.cardVideo}
+          video={videos[project.slug] ?? project.cardVideo}
           natural
           sizes={
             row
