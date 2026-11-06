@@ -71,7 +71,7 @@
 }
 
 @utility liquid-glass-body {
-  background-color: color-mix(in srgb, var(--color-ink) 50%, transparent);
+  background-color: color-mix(in srgb, var(--color-ink) 78%, transparent);
 }
 
 /* The rim: bands along the top and, thicker, the bottom edge that blur and brighten harder than
@@ -99,6 +99,21 @@
     inset 0 -1.5px 0.5px color-mix(in srgb, var(--color-glare) 95%, transparent),
     inset 0 -6px 12px -6px color-mix(in srgb, var(--color-glare) 70%, transparent),
     inset 0 0 36px color-mix(in srgb, var(--color-glare) 35%, transparent);
+}
+
+/* The phone menu as one liquid glass sheet: the same whitened body, with the glare and inner glow
+   along its bottom edge. The blur is set with Tailwind's backdrop classes in the markup. */
+@utility liquid-glass-sheet {
+  background-color: color-mix(in srgb, var(--color-ink) 78%, transparent);
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-glare) 40%, transparent),
+    transparent 12rem
+  );
+  box-shadow:
+    inset 0 -1.5px 0.5px color-mix(in srgb, var(--color-glare) 95%, transparent),
+    inset 0 -8px 14px -8px color-mix(in srgb, var(--color-glare) 70%, transparent),
+    0 30px 60px -24px rgb(0 0 0 / 0.28);
 }
 
 @layer base {
