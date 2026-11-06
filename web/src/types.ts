@@ -43,4 +43,5 @@ export type NavItem = Link | NavMenu | NavPanes
 // Supergraphic shapes: see ui/Supergraphic.astro.
 export type Pattern = 'cells' | 'slash' | 'split' | 'star'
 
-export type Tone = 'ink' | 'raised' | 'light' | 'signal'
+// white and grey: sections built for the dark ground, shown light (see .theme-white in styles.css).
+export type Tone = 'ink' | 'raised' | 'light' | 'signal' | 'white' | 'grey'

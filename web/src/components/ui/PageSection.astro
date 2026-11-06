@@ -25,6 +25,8 @@ const { id, tone = 'ink', labelledby, graphic, pattern } = Astro.props
     tone === 'raised' && 'border-t border-hairline bg-ink-raised text-bone',
     tone === 'light' && 'on-light bg-bone text-ink',
     tone === 'signal' && 'on-light bg-signal text-on-signal',
+    tone === 'white' && 'theme-white bg-ink text-bone',
+    tone === 'grey' && 'theme-grey bg-ink text-bone',
   ]}
 >
   {graphic && <Supergraphic side={graphic} pattern={pattern} tone={tone} />}

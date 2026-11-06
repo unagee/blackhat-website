@@ -6,21 +6,23 @@ import WorkCard from '@/components/ui/WorkCard.astro'
 import { home } from '@/data/home'
 import { projectHref, type Project } from '@/data/projects'
 import { serviceNames } from '@/data/services'
-import type { Link } from '@/types'
+import type { Link, Tone } from '@/types'
 
 type Props = {
   eyebrow: string
   title: string
   projects: Project[]
   allLink: Link
+  // Section ground: light grey on service pages, white where it follows a grey section.
+  tone?: Tone
 }
 
-const { eyebrow, title, projects, allLink } = Astro.props
+const { eyebrow, title, projects, allLink, tone = 'grey' } = Astro.props
 // Projects featured on the homepage use the same image here, so they look the same across the site.
 const homeImage = (slug: string) => home.work.projects.find((item) => item.slug === slug)?.still
 ---
 
-<PageSection id="work" labelledby="work-title">
+<PageSection id="work" tone={tone} labelledby="work-title">
   <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
     <SectionHeader id="work-title" eyebrow={eyebrow} title={title} />
     <div class="-mt-4 mb-12 sm:mt-0">

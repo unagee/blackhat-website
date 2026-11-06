@@ -41,7 +41,7 @@ const schema = [
   <ServiceIntro intro={service.intro} />
   <ServiceOfferings eyebrow={servicePage.offeringsEyebrow} offerings={service.offerings} />
   <ServiceProcess eyebrow={servicePage.processEyebrow} process={service.process} />
-  <CtaBanner {...service.prompt} />
+  <CtaBanner {...service.prompt} tone="white" />
   <ServiceWork
     eyebrow={servicePage.workEyebrow}
     title={service.work.title}

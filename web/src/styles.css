@@ -28,6 +28,8 @@
   --color-graphite: #4a4a45;
   --color-signal: #fffd75;
   --color-on-signal: #000000;
+  /* Light grey ground, between white sections. */
+  --color-mist: #f1f1ee;
 
   --text-display-xl: clamp(2.25rem, 4.6vw, 4.5rem);
   --text-display-xl--line-height: 1.04;
@@ -104,8 +106,40 @@
   }
 
   /* Yellow focus rings vanish on light and yellow grounds. */
-  .on-light :focus-visible {
-    outline-color: var(--color-ink);
+  .on-light :focus-visible,
+  .theme-white :focus-visible,
+  .theme-grey :focus-visible {
+    outline-color: var(--color-bone);
+  }
+
+  /* Light themes for sections built for the dark ground: inside them black and white swap and
+     the greys follow, so the same component reads correctly on white or light grey. The page
+     balance aims for about half white, a tenth light grey, under a third black and a tenth
+     yellow. */
+  .theme-white,
+  .theme-grey {
+    --color-bone: #000000;
+    --color-hairline: #d9d9d3;
+    --color-ash: #5f5f59;
+    --color-graphite: #4a4a45;
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+  }
+  .theme-white {
+    --color-ink: #ffffff;
+    --color-ink-raised: #f1f1ee;
+  }
+  .theme-grey {
+    --color-ink: #f1f1ee;
+    --color-ink-raised: #ffffff;
+  }
+  /* Blocks designed for a light ground keep the original palette wherever they sit. */
+  .on-light {
+    --color-ink: #000000;
+    --color-ink-raised: #121211;
+    --color-hairline: #2e2e2b;
+    --color-bone: #ffffff;
+    --color-ash: #a6a59e;
   }
 }
 
@@ -116,4 +150,11 @@
     opacity: 0.22;
     mix-blend-mode: overlay;
   }
+}
+
+/* Yellow is never text on a light ground: inside the light themes, yellow text and yellow hover
+   colours turn black. Unlayered, so it wins over the utilities. Left alone: blocks built for a
+   light ground (.on-light) and yellow icons on their own black chip (bg-on-signal). */
+:is(.theme-white, .theme-grey) [class*='text-signal']:not(.on-light *, [class*='bg-on-signal']) {
+  color: var(--color-bone);
 }
