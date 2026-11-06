@@ -87,20 +87,6 @@
   );
 }
 
-/* Refraction: the page behind is warped by an SVG displacement filter (#liquid-refraction in
-   Header.astro), strongest along the edges. Browsers without SVG backdrop filters skip this
-   layer and keep the plain glass. */
-@utility liquid-glass-refraction {
-  backdrop-filter: url(#liquid-refraction);
-  mask-image: linear-gradient(
-    to bottom,
-    #000,
-    rgb(0 0 0 / 0.45) 60px,
-    rgb(0 0 0 / 0.45) calc(100% - 80px),
-    #000
-  );
-}
-
 @utility liquid-glass-shine {
   background: linear-gradient(
     to bottom,
