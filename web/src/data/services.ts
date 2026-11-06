@@ -1,4 +1,5 @@
 import cooklaneOwner from '@/assets/work/cooklane/cooklane-3d-character-business-owner.png'
+import energendSatellite from '@/assets/work/energend/energend-satellite-poster.jpg'
 import fleetUserRoles from '@/assets/work/fleet/fleet-user-roles.jpg'
 import hyperloopJourney from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-2.png'
 import hyperloopContext from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-3.png'
@@ -10,6 +11,7 @@ import niriAdvertising from '@/assets/work/niri/niri-luxury-restaurant-advertisi
 import niriConcept from '@/assets/work/niri/niri-luxury-restaurant-logo-concept.png'
 import tcdcLogo from '@/assets/work/tcdc/tcdc-creative-agency-logo-design.jpg'
 import vespaPackaging from '@/assets/work/vespa/vespa-tet-nguyen-dan-packaging-design-rectangular.png'
+import wavesBeach from '@/assets/work/waves/waves-beach-poster.jpg'
 import type { ServiceSlug } from '@/data/projects'
 import type { Link, PageMeta, Picture } from '@/types'
 
@@ -29,7 +31,8 @@ export type Service = {
     steps: { title: string; body: string }[]
   }
   prompt: { title: string; body: string; link: Link }
-  work: { title: string }
+  // `videos` swaps a project's thumbnail for a short loop on this page only, keyed by project slug.
+  work: { title: string; videos?: Partial<Record<string, { src: string; poster: Picture }>> }
   faq: { title: string; items: { question: string; answer: string }[] }
 }
 
@@ -105,7 +108,22 @@ export const services: Service[] = [
       body: 'Tell us where you are today and where you want to be. We’ll show you how we’d get there.',
       link: startProject,
     },
-    work: { title: 'Branding Work' },
+    work: {
+      title: 'Branding Work',
+      videos: {
+        energend: {
+          src: '/video/work/energend-satellite.mp4',
+          poster: {
+            src: energendSatellite,
+            alt: 'An Energend satellite with solar panels orbiting Earth',
+          },
+        },
+        waves: {
+          src: '/video/work/waves-beach.mp4',
+          poster: { src: wavesBeach, alt: 'Friends at a beach party sharing Waves cans' },
+        },
+      },
+    },
     faq: {
       title: 'Questions We Often Hear',
       items: [

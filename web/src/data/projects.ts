@@ -185,24 +185,8 @@ export const projects: Project[] = [
         alt: 'MYJ brand applications: business card, app icon, event screen, ID card and website',
       },
       {
-        src: img('myj/myj-brand-logo.jpg'),
-        alt: 'The refreshed MYJ Capital logo in green and silver',
-      },
-      {
         src: img('myj/myj-brand-logo-colours.jpg'),
         alt: 'MYJ Capital logo on green, sage, beige and burgundy',
-      },
-      {
-        src: img('myj/myj-brand-palette.jpg'),
-        alt: 'MYJ colour palette: Growth Green, Business Beige, Safety Sage, Big Burgundy and Security Silver',
-      },
-      {
-        src: img('myj/myj-brand-typography.jpg'),
-        alt: 'MYJ typography in Albert Sans on burgundy',
-      },
-      {
-        src: img('myj/myj-brand-pattern.jpg'),
-        alt: 'MYJ geometric pattern in two greens',
       },
       {
         src: img('myj/myj-brand-event-screen.jpg'),
@@ -301,8 +285,8 @@ export const projects: Project[] = [
     ],
     services: ['brand-visual-identity'],
     image: {
-      src: img('waves/waves-caipirinha-slide.jpg'),
-      alt: 'Waves Clarity Caipirinha can wrapped in a dense hand-drawn illustration, beside a woman sipping the cocktail',
+      src: img('waves/waves-beach-poster.jpg'),
+      alt: 'Friends laughing at a beach party with Waves cans in hand',
     },
     cardImage: {
       src: img('cards/waves-card.jpg'),
@@ -310,31 +294,34 @@ export const projects: Project[] = [
     },
     gallery: [
       {
-        src: img('waves/waves-cans.jpg'),
-        alt: 'Six Waves cocktail cans: Paloma, Negroni, Old Fashioned, French 75, Dirty Martini and Caipirinha',
+        src: img('waves/waves-beach-poster.jpg'),
+        alt: 'Friends at a beach party opening, raising and sharing Waves cans',
+        video: '/video/work/waves-beach.mp4',
       },
       {
-        src: img('waves/waves-cocktails.jpg'),
-        alt: 'Waves cut-out cocktail graphics on dark teal',
+        src: img('waves/waves-cooler.jpg'),
+        alt: 'Six illustrated Waves cocktail cans on ice in a mint cooler box, with a hand reaching for the Paloma',
       },
       {
-        src: img('waves/waves-logo.jpg'),
-        alt: 'Waves logo in teal, lime and white, and over a photograph',
+        src: img('waves/waves-can-graphics.jpg'),
+        alt: 'Waves Peach Paloma and Mangosteen Mai Thai cans among illustrated fruit, with the line “Cocktails without compromise”',
       },
       {
-        src: img('waves/waves-colour.jpg'),
-        alt: 'Waves primary colours: Ocean Teal, Vanilla Mist and Lime Zest',
-      },
-      { src: img('waves/waves-type.jpg'), alt: 'Waves primary typeface, Acme Gothic Compressed' },
-      {
-        src: img('waves/waves-composition.jpg'),
-        alt: 'Waves posters combining the logo, cut-outs and bold headlines',
+        src: img('waves/waves-negroni.jpg'),
+        alt: 'Waves Night Cap Negroni label art: a man in pyjamas under the moon, on magenta',
       },
       {
-        src: img('waves/waves-social.jpg'),
-        alt: 'Waves social media posts showcasing cans and benefits',
+        src: img('waves/waves-old-fashioned.jpg'),
+        alt: 'Waves Fermented Old Fashioned label art: swirling smoke and foliage, on orange',
       },
-      { src: img('waves/waves-packaging.jpg'), alt: 'Waves packaging page with six can designs' },
+      {
+        src: img('waves/waves-french-75.jpg'),
+        alt: 'Waves Fast French 75 label art: a lemon character on a treadmill, on yellow',
+      },
+      {
+        src: img('waves/waves-dirty-martini.jpg'),
+        alt: 'Waves Dancing Dirty Martini label art: two characters dancing under a disco ball, on blue',
+      },
     ],
   },
   {

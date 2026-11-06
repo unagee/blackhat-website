@@ -41,8 +41,13 @@ const shape = natural ? 'h-auto' : compact ? 'aspect-square' : 'aspect-4/5'
         poster={video.poster}
         class:list={[
           'w-full transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none',
-          natural || compact ? 'aspect-square' : 'aspect-4/5',
+          natural ? '' : compact ? 'aspect-square' : 'aspect-4/5',
         ]}
+        style={
+          natural
+            ? `aspect-ratio: ${video.poster.src.width} / ${video.poster.src.height}`
+            : undefined
+        }
       />
     ) : (
       <Image
