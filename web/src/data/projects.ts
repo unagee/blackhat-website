@@ -389,6 +389,11 @@ export const projects: Project[] = [
         video: '/video/work/fleet-dashboard.mp4',
       },
       {
+        src: img('fleet/fleet-snap-poster.jpg'),
+        alt: 'Fleet for technicians in motion: snap it, fix it, track it, in one app',
+        video: '/video/work/fleet-snap.mp4',
+      },
+      {
         src: img('fleet/fleet-logo-lockup.jpg'),
         alt: 'Fleet logo lockup in white on black: the stepped F logogram beside the Fleet wordmark',
       },
