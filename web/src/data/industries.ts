@@ -1,5 +1,6 @@
 import posterEnergend from '@/assets/home/poster-featured-energend.jpg'
 import posterWaves from '@/assets/home/poster-featured-waves.jpg'
+import energendCar from '@/assets/work/energend/energend-car-poster.jpg'
 import fleetPoster from '@/assets/work/fleet/fleet-film-poster.jpg'
 import type { PageMeta, Picture } from '@/types'
 import type { ServiceSlug } from './projects'
@@ -21,6 +22,8 @@ export type Industry = {
   offerings: IndustryOffering[]
   // Project slugs from projects.ts, in the order they show on the industry page.
   projects: string[]
+  // Loops shown in place of a project's thumbnail on this page only, keyed by project slug.
+  workVideos?: Partial<Record<string, { src: string; poster: Picture }>>
   // One plain paragraph under the hero line: what we do for this industry, in searchable words.
   intro: string
   // The problem we solve here: a short heading and two paragraphs that name the real work.
@@ -188,6 +191,15 @@ export const industries: Industry[] = [
       },
     ],
     projects: ['energend', 'hyperloop-tt'],
+    workVideos: {
+      energend: {
+        src: '/video/work/energend-car.mp4',
+        poster: {
+          src: energendCar,
+          alt: 'A see-through electric car showing its Energend battery pack, driving through a forest',
+        },
+      },
+    },
     intro:
       'Blackhat is a Singapore creative agency for energy and technology companies. We handle positioning, brand identity and photoreal 3D for products, facilities and systems that are still in the lab or on the drawing board.',
     challenge: {
