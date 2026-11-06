@@ -40,6 +40,7 @@ const homeImage = (slug: string) => home.work.projects.find((item) => item.slug 
           summary={project.summary}
           href={projectHref(project.slug)}
           image={homeImage(project.slug) ?? project.cardImage ?? project.image}
+          video={project.cardVideo}
         />
       </li>
     ))}

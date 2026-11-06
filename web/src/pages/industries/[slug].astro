@@ -1,14 +1,18 @@
 ---
 import ServiceWork from '@/components/services/ServiceWork.astro'
+import ArrowIcon from '@/components/ui/ArrowIcon.astro'
+import Container from '@/components/ui/Container.astro'
 import ContactClose from '@/components/ui/ContactClose.astro'
-import PageHero from '@/components/ui/PageHero.astro'
+import Faq from '@/components/ui/Faq.astro'
+import LoopVideo from '@/components/ui/LoopVideo.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { industries, industriesPage, industryHref, type Industry } from '@/data/industries'
-import { projectBySlug } from '@/data/projects'
+import { projectBySlug, projectHref } from '@/data/projects'
 import { serviceHref, services } from '@/data/services'
 import Layout from '@/layout/Layout.astro'
-import { breadcrumbSchema } from '@/lib/schema'
+import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/schema'
+import { Image } from 'astro:assets'
 
 export function getStaticPaths() {
   return industries.map((industry) => ({ params: { slug: industry.slug }, props: { industry } }))
@@ -18,43 +22,131 @@ type Props = {
   industry: Industry
 }
 
-// One template for every industry: hero, what we do in this industry, the work, contact.
+// One template for every industry, part statement page and part showcase: a big line, one
+// piece of work in motion (or a still), the problem we solve, what we do, the work, questions,
+// and links to the other industries.
 const { industry } = Astro.props
+const href = industryHref(industry.slug)
 const meta = { ...industry.meta, noIndex: !industriesPage.ready }
 const parent = industriesPage.allLink
 const schema = [
   breadcrumbSchema([
     { label: 'Home', href: '/' },
     { label: industriesPage.eyebrow, href: parent.href },
-    { label: industry.name, href: industryHref(industry.slug) },
+    { label: industry.name, href },
   ]),
+  serviceSchema(industry.name, industry.meta.description ?? industry.intro, href),
+  faqSchema(industry.faq),
 ]
 const serviceName = (slug: string) => services.find((service) => service.slug === slug)?.name
+const media = industry.media
+const mediaProject = projectBySlug(media.slug)
+const others = industries.filter((other) => other.slug !== industry.slug)
 ---
 
 <Layout meta={meta} schema={schema}>
-  <PageHero
-    title={industry.name}
-    lead={industry.lead}
-    breadcrumb={{
-      label: industriesPage.breadcrumbLabel,
-      items: [{ label: industriesPage.eyebrow, href: parent.href }],
-    }}
-  />
+  <!-- Hero on white: the industry on the left, the line on the right. -->
+  <section class="theme-white bg-ink pt-24 pb-16 sm:pt-32 sm:pb-24">
+    <Container>
+      <nav aria-label={industriesPage.breadcrumbLabel} class="mb-10">
+        <a href={parent.href} class="eyebrow text-ash hover:text-bone">
+          {industriesPage.eyebrow} /
+        </a>
+      </nav>
+      <div class="grid gap-6 lg:grid-cols-[1fr_2.2fr] lg:gap-12">
+        <p aria-hidden="true" class="eyebrow pt-3 text-ash">
+          {industry.name}
+        </p>
+        <div>
+          <h1 class="text-display-xl">
+            <span class="sr-only">{industry.name}: </span>
+            {industry.lead}
+          </h1>
+          <p class="text-lead mt-8 max-w-2xl text-ash">{industry.intro}</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- One piece of work, big, on black. -->
+  <PageSection labelledby="media-caption">
+    {media.type === 'video' && media.shape === 'square' ? (
+      <div class="grid items-center gap-10 md:grid-cols-2 md:gap-16">
+        <LoopVideo src={media.src} poster={media.poster} class="aspect-square w-full rounded-lg" />
+        <div>
+          <p id="media-caption" class="text-display-md">
+            {media.caption}
+          </p>
+          <a
+            href={projectHref(media.slug)}
+            class="mt-8 inline-flex items-center gap-2 text-bone hover:text-signal"
+          >
+            {industriesPage.seeProject}
+            <ArrowIcon />
+          </a>
+        </div>
+      </div>
+    ) : (
+      <figure>
+        {media.type === 'video' ? (
+          <LoopVideo src={media.src} poster={media.poster} class="aspect-video w-full rounded-lg" />
+        ) : (
+          <Image
+            src={mediaProject.image.src}
+            alt={mediaProject.image.alt}
+            widths={[640, 960, 1280, 1920]}
+            sizes="(min-width: 1152px) 1152px, 100vw"
+            class="aspect-video w-full rounded-lg object-cover"
+          />
+        )}
+        <figcaption class="mt-6 flex flex-wrap items-baseline justify-between gap-4">
+          <span id="media-caption" class="text-lg">
+            {media.caption}
+          </span>
+          <a
+            href={projectHref(media.slug)}
+            class="inline-flex items-center gap-2 text-sm text-ash hover:text-signal"
+          >
+            {industriesPage.seeProject}
+            <ArrowIcon />
+          </a>
+        </figcaption>
+      </figure>
+    )}
+  </PageSection>
+
+  <!-- The problem we solve here. -->
+  <PageSection tone="white" labelledby="challenge-title">
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <p class="eyebrow text-ash">{industriesPage.challengeEyebrow}</p>
+        <h2 id="challenge-title" class="text-display-md mt-4">
+          {industry.challenge.title}
+        </h2>
+      </div>
+      <div class="space-y-5 text-lg text-ash">
+        {industry.challenge.body.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  </PageSection>
+
+  <!-- What we do here, as a list: title, one line, the service it belongs to. -->
   <PageSection id="offerings" tone="grey" labelledby="offerings-title">
     <SectionHeader
       id="offerings-title"
       eyebrow={industriesPage.offeringsEyebrow}
       title={industriesPage.offeringsTitle}
     />
-    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ul class="border-t border-hairline">
       {industry.offerings.map((offering) => (
-        <li class="flex flex-col rounded-lg border border-hairline bg-ink-raised p-8">
-          <h3 class="text-xl font-medium">{offering.title}</h3>
-          <p class="mt-3 text-ash">{offering.body}</p>
+        <li class="grid gap-3 border-b border-hairline py-7 md:grid-cols-[1fr_1.3fr_auto] md:items-baseline md:gap-10">
+          <h3 class="text-xl">{offering.title}</h3>
+          <p class="text-ash">{offering.body}</p>
           <a
             href={serviceHref(offering.service)}
-            class="mt-auto pt-6 text-sm text-bone/80 underline-offset-4 hover:text-signal hover:underline"
+            class="text-sm text-bone/80 underline-offset-4 hover:underline"
           >
             {serviceName(offering.service)}
           </a>
@@ -62,6 +154,7 @@ const serviceName = (slug: string) => services.find((service) => service.slug ==
       ))}
     </ul>
   </PageSection>
+
   <ServiceWork
     eyebrow={industriesPage.workEyebrow}
     title={industriesPage.workTitle}
@@ -69,5 +162,43 @@ const serviceName = (slug: string) => services.find((service) => service.slug ==
     allLink={industriesPage.allWork}
     tone="white"
   />
+
+  <Faq
+    eyebrow={industriesPage.faqEyebrow}
+    title={industriesPage.faqTitle}
+    items={industry.faq}
+    tone="grey"
+  />
+
+  <!-- The other industries, for the next click. -->
+  <PageSection labelledby="other-title">
+    <h2 id="other-title" class="text-display-md mb-10">
+      {industriesPage.otherTitle}
+    </h2>
+    <ul class="border-t border-hairline">
+      {others.map((other) => (
+        <li class="group relative border-b border-hairline">
+          <div class="grid gap-2 py-6 md:grid-cols-[1fr_1fr_auto] md:items-center md:gap-10">
+            <h3 class="text-2xl">
+              <a
+                href={industryHref(other.slug)}
+                class="after:absolute after:inset-0 group-hover:text-signal"
+              >
+                {other.name}
+              </a>
+            </h3>
+            <p class="text-ash">{other.lead}</p>
+            <span
+              aria-hidden="true"
+              class="hidden size-10 place-items-center rounded-full border border-bone/40 transition-colors group-hover:border-signal group-hover:bg-signal group-hover:text-on-signal md:grid"
+            >
+              <ArrowIcon />
+            </span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </PageSection>
+
   <ContactClose />
 </Layout>

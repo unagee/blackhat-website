@@ -25,6 +25,12 @@ export type Project = {
   heroShade?: 'full' | 'light'
   // Optional YouTube film, shown above the gallery.
   video?: { youtubeId: string; title: string; poster: Picture }
+  // Optional film hosted on the site (an .mp4 with a .webm beside it), played with sound and
+  // controls above the gallery.
+  film?: { src: string; title: string; poster: Picture; captions: string }
+  // Optional short silent loop (square .mp4 with a .webm beside it) that plays on the project's
+  // cards instead of the card image.
+  cardVideo?: { src: string; poster: Picture }
   gallery: GalleryImage[]
 }
 
@@ -352,6 +358,22 @@ export const projects: Project[] = [
     cardImage: {
       src: img('fleet/fleet-brand-guide-card.jpg'),
       alt: 'A collage of Fleet brand guidelines pages',
+    },
+    film: {
+      src: '/video/work/fleet-film.mp4',
+      title: 'Fleet film: clearing 47 issues before lunch',
+      captions: '/video/work/fleet-film.en.vtt',
+      poster: {
+        src: img('fleet/fleet-film-poster.jpg'),
+        alt: 'A technician in a plant room beside the Fleet app, with the line “POV: Clearing 47 issues before lunch”',
+      },
+    },
+    cardVideo: {
+      src: '/video/work/fleet-card.mp4',
+      poster: {
+        src: img('fleet/fleet-card-poster.jpg'),
+        alt: 'A technician working through open issues in the Fleet app',
+      },
     },
     gallery: [
       {

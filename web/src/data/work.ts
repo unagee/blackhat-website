@@ -26,6 +26,7 @@ export const projectPage = {
   galleryTitle: 'Gallery',
   videoTitle: 'Film',
   playLabel: 'Play the Film',
+  captionsLabel: 'English',
   nextLabel: 'Next Project',
   allWork: { label: 'See All Work', href: '/work' } satisfies Link,
 }

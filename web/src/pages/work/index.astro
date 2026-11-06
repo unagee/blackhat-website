@@ -83,6 +83,7 @@ const filters = [
             summary={project.summary}
             href={projectHref(project.slug)}
             image={project.cardImage ?? project.image}
+            video={project.cardVideo}
             sizes={
               wide(index) ? '(min-width: 1024px) 30vw, 50vw' : '(min-width: 1024px) 22vw, 50vw'
             }

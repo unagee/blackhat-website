@@ -1,4 +1,5 @@
 ---
+import type { Tone } from '@/types'
 import PageSection from './PageSection.astro'
 import SectionHeader from './SectionHeader.astro'
 
@@ -6,12 +7,13 @@ type Props = {
   eyebrow: string
   title: string
   items: { question: string; answer: string }[]
+  tone?: Tone
 }
 
-const { eyebrow, title, items } = Astro.props
+const { eyebrow, title, items, tone = 'white' } = Astro.props
 ---
 
-<PageSection id="faq" tone="white" labelledby="faq-title">
+<PageSection id="faq" tone={tone} labelledby="faq-title">
   <div class="grid gap-12 lg:grid-cols-[1fr_2fr]">
     <SectionHeader id="faq-title" eyebrow={eyebrow} title={title} />
     <div class="divide-y divide-hairline border-y border-hairline">
