@@ -5,7 +5,9 @@ export type ServiceSlug =
   'brand-visual-identity' | '3d-animation-motion-graphics' | 'strategy-consulting'
 
 // A gallery image. `ground` sets the panel behind images with transparent backgrounds.
-export type GalleryImage = Picture & { ground?: 'light' | 'dark' }
+// `video`: a silent looping clip (.mp4 with a .webm beside it) shown instead, with the image as
+// its poster.
+export type GalleryImage = Picture & { ground?: 'light' | 'dark'; video?: string }
 
 export type Project = {
   slug: string
@@ -377,24 +379,18 @@ export const projects: Project[] = [
     },
     gallery: [
       {
-        src: img('fleet/fleet-brand-guide-spread.jpg'),
-        alt: 'Six pages of the Fleet brand guidelines laid out on cream',
+        src: img('fleet/fleet-asset-poster.jpg'),
+        alt: 'Fleet asset management in motion: “Every asset should work harder for your portfolio”, with assets organised by category',
+        video: '/video/work/fleet-asset.mp4',
+      },
+      {
+        src: img('fleet/fleet-dashboard-poster.jpg'),
+        alt: 'Fleet reporting dashboard in motion: “Real estate operations need clarity, fast”, with site completion charts',
+        video: '/video/work/fleet-dashboard.mp4',
       },
       {
         src: img('fleet/fleet-logo-lockup.jpg'),
         alt: 'Fleet logo lockup in white on black: the stepped F logogram beside the Fleet wordmark',
-      },
-      {
-        src: img('fleet/fleet-logogram.jpg'),
-        alt: 'Fleet logogram in navy: two stepped parallelograms forming an F',
-      },
-      {
-        src: img('fleet/fleet-logo-badge.jpg'),
-        alt: 'Fleet logo badge: the white logogram in a rounded navy square',
-      },
-      {
-        src: img('fleet/fleet-logo-colours.jpg'),
-        alt: 'Fleet logo colour combinations: white on navy, navy on light grey and white on a blue gradient',
       },
       {
         src: img('fleet/fleet-brand-palette-ratio.jpg'),
@@ -403,14 +399,6 @@ export const projects: Project[] = [
       {
         src: img('fleet/fleet-brand-colour-roles.jpg'),
         alt: 'How each Fleet colour works: black and navy grounds, steel detail, cream light, espresso action',
-      },
-      {
-        src: img('fleet/fleet-brand-typography.jpg'),
-        alt: 'Fleet typography in Hanken Grotesk: light, regular and medium, with the type scale',
-      },
-      {
-        src: img('fleet/fleet-brand-status-colours.jpg'),
-        alt: 'Fleet status colours for the product: urgent, overdue, in progress, completed and scheduled',
       },
       {
         src: img('fleet/fleet-brand-interface.jpg'),

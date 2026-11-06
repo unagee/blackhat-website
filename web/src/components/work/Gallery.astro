@@ -1,4 +1,5 @@
 ---
+import LoopVideo from '@/components/ui/LoopVideo.astro'
 import type { GalleryImage } from '@/data/projects'
 import { Image } from 'astro:assets'
 
@@ -19,13 +20,19 @@ const { images } = Astro.props
         image.ground === 'dark' && 'bg-ink-raised p-6 sm:p-10',
       ]}
     >
-      <Image
-        src={image.src}
-        alt={image.alt}
-        widths={index === 0 ? [640, 960, 1280, 1920] : [480, 720, 960, 1280]}
-        sizes={index === 0 ? '(min-width: 1152px) 1152px, 100vw' : '(min-width: 640px) 50vw, 100vw'}
-        class:list={['w-full', image.ground ? 'object-contain' : 'h-auto']}
-      />
+      {image.video ? (
+        <LoopVideo src={image.video} poster={image} class="aspect-video w-full" />
+      ) : (
+        <Image
+          src={image.src}
+          alt={image.alt}
+          widths={index === 0 ? [640, 960, 1280, 1920] : [480, 720, 960, 1280]}
+          sizes={
+            index === 0 ? '(min-width: 1152px) 1152px, 100vw' : '(min-width: 640px) 50vw, 100vw'
+          }
+          class:list={['w-full', image.ground ? 'object-contain' : 'h-auto']}
+        />
+      )}
     </li>
   ))}
 </ul>
