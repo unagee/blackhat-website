@@ -24,7 +24,8 @@ export type Project = {
   // Portrait crop for cards, when the hero image doesn't crop well to one.
   cardImage?: Picture
   // 'light' for flat graphics such as a logo on colour, which the usual dark overlay would mute.
-  heroShade?: 'full' | 'light'
+  // 'frame' for banners with their own words: shown whole below the title instead of behind it.
+  heroShade?: 'full' | 'light' | 'frame'
   // Optional YouTube film, shown above the gallery.
   video?: { youtubeId: string; title: string; poster: Picture }
   // Optional film hosted on the site (an .mp4 with a .webm beside it), played with sound and
@@ -353,13 +354,13 @@ export const projects: Project[] = [
     ],
     services: ['brand-visual-identity', 'strategy-consulting'],
     image: {
-      src: img('fleet/fleet-brand-guide-stack.jpg'),
-      alt: 'Fleet brand guidelines pages stacked in perspective, with the Fleet logo on the cover',
+      src: img('fleet/fleet-pocket-map.jpg'),
+      alt: 'Fleet banner reading “Your whole operation, in your pocket”, with properties pinned on a map of the United States',
     },
-    heroShade: 'light',
+    heroShade: 'frame',
     cardImage: {
-      src: img('fleet/fleet-brand-guide-card.jpg'),
-      alt: 'A collage of Fleet brand guidelines pages',
+      src: img('cards/fleet-pocket-map-card.jpg'),
+      alt: 'Fleet banner reading “Your whole operation, in your pocket”, with properties pinned on a map of the United States',
     },
     film: {
       src: '/video/work/fleet-film.mp4',
@@ -368,13 +369,6 @@ export const projects: Project[] = [
       poster: {
         src: img('fleet/fleet-film-poster.jpg'),
         alt: 'A technician in a plant room beside the Fleet app, with the line “POV: Clearing 47 issues before lunch”',
-      },
-    },
-    cardVideo: {
-      src: '/video/work/fleet-card.mp4',
-      poster: {
-        src: img('fleet/fleet-card-poster.jpg'),
-        alt: 'A technician working through open issues in the Fleet app',
       },
     },
     gallery: [

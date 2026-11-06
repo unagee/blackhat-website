@@ -14,28 +14,33 @@ type Props = {
   breadcrumb?: { label: string; items: Link[] }
   image?: Picture
   // Flat graphics (a logo on colour) need less darkening than photos to stay visible.
-  shade?: 'full' | 'light'
+  // 'frame' shows the image whole below the title, for banners that carry their own words.
+  shade?: 'full' | 'light' | 'frame'
   // Pages without an image get the cells supergraphic unless this is false.
   graphic?: boolean
 }
 
 const { title, lead, eyebrow, breadcrumb, image, shade = 'full', graphic = true } = Astro.props
+const framed = image && shade === 'frame'
+const background = framed ? undefined : image
 ---
 
 <section
   class:list={[
     'relative isolate overflow-hidden',
     // Pages without a hero image open on white; image heroes stay dark under their photo.
-    image
-      ? 'flex min-h-[70svh] items-end pt-32 pb-16 sm:pb-20'
-      : 'theme-white bg-ink pt-24 pb-16 sm:pt-32 sm:pb-20',
+    framed
+      ? 'bg-ink pt-32 pb-16 sm:pb-20'
+      : image
+        ? 'flex min-h-[70svh] items-end pt-32 pb-16 sm:pb-20'
+        : 'theme-white bg-ink pt-24 pb-16 sm:pt-32 sm:pb-20',
   ]}
 >
-  {image && (
+  {background && (
     <div class="absolute inset-0 -z-10">
       <Image
-        src={image.src}
-        alt={image.alt}
+        src={background.src}
+        alt={background.alt}
         widths={[640, 960, 1280, 1920, 2400]}
         sizes="100vw"
         loading="eager"
@@ -76,5 +81,16 @@ const { title, lead, eyebrow, breadcrumb, image, shade = 'full', graphic = true 
       <Highlighted text={title} />
     </h1>
     <p class="text-lead mt-8 max-w-2xl text-bone/85">{lead}</p>
+    {framed && (
+      <Image
+        src={image.src}
+        alt={image.alt}
+        widths={[640, 960, 1280, 1920, 2400]}
+        sizes="(min-width: 1280px) 1200px, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="mt-12 h-auto w-full rounded-md sm:mt-16"
+      />
+    )}
   </Container>
 </section>
