@@ -53,17 +53,20 @@ const current = (href: string) => (href === path ? 'page' : undefined)
               </button>
               <!-- Two-pane menus show their list on the left and the hovered or focused item's panel on
                    the right; without JavaScript the first panel stays visible. -->
-              <div
-                id={`nav-menu-${index}`}
-                hidden
-                class="absolute inset-x-0 top-full isolate border-b border-hairline shadow-[0_24px_48px_-24px_rgb(0_0_0/0.25)]"
-              >
-                <!-- Frosted glass. The blur layer runs 10rem past the panel above and below, and a mask
-                     trims it back to the panel, so the blur reads the page beyond the edges too: a blur
-                     cut to its own box (or clipped by overflow) leaves the page sharp along the edges. -->
+              <div id={`nav-menu-${index}`} hidden class="liquid-glass absolute inset-x-0 top-full">
+                <!-- Liquid glass, in layers behind the content: a lightly blurred body, a thicker rim
+                     along the edges, and the glare on top. -->
                 <div
                   aria-hidden="true"
-                  class="pointer-events-none absolute inset-x-0 -inset-y-40 -z-10 bg-ink/80 backdrop-blur-2xl backdrop-saturate-150 [mask-image:linear-gradient(to_bottom,transparent_10rem,black_10rem,black_calc(100%-10rem),transparent_calc(100%-10rem))]"
+                  class="liquid-glass-body pointer-events-none absolute inset-0 -z-10 backdrop-blur-[7px] backdrop-brightness-[1.04] backdrop-saturate-[1.9]"
+                ></div>
+                <div
+                  aria-hidden="true"
+                  class="liquid-glass-rim pointer-events-none absolute inset-0 -z-10 backdrop-blur-[18px] backdrop-brightness-[1.22] backdrop-saturate-[2.2]"
+                ></div>
+                <div
+                  aria-hidden="true"
+                  class="liquid-glass-shine pointer-events-none absolute inset-0 -z-10"
                 ></div>
                 {isPanes(item) ? (
                   <Container>

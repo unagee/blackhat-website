@@ -30,6 +30,8 @@
   --color-on-signal: #000000;
   /* Light grey ground, between white sections. */
   --color-mist: #f1f1ee;
+  /* Light caught on glass edges; stays white inside swapped themes. */
+  --color-glare: #ffffff;
 
   --text-display-xl: clamp(2.25rem, 4.6vw, 4.5rem);
   --text-display-xl--line-height: 1.04;
@@ -59,6 +61,44 @@
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+/* Liquid glass: a lightly blurred, clear centre with a thicker, brighter rim that bends the
+   page behind it, a glare along the top edge and a soft inner glow, like a glass lozenge. */
+@utility liquid-glass {
+  isolation: isolate;
+  box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.28);
+}
+
+@utility liquid-glass-body {
+  background-color: color-mix(in srgb, var(--color-ink) 50%, transparent);
+}
+
+/* The rim: bands along the top and, thicker, the bottom edge that blur and brighten harder than
+   the centre, so the edges read as thick glass bending the light. The blur itself is set with
+   Tailwind's backdrop classes in the markup, which survive the CSS minifier. */
+@utility liquid-glass-rim {
+  mask-image: linear-gradient(
+    to bottom,
+    #000,
+    transparent 18px,
+    transparent calc(100% - 44px),
+    #000
+  );
+}
+
+@utility liquid-glass-shine {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-glare) 40%, transparent),
+    transparent 22%,
+    transparent 75%,
+    color-mix(in srgb, var(--color-glare) 30%, transparent)
+  );
+  box-shadow:
+    inset 0 -1.5px 0.5px color-mix(in srgb, var(--color-glare) 95%, transparent),
+    inset 0 -6px 12px -6px color-mix(in srgb, var(--color-glare) 70%, transparent),
+    inset 0 0 36px color-mix(in srgb, var(--color-glare) 35%, transparent);
 }
 
 @layer base {

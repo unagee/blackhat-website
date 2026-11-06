@@ -1,5 +1,4 @@
 ---
-import Industries from '@/components/home/Industries.astro'
 import Engagement from '@/components/services/Engagement.astro'
 import EnquiryForm from '@/components/services/EnquiryForm.astro'
 import ServiceList from '@/components/services/ServiceList.astro'
@@ -20,6 +19,5 @@ const schema = [
   <PageHero eyebrow={whatWeDo.eyebrow} title={whatWeDo.title} lead={whatWeDo.lead} />
   <Engagement />
   <ServiceList title={whatWeDo.listTitle} services={whatWeDo.list} />
-  <Industries />
   <EnquiryForm />
 </Layout>
