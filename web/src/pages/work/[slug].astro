@@ -1,6 +1,7 @@
 ---
 import ArrowIcon from '@/components/ui/ArrowIcon.astro'
 import ContactClose from '@/components/ui/ContactClose.astro'
+import FilmPlayer from '@/components/ui/FilmPlayer.astro'
 import PageHero from '@/components/ui/PageHero.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import VideoEmbed from '@/components/ui/VideoEmbed.astro'
@@ -108,6 +109,21 @@ const schema = [
         title={project.video.title}
         poster={project.video.poster}
         playLabel={projectPage.playLabel}
+      />
+    </PageSection>
+  )}
+
+  {project.film && (
+    <PageSection labelledby="film-title">
+      <h2 id="film-title" class="sr-only">
+        {projectPage.videoTitle}
+      </h2>
+      <FilmPlayer
+        src={project.film.src}
+        title={project.film.title}
+        poster={project.film.poster}
+        captions={project.film.captions}
+        captionsLabel={projectPage.captionsLabel}
       />
     </PageSection>
   )}

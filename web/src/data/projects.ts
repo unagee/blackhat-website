@@ -5,7 +5,9 @@ export type ServiceSlug =
   'brand-visual-identity' | '3d-animation-motion-graphics' | 'strategy-consulting'
 
 // A gallery image. `ground` sets the panel behind images with transparent backgrounds.
-export type GalleryImage = Picture & { ground?: 'light' | 'dark' }
+// `video`: a silent looping clip (.mp4 with a .webm beside it) shown instead, with the image as
+// its poster.
+export type GalleryImage = Picture & { ground?: 'light' | 'dark'; video?: string }
 
 export type Project = {
   slug: string
@@ -25,6 +27,12 @@ export type Project = {
   heroShade?: 'full' | 'light'
   // Optional YouTube film, shown above the gallery.
   video?: { youtubeId: string; title: string; poster: Picture }
+  // Optional film hosted on the site (an .mp4 with a .webm beside it), played with sound and
+  // controls above the gallery.
+  film?: { src: string; title: string; poster: Picture; captions: string }
+  // Optional short silent loop (square .mp4 with a .webm beside it) that plays on the project's
+  // cards instead of the card image.
+  cardVideo?: { src: string; poster: Picture }
   gallery: GalleryImage[]
 }
 
@@ -162,8 +170,8 @@ export const projects: Project[] = [
       alt: 'MYJ office lobby with a green stone reception desk, rendered in 3D',
     },
     cardImage: {
-      src: img('cards/myj-card.jpg'),
-      alt: 'MYJ’s 3D investment ring, split into stocks, bonds, currency, real estate and ETFs',
+      src: img('cards/myj-book-card.jpg'),
+      alt: 'An open MYJ book on the server room: a full-bleed 3D render beside the page text',
     },
     gallery: [
       {
@@ -243,8 +251,8 @@ export const projects: Project[] = [
     },
     heroShade: 'light',
     cardImage: {
-      src: img('suricate/suricate-logo-card.jpg'),
-      alt: 'Suricate Capital logo in ivory on chestnut',
+      src: img('cards/suricate-laptop-card.jpg'),
+      alt: 'The Suricate Capital website, “Always Alert, Investing Right”, on a laptop',
     },
     gallery: [
       {
@@ -345,34 +353,41 @@ export const projects: Project[] = [
     ],
     services: ['brand-visual-identity', 'strategy-consulting'],
     image: {
-      src: img('fleet/fleet-brand-guide-stack.jpg'),
-      alt: 'Fleet brand guidelines pages stacked in perspective, with the Fleet logo on the cover',
+      src: img('fleet/fleet-pocket-map.jpg'),
+      alt: 'Fleet banner reading “Your whole operation, in your pocket”, with properties pinned on a map of the United States',
     },
-    heroShade: 'light',
     cardImage: {
-      src: img('fleet/fleet-brand-guide-card.jpg'),
-      alt: 'A collage of Fleet brand guidelines pages',
+      src: img('cards/fleet-pocket-map-card.jpg'),
+      alt: 'Fleet banner reading “Your whole operation, in your pocket”, with properties pinned on a map of the United States',
+    },
+    film: {
+      src: '/video/work/fleet-film.mp4',
+      title: 'Fleet film: clearing 47 issues before lunch',
+      captions: '/video/work/fleet-film.en.vtt',
+      poster: {
+        src: img('fleet/fleet-film-poster.jpg'),
+        alt: 'A technician in a plant room beside the Fleet app, with the line “POV: Clearing 47 issues before lunch”',
+      },
     },
     gallery: [
       {
-        src: img('fleet/fleet-brand-guide-spread.jpg'),
-        alt: 'Six pages of the Fleet brand guidelines laid out on cream',
+        src: img('fleet/fleet-asset-poster.jpg'),
+        alt: 'Fleet asset management in motion: “Every asset should work harder for your portfolio”, with assets organised by category',
+        video: '/video/work/fleet-asset.mp4',
+      },
+      {
+        src: img('fleet/fleet-dashboard-poster.jpg'),
+        alt: 'Fleet reporting dashboard in motion: “Real estate operations need clarity, fast”, with site completion charts',
+        video: '/video/work/fleet-dashboard.mp4',
+      },
+      {
+        src: img('fleet/fleet-snap-poster.jpg'),
+        alt: 'Fleet for technicians in motion: snap it, fix it, track it, in one app',
+        video: '/video/work/fleet-snap.mp4',
       },
       {
         src: img('fleet/fleet-logo-lockup.jpg'),
         alt: 'Fleet logo lockup in white on black: the stepped F logogram beside the Fleet wordmark',
-      },
-      {
-        src: img('fleet/fleet-logogram.jpg'),
-        alt: 'Fleet logogram in navy: two stepped parallelograms forming an F',
-      },
-      {
-        src: img('fleet/fleet-logo-badge.jpg'),
-        alt: 'Fleet logo badge: the white logogram in a rounded navy square',
-      },
-      {
-        src: img('fleet/fleet-logo-colours.jpg'),
-        alt: 'Fleet logo colour combinations: white on navy, navy on light grey and white on a blue gradient',
       },
       {
         src: img('fleet/fleet-brand-palette-ratio.jpg'),
@@ -381,14 +396,6 @@ export const projects: Project[] = [
       {
         src: img('fleet/fleet-brand-colour-roles.jpg'),
         alt: 'How each Fleet colour works: black and navy grounds, steel detail, cream light, espresso action',
-      },
-      {
-        src: img('fleet/fleet-brand-typography.jpg'),
-        alt: 'Fleet typography in Hanken Grotesk: light, regular and medium, with the type scale',
-      },
-      {
-        src: img('fleet/fleet-brand-status-colours.jpg'),
-        alt: 'Fleet status colours for the product: urgent, overdue, in progress, completed and scheduled',
       },
       {
         src: img('fleet/fleet-brand-interface.jpg'),

@@ -1,0 +1,33 @@
+---
+import type { Picture } from '@/types'
+import { getImage } from 'astro:assets'
+
+type Props = {
+  // An H.264 .mp4; a VP9 .webm with the same name sits beside it.
+  src: string
+  title: string
+  poster: Picture
+  // WebVTT captions for the words on screen and in the soundtrack.
+  captions: string
+  captionsLabel: string
+}
+
+// A film hosted on the site, with the browser's own controls and sound. Nothing loads until the
+// visitor presses play.
+const { src, title, poster, captions, captionsLabel } = Astro.props
+const still = await getImage({ src: poster.src, width: 1920 })
+---
+
+<video
+  controls
+  playsinline
+  preload="none"
+  poster={still.src}
+  title={title}
+  aria-label={title}
+  class="aspect-video w-full rounded-lg bg-ink-raised"
+>
+  <source src={src} type="video/mp4" />
+  <source src={src.replace(/\.mp4$/, '.webm')} type="video/webm" />
+  <track kind="captions" src={captions} srclang="en" label={captionsLabel} />
+</video>
