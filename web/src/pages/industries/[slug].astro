@@ -141,7 +141,7 @@ const others = industries.filter((other) => other.slug !== industry.slug)
     />
     <ul class="border-t border-hairline">
       {industry.offerings.map((offering) => (
-        <li class="grid gap-3 border-b border-hairline py-7 md:grid-cols-[1fr_1.3fr_auto] md:items-baseline md:gap-10">
+        <li class="grid gap-3 border-b border-hairline py-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,14rem)] md:items-baseline md:gap-10">
           <h3 class="text-xl">{offering.title}</h3>
           <p class="text-ash">{offering.body}</p>
           <a

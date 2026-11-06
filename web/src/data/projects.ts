@@ -249,8 +249,8 @@ export const projects: Project[] = [
     },
     heroShade: 'light',
     cardImage: {
-      src: img('suricate/suricate-logo-card.jpg'),
-      alt: 'Suricate Capital logo in ivory on chestnut',
+      src: img('cards/suricate-laptop-card.jpg'),
+      alt: 'The Suricate Capital website, “Always Alert, Investing Right”, on a laptop',
     },
     gallery: [
       {
