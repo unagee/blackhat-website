@@ -56,8 +56,15 @@ const current = (href: string) => (href === path ? 'page' : undefined)
               <div
                 id={`nav-menu-${index}`}
                 hidden
-                class="absolute inset-x-0 top-full border-b border-hairline bg-ink/70 shadow-[0_24px_48px_-24px_rgb(0_0_0/0.25)] backdrop-blur-xl backdrop-saturate-150"
+                class="absolute inset-x-0 top-full isolate border-b border-hairline shadow-[0_24px_48px_-24px_rgb(0_0_0/0.25)]"
               >
+                <!-- Frosted glass. The blur layer runs 10rem past the panel above and below, and a mask
+                     trims it back to the panel, so the blur reads the page beyond the edges too: a blur
+                     cut to its own box (or clipped by overflow) leaves the page sharp along the edges. -->
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-x-0 -inset-y-40 -z-10 bg-ink/80 backdrop-blur-2xl backdrop-saturate-150 [mask-image:linear-gradient(to_bottom,transparent_10rem,black_10rem,black_calc(100%-10rem),transparent_calc(100%-10rem))]"
+                ></div>
                 {isPanes(item) ? (
                   <Container>
                     <div
@@ -184,7 +191,7 @@ const current = (href: string) => (href === path ? 'page' : undefined)
     id="mobile-menu"
     hidden
     aria-label={site.labels.mainNavigation}
-    class="max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-hairline bg-ink/85 backdrop-blur-xl md:hidden"
+    class="max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-hairline bg-ink/90 backdrop-blur-2xl backdrop-saturate-150 md:hidden"
   >
     <Container class="space-y-10 py-8">
       {site.nav.map((item) =>
