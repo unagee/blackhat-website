@@ -23,6 +23,8 @@ export type Project = {
   image: Picture
   // Portrait crop for cards, when the hero image doesn't crop well to one.
   cardImage?: Picture
+  // Show the card image at its own shape on the Work page, for banners with words that a square crop would cut.
+  cardWhole?: boolean
   // 'light' for flat graphics such as a logo on colour, which the usual dark overlay would mute.
   heroShade?: 'full' | 'light'
   // Optional YouTube film, shown above the gallery.
@@ -356,8 +358,9 @@ export const projects: Project[] = [
       src: img('fleet/fleet-pocket-map.jpg'),
       alt: 'Fleet banner reading “Your whole operation, in your pocket”, with properties pinned on a map of the United States',
     },
+    cardWhole: true,
     cardImage: {
-      src: img('cards/fleet-pocket-map-card.jpg'),
+      src: img('fleet/fleet-pocket-map.jpg'),
       alt: 'Fleet banner reading “Your whole operation, in your pocket”, with properties pinned on a map of the United States',
     },
     film: {
