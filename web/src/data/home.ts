@@ -167,7 +167,7 @@ export const home = {
 
   industries: {
     eyebrow: 'Who we work with',
-    statement: 'We work in sectors where every visual has to earn *trust*.',
+    statement: 'Your sector has rules. We know how to bend them *nicely*.',
     link: { label: 'Find Your Industry', href: '/industries' } satisfies Link,
   },
 
