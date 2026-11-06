@@ -185,24 +185,8 @@ export const projects: Project[] = [
         alt: 'MYJ brand applications: business card, app icon, event screen, ID card and website',
       },
       {
-        src: img('myj/myj-brand-logo.jpg'),
-        alt: 'The refreshed MYJ Capital logo in green and silver',
-      },
-      {
         src: img('myj/myj-brand-logo-colours.jpg'),
         alt: 'MYJ Capital logo on green, sage, beige and burgundy',
-      },
-      {
-        src: img('myj/myj-brand-palette.jpg'),
-        alt: 'MYJ colour palette: Growth Green, Business Beige, Safety Sage, Big Burgundy and Security Silver',
-      },
-      {
-        src: img('myj/myj-brand-typography.jpg'),
-        alt: 'MYJ typography in Albert Sans on burgundy',
-      },
-      {
-        src: img('myj/myj-brand-pattern.jpg'),
-        alt: 'MYJ geometric pattern in two greens',
       },
       {
         src: img('myj/myj-brand-event-screen.jpg'),
