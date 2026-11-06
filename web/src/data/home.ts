@@ -167,22 +167,8 @@ export const home = {
 
   industries: {
     eyebrow: 'Who we work with',
-    statement:
-      'We work in sectors where every visual has to earn *trust*: finance, healthcare and luxury.',
-    items: [
-      {
-        title: 'Financial Institutions',
-        body: 'Products, processes and spaces explained simply, without losing credibility.',
-      },
-      {
-        title: 'Healthcare Innovators',
-        body: 'Approvals, safety and science turned into material people understand and act on.',
-      },
-      {
-        title: 'Luxury Brands',
-        body: 'Identities and packaging with the craft your customers expect.',
-      },
-    ],
+    statement: 'We work in sectors where every visual has to earn *trust*.',
+    link: { label: 'Find Your Industry', href: '/industries' } satisfies Link,
   },
 
   // Every project as a row of slats near the foot of the page.

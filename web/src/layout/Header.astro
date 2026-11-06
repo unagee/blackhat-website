@@ -21,7 +21,7 @@ const current = (href: string) => (href === path ? 'page' : undefined)
   data-site-header
   class="theme-white sticky top-0 z-50 border-b border-hairline bg-transparent"
 >
-  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-ink"></div>
+  <div aria-hidden="true" class="absolute inset-x-0 top-0 -z-10 h-16 bg-ink"></div>
   <Container class="flex h-16 items-center justify-between gap-6">
     <a href="/" aria-label={site.labels.home} class="shrink-0">
       <Wordmark class="h-6 sm:h-7" variant="dark" eager />
@@ -194,7 +194,7 @@ const current = (href: string) => (href === path ? 'page' : undefined)
     id="mobile-menu"
     hidden
     aria-label={site.labels.mainNavigation}
-    class="max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-hairline bg-ink/90 backdrop-blur-2xl backdrop-saturate-150 md:hidden"
+    class="liquid-glass-sheet absolute inset-x-0 top-full max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-hairline backdrop-blur-[7px] backdrop-brightness-[1.04] backdrop-saturate-[1.9] md:hidden"
   >
     <Container class="space-y-10 py-8">
       {site.nav.map((item) =>
