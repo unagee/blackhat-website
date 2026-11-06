@@ -168,8 +168,8 @@ export const projects: Project[] = [
       alt: 'MYJ office lobby with a green stone reception desk, rendered in 3D',
     },
     cardImage: {
-      src: img('cards/myj-card.jpg'),
-      alt: 'MYJ’s 3D investment ring, split into stocks, bonds, currency, real estate and ETFs',
+      src: img('cards/myj-book-card.jpg'),
+      alt: 'An open MYJ book on the server room: a full-bleed 3D render beside the page text',
     },
     gallery: [
       {

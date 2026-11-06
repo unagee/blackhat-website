@@ -5,7 +5,6 @@ import posterFeaturedEnergend from '@/assets/home/poster-featured-energend.jpg'
 import posterFeaturedWaves from '@/assets/home/poster-featured-waves.jpg'
 import reelPoster from '@/assets/home/reel-poster.jpg'
 import stillEnergend from '@/assets/home/work-energend.jpg'
-import stillMyj from '@/assets/home/work-myj.jpg'
 import citi from '@/assets/logos/partners/citi-logo.png'
 import ea from '@/assets/logos/partners/ea-logo.png'
 import ikea from '@/assets/logos/partners/ikea-logo.png'
@@ -13,6 +12,7 @@ import niri from '@/assets/logos/partners/niri-logo.png'
 import tcdc from '@/assets/logos/partners/tcdc-logo.png'
 import twh from '@/assets/logos/partners/twh-logo.png'
 import vespa from '@/assets/logos/partners/vespa-logo.png'
+import stillMyj from '@/assets/work/myj/myj-office-book-mockup.jpg'
 import stillSuricate from '@/assets/work/suricate/suricate-laptop.jpg'
 import { site } from '@/data/site'
 import type { HeroMedia, Link } from '@/types'
@@ -152,7 +152,7 @@ export const home = {
         slug: 'myj',
         still: {
           src: stillMyj,
-          alt: 'MYJ brand guide applications: business card, app icon, event screen, ID card and website',
+          alt: 'An open MYJ book on the server room: a full-bleed 3D render beside the page text',
         },
       },
       {
