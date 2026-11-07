@@ -435,7 +435,8 @@ export const engagement = {
   ],
 }
 
-// The enquiry form on the What we do overview. Sending opens the visitor's email app.
+// The enquiry form on the What we do overview and contact page. Entries go to the enquiries
+// sheet (see config.ts); without it, sending opens the visitor's email app.
 export const enquiry = {
   eyebrow: 'Contact',
   title: 'Let’s talk about your project',
@@ -451,5 +452,8 @@ export const enquiry = {
   required: '(required)',
   submit: 'Send',
   note: 'Sending opens your email app with your message ready to go.',
+  sending: 'Sending…',
+  sent: 'Thanks, we’ve got it. We’ll be in touch soon.',
+  failed: 'That didn’t send. Please try again in a moment.',
   subject: 'New project enquiry',
 }

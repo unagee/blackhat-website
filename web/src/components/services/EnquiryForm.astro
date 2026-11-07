@@ -10,6 +10,7 @@ type Props = {
 
 const { heading = true } = Astro.props
 const { fields } = enquiry
+const endpoint = websiteConfig.enquiryEndpoint
 const input =
   'mt-2 w-full rounded-lg border border-hairline bg-ink-raised px-4 py-3 text-bone placeholder:text-ash/70 focus:border-bone focus:outline-none'
 ---
@@ -38,7 +39,15 @@ const input =
       data-enquiry
       data-email={websiteConfig.email}
       data-subject={enquiry.subject}
+      data-endpoint={endpoint || undefined}
+      data-sending={enquiry.sending}
+      data-failed={enquiry.failed}
     >
+      <!-- Spam trap: hidden from people and screen readers, so only bots fill it in. -->
+      <div aria-hidden="true" class="absolute -left-[9999px] size-px overflow-hidden">
+        <label for="enquiry-website">Website</label>
+        <input id="enquiry-website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
       <div>
         <label for="enquiry-name" class="flex justify-between">
           <span>{fields.name}</span>
@@ -111,13 +120,23 @@ const input =
       <div class="flex flex-col items-center gap-3 pt-2">
         <button
           type="submit"
-          class="rounded-full bg-signal px-10 py-3 font-medium text-on-signal transition-colors hover:bg-bone"
+          class="rounded-full bg-signal px-10 py-3 font-medium text-on-signal transition-colors hover:bg-bone disabled:opacity-60"
         >
           {enquiry.submit}
         </button>
-        <p class="text-sm text-ash">{enquiry.note}</p>
+        <p data-enquiry-status role="status" class="text-sm text-ash">
+          {endpoint ? '' : enquiry.note}
+        </p>
       </div>
     </form>
+    <p
+      data-enquiry-sent
+      hidden
+      tabindex="-1"
+      class="text-display-md mx-auto max-w-xl py-10 text-center focus:outline-none"
+    >
+      {enquiry.sent}
+    </p>
   </div>
 </PageSection>
 
@@ -135,14 +154,44 @@ const input =
     })
   })
 
-  // Compose the email ourselves so it arrives readable in every mail app.
-  form?.addEventListener('submit', (event) => {
+  // With the enquiries sheet set up, send the entry there and say thanks in place of the form.
+  // Without it, compose the email ourselves so it arrives readable in every mail app.
+  form?.addEventListener('submit', async (event) => {
     event.preventDefault()
     const data = new FormData(form)
-    const labels = [...form.querySelectorAll('label')].map((label) => [
-      label.htmlFor,
-      label.querySelector('span')?.textContent ?? label.textContent ?? '',
-    ])
+    const endpoint = form.dataset.endpoint
+    if (endpoint) {
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')
+      const status = form.querySelector<HTMLElement>('[data-enquiry-status]')
+      const sent = document.querySelector<HTMLElement>('[data-enquiry-sent]')
+      data.set('page', window.location.href)
+      if (button) button.disabled = true
+      if (status) status.textContent = form.dataset.sending ?? ''
+      try {
+        // Apps Script answers without CORS headers, so the reply can't be read: a request that
+        // reaches it counts as sent.
+        await fetch(endpoint, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: new URLSearchParams(data as unknown as Record<string, string>),
+        })
+        form.hidden = true
+        if (sent) {
+          sent.hidden = false
+          sent.focus()
+        }
+      } catch {
+        if (status) status.textContent = form.dataset.failed ?? ''
+        if (button) button.disabled = false
+      }
+      return
+    }
+    const labels = [...form.querySelectorAll('label')]
+      .filter((label) => label.htmlFor !== 'enquiry-website')
+      .map((label) => [
+        label.htmlFor,
+        label.querySelector('span')?.textContent ?? label.textContent ?? '',
+      ])
     const body = labels
       .map(([id, label]) => {
         const field = form.querySelector<HTMLInputElement>(`#${id}`)
