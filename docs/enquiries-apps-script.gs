@@ -7,6 +7,9 @@
 
 const RECIPIENTS = 'nathan@blackhat.agency, team@blackhat.agency'
 const TIME_ZONE = 'Asia/Singapore'
+// The name the alerts come from. The address is the Google account that owns this script:
+// Apps Script can only send from that account (or an alias it has verified in Gmail).
+const SENDER_NAME = 'Blackhat Website'
 
 function doPost(e) {
   const p = e.parameter || {}
@@ -20,6 +23,7 @@ function doPost(e) {
 
   MailApp.sendEmail({
     to: RECIPIENTS,
+    name: SENDER_NAME,
     replyTo: p.email || '',
     subject: `New website enquiry: ${p.name || 'Someone'}${p.company ? ` (${p.company})` : ''}`,
     body: [
