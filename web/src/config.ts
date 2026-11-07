@@ -7,7 +7,7 @@ export const websiteConfig = {
   // emails the team (script: docs/enquiries-apps-script.gs). Empty: the form opens the
   // visitor's email app instead.
   enquiryEndpoint:
-    'https://script.google.com/macros/s/AKfycbxDHwLzTaYyVaUhb7RD922BUHcFYxbF_aZ02yav5oGnruxtQLh0Of_enEqme5-lykYVzQ/exec',
+    'https://script.google.com/macros/s/AKfycbyY1KeBrs2AlYkNBB1TFjmnnbnAUTMr-9K9KWpnFezduFiWsJs6s5dTSwcr1kwbgRw/exec',
   address: {
     street: '133 New Bridge Road #08-01',
     building: 'Chinatown Point',

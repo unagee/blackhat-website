@@ -1,6 +1,7 @@
 // Google Apps Script behind the website's enquiry form.
 //
-// It lives in the "Blackhat Website Enquiries" Google Sheet (Extensions > Apps Script),
+// It lives in the team@blackhat.agency copy of the "Blackhat Website Enquiries" Google Sheet
+// (Extensions > Apps Script),
 // deployed as a web app (Execute as: Me, Who has access: Anyone). The deployment URL goes in
 // web/src/config.ts as `enquiryEndpoint`. Each enquiry adds a row to the sheet and emails
 // RECIPIENTS, with Reply-To set to the sender so a reply goes straight back to them.
