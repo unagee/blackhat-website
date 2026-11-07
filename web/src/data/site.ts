@@ -40,10 +40,7 @@ export const site = {
     eyebrow: 'Contact',
     title: 'Tell us what you’re *working on*.',
     body: 'A rough brief, a half-finished deck, a hunch. Send whatever you have and we’ll come back with how we’d approach it.',
-    emailLabel: 'Email Us',
-    emailSubject: 'New project enquiry',
-    emailBody:
-      'Name:\nCompany:\nWhich services are you interested in?\nTell us about your project:\n',
+    link: { label: 'Contact Us', href: '/contact' } satisfies Link,
   },
   footer: {
     title: 'Keep Exploring',
@@ -60,7 +57,6 @@ export const site = {
     ] satisfies Link[],
     legalTitle: 'Legal',
     visitTitle: 'Visit',
-    contactTitle: 'Talk to Us',
   },
   labels: {
     skipToContent: 'Skip to main content',

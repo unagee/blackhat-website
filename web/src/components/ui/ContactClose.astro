@@ -7,7 +7,6 @@ import PageSection from './PageSection.astro'
 
 const { contact } = site
 const { address } = websiteConfig
-const mailto = `mailto:${websiteConfig.email}?subject=${encodeURIComponent(contact.emailSubject)}&body=${encodeURIComponent(contact.emailBody)}`
 ---
 
 <PageSection id="contact" tone="signal" labelledby="contact-title" graphic="right" pattern="slash">
@@ -19,8 +18,8 @@ const mailto = `mailto:${websiteConfig.email}?subject=${encodeURIComponent(conta
       </h2>
       <p class="text-lead mt-8 max-w-2xl text-graphite">{contact.body}</p>
       <div class="mt-10">
-        <Button href={mailto} variant="dark" arrow>
-          {contact.emailLabel}: {websiteConfig.email}
+        <Button href={contact.link.href} variant="dark" arrow>
+          {contact.link.label}
         </Button>
       </div>
     </div>
