@@ -1,5 +1,4 @@
 import cooklaneOwner from '@/assets/work/cooklane/cooklane-3d-character-business-owner.png'
-import energendSatellite from '@/assets/work/energend/energend-satellite-poster.jpg'
 import fleetUserRoles from '@/assets/work/fleet/fleet-user-roles.jpg'
 import hyperloopJourney from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-2.png'
 import hyperloopContext from '@/assets/work/hyperloop/hyperloop-tt-customer-journey-design-diagram-3.png'
@@ -111,13 +110,6 @@ export const services: Service[] = [
     work: {
       title: 'Branding Work',
       videos: {
-        energend: {
-          src: '/video/work/energend-satellite.mp4',
-          poster: {
-            src: energendSatellite,
-            alt: 'An Energend satellite with solar panels orbiting Earth',
-          },
-        },
         waves: {
           src: '/video/work/waves-beach.mp4',
           poster: { src: wavesBeach, alt: 'Friends at a beach party sharing Waves cans' },

@@ -25,7 +25,6 @@ const data = {
       name: websiteConfig.name,
       legalName: websiteConfig.legalName,
       url,
-      email: websiteConfig.email,
       logo: new URL(logo.src, WEBSITE_URL).toString(),
       sameAs: websiteConfig.social.map((link) => link.href),
     },
@@ -35,7 +34,6 @@ const data = {
       name: websiteConfig.name,
       description: site.tagline,
       url,
-      email: websiteConfig.email,
       image: new URL(logo.src, WEBSITE_URL).toString(),
       parentOrganization: { '@id': `${url}#organization` },
       address: {

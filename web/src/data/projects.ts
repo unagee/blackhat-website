@@ -85,6 +85,13 @@ export const projects: Project[] = [
       src: img('energend/energend-factory-render.jpg'),
       alt: '3D render of the Energend factory floor, with robotic production cells and battery crates',
     },
+    cardVideo: {
+      src: '/video/work/energend-satellite.mp4',
+      poster: {
+        src: img('energend/energend-satellite-poster.jpg'),
+        alt: 'An Energend satellite with solar panels orbiting Earth',
+      },
+    },
     gallery: [
       {
         src: img('energend/energend-factory-render.jpg'),
