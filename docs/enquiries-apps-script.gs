@@ -26,7 +26,7 @@ function doPost(e) {
     to: RECIPIENTS,
     name: SENDER_NAME,
     replyTo: p.email || '',
-    subject: `New website enquiry: ${p.name || 'Someone'}${p.company ? ` (${p.company})` : ''}`,
+    subject: `New Website Enquiry: ${p.name || 'Someone'}${p.company ? ` (${p.company})` : ''}`,
     body: [
       `Name: ${p.name || ''}`,
       `Company: ${p.company || ''}`,
