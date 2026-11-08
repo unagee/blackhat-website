@@ -25,6 +25,7 @@ const still = await getImage({ src: poster.src, width: 1280 })
     alt={poster.alt}
     loading="lazy"
     decoding="async"
+    data-loop-still
     class="absolute inset-0 size-full object-cover"
   />
   <video
@@ -47,6 +48,20 @@ const still = await getImage({ src: poster.src, width: 1280 })
   // Play each clip only while it is in view, and never for reduced motion.
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const videos = document.querySelectorAll<HTMLVideoElement>('[data-loop-video]')
+  // Hide the still once a clip plays: placed at a fraction of a pixel, the video can leave a
+  // one-pixel strip of the still showing along its edge.
+  document
+    .querySelectorAll<HTMLVideoElement>('[data-loop-video], [data-manual-video]')
+    .forEach((video) => {
+      video.addEventListener(
+        'playing',
+        () => {
+          const still = video.parentElement?.querySelector<HTMLElement>('[data-loop-still]')
+          if (still) still.style.visibility = 'hidden'
+        },
+        { once: true },
+      )
+    })
   if (!reduce && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver(
       (entries) => {
