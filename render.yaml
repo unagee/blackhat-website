@@ -19,9 +19,9 @@ services:
     envVars:
       - key: NODE_VERSION
         value: '22'
-      # Change to the real domain once one is connected in Render.
+      # The live domain: canonical links, the sitemap, robots.txt and structured data use it.
       - key: WEBSITE_URL
-        value: https://blackhat-website.onrender.com
+        value: https://www.blackhat.agency
       - key: SITE_ENV
         value: production
     # Old blackhat.agency (Squarespace) addresses, kept working after the domain moves here.
