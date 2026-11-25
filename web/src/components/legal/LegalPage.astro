@@ -1,0 +1,81 @@
+---
+import PageHero from '@/components/ui/PageHero.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import type { LegalBlock, LegalPage } from '@/data/legal'
+import Layout from '@/layout/Layout.astro'
+
+type Props = { page: LegalPage }
+
+const { page } = Astro.props
+
+// A paragraph wrapped in **double asterisks** is a small subheading.
+const subheading = (block: LegalBlock) =>
+  typeof block === 'string' && /^\*\*.+\*\*$/.test(block) ? block.slice(2, -2) : null
+
+// Splits copy on [text](href) so links render as anchors.
+const parts = (text: string) => {
+  const out: { text: string; href?: string }[] = []
+  const pattern = /\[([^\]]+)\]\(([^)]+)\)/g
+  let last = 0
+  for (const match of text.matchAll(pattern)) {
+    if (match.index > last) out.push({ text: text.slice(last, match.index) })
+    out.push({ text: match[1], href: match[2] })
+    last = match.index + match[0].length
+  }
+  if (last < text.length) out.push({ text: text.slice(last) })
+  return out
+}
+const external = (href: string) => href.startsWith('http')
+const link = 'underline underline-offset-4 hover:text-graphite'
+---
+
+<Layout meta={page.meta}>
+  <PageHero eyebrow={page.eyebrow} title={page.title} lead={page.meta.description ?? ''} />
+  <PageSection tone="light">
+    <article class="max-w-3xl">
+      {page.updated && <p class="text-sm text-graphite">{page.updated}</p>}
+      {page.sections.map((section) => (
+        <section class="mt-12 first:mt-0">
+          <h2 class="text-2xl font-medium">{section.heading}</h2>
+          <div class="mt-4 space-y-4 leading-relaxed text-ink/85">
+            {section.body.map((block) =>
+              subheading(block) ? (
+                <h3 class="pt-2 font-medium text-ink">{subheading(block)}</h3>
+              ) : typeof block === 'string' ? (
+                <p>
+                  {parts(block).map((part) =>
+                    part.href ? (
+                      <a
+                        href={part.href}
+                        class={link}
+                        {...(external(part.href)
+                          ? { rel: 'noopener noreferrer', target: '_blank' }
+                          : {})}
+                      >
+                        {part.text}
+                      </a>
+                    ) : (
+                      part.text
+                    ),
+                  )}
+                </p>
+              ) : 'list' in block ? (
+                <ul class="list-disc space-y-2 pl-6">
+                  {block.list.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <address class="not-italic">
+                  {block.address.map((line) => (
+                    <span class="block">{line}</span>
+                  ))}
+                </address>
+              ),
+            )}
+          </div>
+        </section>
+      ))}
+    </article>
+  </PageSection>
+</Layout>

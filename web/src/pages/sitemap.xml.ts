@@ -17,6 +17,9 @@ const paths = [
   '/work',
   ...projects.map((project) => `/work/${project.slug}`),
   '/contact',
+  '/terms',
+  '/privacy',
+  '/cookies',
 ]
 
 export const GET: APIRoute = () => {
